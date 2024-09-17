@@ -1,11 +1,16 @@
-import React from 'react'
+import Footer from '@/Components/Footer';
+import Navbar from '@/Components/Navbar';
+import React from 'react';
 
-function page() {
+const page = () => {
   return (
-    <div className='text-center mt-20 text-5xl'>
-      ❤️ Welcome to <span className='text-blue-400 font-bold capitalize'>way go</span> ..❤️
-    </div>
-  )
-}
+    <div>
+      <Navbar></Navbar>
 
-export default page
+
+      <Footer />
+    </div>
+  );
+};
+
+export default page;
