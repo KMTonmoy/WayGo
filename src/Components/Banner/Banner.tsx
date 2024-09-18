@@ -35,7 +35,7 @@ const Banner: React.FC = () => {
     }, []);
 
     return (
-        <div className="relative">
+        <div className="relative z-0"> {/* Set z-index low */}
             {/* Background Carousel */}
             <div
                 className="h-[800px] lg:h-[600px] bg-cover bg-center transition-all duration-700 ease-in-out"
@@ -43,7 +43,7 @@ const Banner: React.FC = () => {
             ></div>
 
             {/* Overlay content */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+            <div className="absolute w-full inset-0 flex items-center justify-between bg-black bg-opacity-40">
                 <div className="container mx-auto grid lg:grid-cols-2 gap-5 items-center px-5 lg:px-0">
                     {/* Left Side - Heading and Description */}
                     <div className="text-white text-center lg:text-left">
@@ -56,7 +56,7 @@ const Banner: React.FC = () => {
                     </div>
 
                     {/* Right Side - Search Form */}
-                    <div className="bg-white bg-opacity-50 backdrop-blur-lg rounded-lg p-5 shadow-lg w-full">
+                    <div className="bg-white bg-opacity-50 backdrop-blur-lg rounded-lg p-5 shadow-lg w-1/2">
                         <div className="flex space-x-2 mb-4 justify-center lg:justify-start">
                             <button
                                 onClick={() => setActiveTransport('Flights')}

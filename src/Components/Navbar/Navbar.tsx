@@ -26,9 +26,8 @@ const Navbar: React.FC = () => {
     ];
 
     return (
-        <div className="bg-white mb-5 fixed w-full top-0 shadow-lg">
+        <div className="bg-white mb-5 fixed w-full top-0 shadow-lg z-10">
             <div className="container mx-auto flex justify-between items-center h-[100px] px-5 lg:px-10">
-
                 <div>
                     <Image src={logo} alt="WayGO Logo" className="w-[150px]" />
                 </div>
@@ -37,7 +36,7 @@ const Navbar: React.FC = () => {
                     {links.map(link => (
                         <Link 
                             key={link.path}
-                            className={`  font-semibold transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
+                            className={`font-semibold transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
                             href={link.path}
                         >
                             {link.title}
@@ -74,7 +73,7 @@ const Navbar: React.FC = () => {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="lg:hidden bg-white shadow-lg w-full p-5"
+                    className="lg:hidden bg-white shadow-lg w-full p-5 z-20"
                 >
                     {links.map(link => (
                         <Link 
