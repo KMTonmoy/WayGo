@@ -146,7 +146,7 @@ const Banner: React.FC = () => {
                 </div>
             </div>
         </div>
-    );    
+    );
 };
 
 export default Banner;
