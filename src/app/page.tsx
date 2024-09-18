@@ -1,4 +1,5 @@
  
+import WhyChooseUs from '@/Components/WhyChooseUs';
 import React from 'react';
 
 const page = () => {
@@ -6,7 +7,7 @@ const page = () => {
     <>
       <header>
 
-    
+      <WhyChooseUs/>
 
 
         {/* banner section */}
