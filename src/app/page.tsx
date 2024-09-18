@@ -1,16 +1,21 @@
 import Footer from '@/Components/Footer';
+import Navbar from '@/Components/Navbar/Navbar';
 import React from 'react';
 
 const page = () => {
   return (
     <>
       <header>
+
+        <div className='mb-[130px]'> <Navbar /></div>
+
+
         {/* banner section */}
         <div className='bg-blue-100 '>
-        <div className='py-10 md:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 2xl:px-14 border-2 border-blue-500'>
-          <h1>Heading 1</h1>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea nostrum recusandae magnam quisquam nulla tenetur distinctio quidem architecto id eum enim fugiat dolorem harum eaque tempora veritatis et, beatae fugit provident asperiores error magni? Numquam exercitationem eum iure iste cupiditate quos doloribus nostrum aspernatur assumenda. Doloribus laboriosam amet vero id.
-        </div>          
+          <div className='py-10 md:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 2xl:px-14 border-2 border-blue-500'>
+            <h1>Heading 1</h1>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea nostrum recusandae magnam quisquam nulla tenetur distinctio quidem architecto id eum enim fugiat dolorem harum eaque tempora veritatis et, beatae fugit provident asperiores error magni? Numquam exercitationem eum iure iste cupiditate quos doloribus nostrum aspernatur assumenda. Doloribus laboriosam amet vero id.
+          </div>
         </div>
       </header>
       <main>
@@ -22,7 +27,7 @@ const page = () => {
 
         {/* Best Service Section */}
         <section className='py-10 md:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 2xl:px-14 mt-16 md:mt-20 lg:mt-28 border-2 border-red-400'>
-        <h3>Heading 3</h3>
+          <h3>Heading 3</h3>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam corrupti fugiat, voluptate inventore veritatis numquam magnam asperiores nostrum animi alias nihil eveniet ab deleniti, obcaecati dignissimos dolorem amet veniam est optio. Cupiditate, commodi blanditiis! Voluptates atque ea rerum aliquam eius delectus perspiciatis aut obcaecati nobis, quod cupiditate, iusto, quisquam modi!
         </section>
 
@@ -36,11 +41,11 @@ const page = () => {
         <section>
 
         </section>
-      
+
 
       </main>
-   
-      <Footer/>
+
+      <Footer />
     </>
   )
 }
