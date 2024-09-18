@@ -13,7 +13,7 @@ const AboutShuttle: React.FC = () => {
                         More Than 25 Years We Provide Bus Charter Service For You
                     </h3>
                     <p className="text-gray-700 mb-6">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc 
                     </p>
                     <ul className="space-y-2">
                         <li className="text-lg text-gray-800">
