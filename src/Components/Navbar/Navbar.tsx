@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
                         >
                             {link.title}
                         </Link>
-                    ))}
+                    ))} 
                 </div>
 
                 <div className='flex gap-2'>
