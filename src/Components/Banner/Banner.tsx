@@ -43,8 +43,8 @@ const Banner: React.FC = () => {
             ></div>
 
             {/* Overlay content */}
-            <div className="absolute w-full inset-0 flex items-center justify-between bg-black bg-opacity-40">
-                <div className="container mx-auto grid lg:grid-cols-2 gap-5 items-center px-5 lg:px-0">
+            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                <div className="container mx-auto grid lg:grid-cols-2 gap-5 items-center px-5 lg:px-10">
                     {/* Left Side - Heading and Description */}
                     <div className="text-white text-center lg:text-left">
                         <h1 className="text-3xl lg:text-5xl font-bold mb-4">
@@ -56,7 +56,7 @@ const Banner: React.FC = () => {
                     </div>
 
                     {/* Right Side - Search Form */}
-                    <div className="bg-white bg-opacity-50 backdrop-blur-lg rounded-lg p-5 shadow-lg w-1/2">
+                    <div className="bg-white bg-opacity-50 backdrop-blur-lg rounded-lg p-5 shadow-lg w-full lg:w-1/2 max-w-lg mx-auto">
                         <div className="flex space-x-2 mb-4 justify-center lg:justify-start">
                             <button
                                 onClick={() => setActiveTransport('Flights')}
@@ -144,9 +144,10 @@ const Banner: React.FC = () => {
                         </form>
                     </div>
                 </div>
+                
             </div>
         </div>
-    );
+    );    
 };
 
 export default Banner;
