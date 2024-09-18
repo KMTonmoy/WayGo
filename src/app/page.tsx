@@ -1,3 +1,4 @@
+import Banner from "@/Components/Banner/Banner";
 
 
 
@@ -7,7 +8,7 @@ const page = () => {
       <header>
 
 
-
+        <Banner />
 
         {/* banner section */}
         <div className='bg-blue-100 '>
