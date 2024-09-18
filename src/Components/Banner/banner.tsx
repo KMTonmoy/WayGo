@@ -60,31 +60,42 @@ const Banner: React.FC = () => {
                         <div className="flex space-x-2 mb-4 justify-center lg:justify-start">
                             <button
                                 onClick={() => setActiveTransport('Flights')}
-                                className={`px-4 py-2 rounded ${
-                                    activeTransport === 'Flights'
+                                className={`px-4 py-2 rounded ${activeTransport === 'Flights'
+ 
+                                    ? 'bg-orange-500 text-white'
+                                    : 'bg-white text-gray-700 border'
+ 
                                         ? 'bg-orange-500 text-white'
                                         : 'bg-white text-gray-700 border'
-                                } hover:bg-orange-600`}
+ 
+                                    } hover:bg-orange-600`}
                             >
                                 Flights
                             </button>
                             <button
                                 onClick={() => setActiveTransport('Trains')}
-                                className={`px-4 py-2 rounded ${
-                                    activeTransport === 'Trains'
+                                className={`px-4 py-2 rounded ${activeTransport === 'Trains'
+                    ? 'bg-orange-500 text-white'
+                                    : 'bg-white text-gray-700 border'
+ 
                                         ? 'bg-orange-500 text-white'
                                         : 'bg-white text-gray-700 border'
-                                } hover:bg-orange-600`}
+ 
+                                    } hover:bg-orange-600`}
                             >
                                 Trains
                             </button>
                             <button
                                 onClick={() => setActiveTransport('Buses')}
-                                className={`px-4 py-2 rounded ${
-                                    activeTransport === 'Buses'
+                                className={`px-4 py-2 rounded ${activeTransport === 'Buses'
+ 
+                                    ? 'bg-orange-500 text-white'
+                                    : 'bg-white text-gray-700 border'
+ 
                                         ? 'bg-orange-500 text-white'
                                         : 'bg-white text-gray-700 border'
-                                } hover:bg-orange-600`}
+ 
+                                    } hover:bg-orange-600`}
                             >
                                 Buses
                             </button>
