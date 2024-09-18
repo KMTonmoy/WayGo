@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
                     {links.map(link => (
                         <Link 
                             key={link.path}
-                            className={`  font-medium transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
+                            className={`  font-semibold transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
                             href={link.path}
                         >
                             {link.title}
@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
                     {links.map(link => (
                         <Link 
                             key={link.path}
-                            className={`block my-2 font-medium transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
+                            className={`block my-2 font-semibold transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
                             href={link.path}
                             onClick={() => setMenuOpen(false)}
                         >
