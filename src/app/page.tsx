@@ -7,6 +7,7 @@ const Page = () => {
       <Banner />
     </div>
   );
-};
+  
+}; 
 
 export default Page;
