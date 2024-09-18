@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
         // { title: 'Buy Tickets', path: '/buy' },
         { title: 'Blog', path: '/blog' },
         { title: 'Contact Us', path: '/contact' }
+        
     ];
 
     return (
