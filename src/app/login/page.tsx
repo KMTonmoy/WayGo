@@ -33,7 +33,7 @@ const LoginPage: React.FC = () => {
                             <input type="checkbox" id="remember-me" className="mr-2 text-[#f0652b] focus:ring-[#f0652b]" />
                             <label htmlFor="remember-me" className="text-gray-600">Remember Me</label>
                         </div>
-                        <Link href="/forgot-password" className="text-[#f0652b] hover:underline">Forgot Password??</Link>
+                        <Link href="/forgot-password" className="text-[#f0652b] hover:underline">Forgot Password?</Link>
                     </div>
 
                     <button className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300">
