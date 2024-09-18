@@ -14,6 +14,7 @@ const About = () => {
                 src="https://www.brightlogix.com/services/frontend-development/front-end-development.gif"
                 alt="Under Development"
                 className="w-full lg:w-1/2 max-w-lg rounded-lg shadow-lg mb-6"
+                width=auto
             />
             <a
                 href="/"

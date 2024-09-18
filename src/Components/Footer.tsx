@@ -1,5 +1,5 @@
-'use client';  
-import React from 'react';
+'use client';
+
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
