@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 
-const page: React.FC = () => {
-    const [profilePic, setProfilePic] = useState(null);
+const Page: React.FC = () => {
+    const [profilePic, setProfilePic] = useState<File | null>(null);
 
     const handleProfilePicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -10,6 +10,9 @@ const page: React.FC = () => {
             setProfilePic(file);
         }
     };
+
+    console.log(profilePic)
+
 
     return (
         <div className="min-h-screen bg-gray-100 flex justify-center items-center py-10 px-5">
@@ -78,8 +81,6 @@ const page: React.FC = () => {
                         />
                     </div>
 
-
-
                     <button className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300">
                         Sign Up
                     </button>
@@ -94,4 +95,4 @@ const page: React.FC = () => {
     );
 };
 
-export default page;
+export default Page;

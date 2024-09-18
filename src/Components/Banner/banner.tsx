@@ -1,7 +1,13 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+ 
+interface Image {
+    url: string;
+    heading: string;
+    description: string;
+}
 
-const images = [
+const images: Image[] = [
     {
         url: 'https://www.emtracsystems.com/wp-content/uploads/2021/06/Banner-Red-Passenger-Train-at-Station-580.png',
         heading: 'Explore the World by Train',
@@ -20,8 +26,8 @@ const images = [
 ];
 
 const Banner: React.FC = () => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [activeTransport, setActiveTransport] = useState('Flights'); //  
+    const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+    const [activeTransport, setActiveTransport] = useState<string>('Flights');
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -34,7 +40,7 @@ const Banner: React.FC = () => {
     }, []);
 
     return (
-        <div className="relative z-0"> {/* Set z-index low */}
+        <div className="relative z-0">
             {/* Background Carousel */}
             <div
                 className="h-[800px] lg:h-[600px] bg-cover bg-center transition-all duration-700 ease-in-out"
@@ -59,8 +65,7 @@ const Banner: React.FC = () => {
                         <div className="flex space-x-2 mb-4 justify-center lg:justify-start">
                             <button
                                 onClick={() => setActiveTransport('Flights')}
-                                className={`px-4 py-2 rounded ${activeTransport === 'Flights'
-                                    ? 'bg-orange-500 text-white'
+                                className={`px-4 py-2 rounded ${activeTransport === 'Flights' ? 'bg-orange-500 text-white'
                                     : 'bg-white text-gray-700 border'
                                     } hover:bg-orange-600`}
                             >

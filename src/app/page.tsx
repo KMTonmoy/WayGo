@@ -1,21 +1,12 @@
-
 import React from 'react';
-import Banner from '../Components/Banner/banner';
+import Banner from '../Components/Banner/Banner';
 
-
-const page = () => {
+const Page = () => {
   return (
-    <>
-      <header>
-        <Banner />
-      </header>
-      <main>
+    <div>
+      <Banner />
+    </div>
+  );
+};
 
-
-      </main>
-
-    </>
-  )
-}
-
-export default page;
+export default Page;
