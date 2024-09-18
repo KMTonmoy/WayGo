@@ -21,15 +21,14 @@ const images = [
 
 const Banner: React.FC = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [activeTransport, setActiveTransport] = useState('Flights'); // Track active button
+    const [activeTransport, setActiveTransport] = useState('Flights'); //  
 
-    // Change background image and text every 3 seconds
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === images.length - 1 ? 0 : prevIndex + 1
             );
-        }, 3000); // 3000ms = 3 seconds
+        }, 5000);
 
         return () => clearInterval(interval);
     }, []);
