@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 const ContactPage: React.FC = () => {
