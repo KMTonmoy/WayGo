@@ -1,25 +1,25 @@
- 
 import WhyChooseUs from '@/Components/WhyChooseUs';
+import Banner from '@/Components/Banner/banner';
 import React from 'react';
+
 
 const page = () => {
   return (
     <>
-      <header>
 
-      <WhyChooseUs/>
-
-
-        {/* banner section */}
+        <header>
+          {/* banner section */}
         <div className='bg-blue-100 '>
-          <div className='py-10 md:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 2xl:px-14 border-2 border-blue-500'>
-            <h1>Heading 1</h1>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea nostrum recusandae magnam quisquam nulla tenetur distinctio quidem architecto id eum enim fugiat dolorem harum eaque tempora veritatis et, beatae fugit provident asperiores error magni? Numquam exercitationem eum iure iste cupiditate quos doloribus nostrum aspernatur assumenda. Doloribus laboriosam amet vero id.
-          </div>
+        <Banner />
         </div>
-      </header>
+        </header>
+      
       <main>
+
         {/* Hot Deal Section */}
+
+
+
         <section className='py-10 md:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 2xl:px-14 mt-16 md:mt-20 lg:mt-28 border-2 border-green-400'>
           <h2>Heading 2</h2>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quae voluptatibus nobis, repellendus, sunt quaerat error, est inventore provident facilis ullam veritatis cumque! Nisi doloribus quia tenetur repellendus dignissimos vero ipsam. Totam alias aliquam eius doloribus, magni eaque magnam accusamus.
@@ -37,6 +37,9 @@ const page = () => {
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius illo veniam iure odio? Veritatis magni provident consectetur at, ducimus accusantium, ipsa dolore, consequuntur error nam natus. Adipisci assumenda in repellendus praesentium facilis doloremque natus, itaque reprehenderit delectus eveniet deserunt laboriosam quae aliquam! Possimus laudantium optio officia assumenda! Laborum earum sint fugiat quibusdam quo eaque, a placeat est rerum! Accusantium, quam.
         </section>
 
+        {/* Why Choose us section */}
+        <WhyChooseUs/>
+
         {/* Testimonial Section*/}
         <section>
 
@@ -44,8 +47,8 @@ const page = () => {
 
 
       </main>
- 
-    </>
+
+      </>
   )
 }
 
