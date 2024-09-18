@@ -1,37 +1,40 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 :root {
   /* Primary Colors */
-  --clr-primary: #211916; 
-  --clr-secondary: #555555; 
-  --clr-light-gray: #c1bebe; 
-  --clr-focussed: #F0652B; 
-  --clr-white: #ffffff; 
+  --clr-primary: #211916;
+  --clr-secondary: #555555;
+  --clr-light-gray: #c1bebe;
+  --clr-focussed: #F0652B;
+  --clr-white: #ffffff;
 
   /* Background Colors */
-  --bg-primary: #F6F4FE; 
-  --bg-secondary: #e0e0f1; 
-  
+  --bg-primary: #F6F4FE;
+  --bg-secondary: #e0e0f1;
+
   /* Accent Colors */
-  --clr-accent-light: #ff8a5c; 
-  --clr-accent-dark: #a64622; 
-  
+  --clr-accent-light: #ff8a5c;
+  --clr-accent-dark: #a64622;
+
   /* Status Colors */
-  --clr-warning: #F7B217; 
-  --clr-success: #51b6ca; 
+  --clr-warning: #F7B217;
+  --clr-success: #51b6ca;
   --clr-error: #EC4034;
 }
 
-body{
-  font-size:0.825rem;
+body {
+  font-size: 0.825rem;
   font-family: "Poppins", sans-serif;
   background-color: var(--bg-primary);
-  color:var(--clr-primary);
+  color: var(--clr-primary);
 }
 
 /* global
@@ -42,28 +45,38 @@ img {
 
 
 /* Heading Sizes */
-h1{
+h1 {
   font-size: 2.4rem;
   line-height: 1.1;
   font-weight: 700;
 }
-h2,h3,h4,h5,h6{
+
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   line-height: 1.2;
 }
-h2{
+
+h2 {
   font-size: 2.125rem;
 }
-h3{
+
+h3 {
   font-size: 1.175rem;
 }
-h4{
+
+h4 {
   font-size: 1.5em;
 }
-h5{
+
+h5 {
   font-size: 1.2em;
 }
-h6{
+
+h6 {
   font-size: 1em;
 }
 
@@ -71,54 +84,63 @@ h6{
 
 
 
-@media screen and (min-width: 768px ) {
-  body{
+@media screen and (min-width: 768px) {
+  body {
     font-size: 1rem;
   }
-  h1{
+
+  h1 {
     font-size: 3rem;
   }
-  h2{
+
+  h2 {
     font-size: 2.5rem;
   }
-  h3{
+
+  h3 {
     font-size: 2rem;
   }
-  h4{
+
+  h4 {
     font-size: 1.625rem;
   }
-  h5{
+
+  h5 {
     font-size: 1.5rem;
   }
-  h6{
+
+  h6 {
     font-size: 1rem;
   }
 }
 
 
-@media screen and (min-width: 1024px ) {
-  body{
+@media screen and (min-width: 1024px) {
+  body {
     font-size: 1rem;
   }
-  h1{
+
+  h1 {
     font-size: 3.6rem;
   }
-  h2{
+
+  h2 {
     font-size: 2.75rem;
   }
-  h3{
+
+  h3 {
     font-size: 2.25rem;
   }
-  h4{
+
+  h4 {
     font-size: 1.75rem;
   }
-  h5{
+
+  h5 {
     font-size: 1.5rem;
   }
-  h6{
+
+  h6 {
     font-size: 1.25rem;
   }
 }
-
-
-

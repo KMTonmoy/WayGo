@@ -1,6 +1,5 @@
-import Banner from "@/Components/Banner/Banner";
-
- 
+import Banner from '@/Components/Banner/banner';
+import React from 'react';
 
 const page = () => {
   return (
@@ -13,6 +12,9 @@ const page = () => {
 
 
         {/* Hot Deal Section */}
+
+
+
         <section className='py-10 md:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 2xl:px-14 mt-16 md:mt-20 lg:mt-28 border-2 border-green-400'>
           <h2>Heading 2</h2>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quae voluptatibus nobis, repellendus, sunt quaerat error, est inventore provident facilis ullam veritatis cumque! Nisi doloribus quia tenetur repellendus dignissimos vero ipsam. Totam alias aliquam eius doloribus, magni eaque magnam accusamus.
