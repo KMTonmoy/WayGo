@@ -1,5 +1,4 @@
-import Footer from '@/Components/Footer';
-import Navbar from '@/Components/Navbar/Navbar';
+ 
 import React from 'react';
 
 const page = () => {
@@ -7,7 +6,7 @@ const page = () => {
     <>
       <header>
 
-        <div className='mb-[130px]'> <Navbar /></div>
+    
 
 
         {/* banner section */}
@@ -44,8 +43,7 @@ const page = () => {
 
 
       </main>
-
-      <Footer />
+ 
     </>
   )
 }
