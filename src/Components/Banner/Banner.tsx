@@ -61,8 +61,13 @@ const Banner: React.FC = () => {
                             <button
                                 onClick={() => setActiveTransport('Flights')}
                                 className={`px-4 py-2 rounded ${activeTransport === 'Flights'
+ 
                                     ? 'bg-orange-500 text-white'
                                     : 'bg-white text-gray-700 border'
+ 
+                                        ? 'bg-orange-500 text-white'
+                                        : 'bg-white text-gray-700 border'
+ 
                                     } hover:bg-orange-600`}
                             >
                                 Flights
@@ -70,8 +75,12 @@ const Banner: React.FC = () => {
                             <button
                                 onClick={() => setActiveTransport('Trains')}
                                 className={`px-4 py-2 rounded ${activeTransport === 'Trains'
-                                    ? 'bg-orange-500 text-white'
+                    ? 'bg-orange-500 text-white'
                                     : 'bg-white text-gray-700 border'
+ 
+                                        ? 'bg-orange-500 text-white'
+                                        : 'bg-white text-gray-700 border'
+ 
                                     } hover:bg-orange-600`}
                             >
                                 Trains
@@ -79,8 +88,13 @@ const Banner: React.FC = () => {
                             <button
                                 onClick={() => setActiveTransport('Buses')}
                                 className={`px-4 py-2 rounded ${activeTransport === 'Buses'
+ 
                                     ? 'bg-orange-500 text-white'
                                     : 'bg-white text-gray-700 border'
+ 
+                                        ? 'bg-orange-500 text-white'
+                                        : 'bg-white text-gray-700 border'
+ 
                                     } hover:bg-orange-600`}
                             >
                                 Buses

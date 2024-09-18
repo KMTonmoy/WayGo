@@ -1,6 +1,8 @@
 import Banner from '@/Components/Banner/banner';
 import React from 'react';
 
+
+
 const page = () => {
   return (
     <>
