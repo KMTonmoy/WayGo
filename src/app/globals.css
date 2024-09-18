@@ -4,12 +4,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-
-
+ 
 :root {
-  /* Primary Colors */
+   
   --clr-primary: #211916;
   --clr-secondary: #555555;
   --clr-light-gray: #c1bebe;
