@@ -4,7 +4,6 @@ const page = () => {
   return (
     <>
       <header>
-        <Testimonial />
         {/* banner section */}
         <div className="bg-blue-100 ">
           <div className="py-10 md:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 2xl:px-14 border-2 border-blue-500">
@@ -54,7 +53,9 @@ const page = () => {
         </section>
 
         {/* Testimonial Section*/}
-        <section></section>
+        <section>
+          <Testimonial />
+        </section>
       </main>
     </>
   );
