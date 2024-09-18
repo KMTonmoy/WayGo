@@ -1,5 +1,4 @@
 import WhyChooseUs from '@/Components/WhyChooseUs';
-import Banner from '@/Components/Banner/banner';
 import React from 'react';
 
 
@@ -10,15 +9,12 @@ const page = () => {
         <header>
           {/* banner section */}
         <div className='bg-blue-100 '>
-        <Banner />
         </div>
         </header>
       
       <main>
 
         {/* Hot Deal Section */}
-
-
 
         <section className='py-10 md:py-12 lg:py-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 2xl:px-14 mt-16 md:mt-20 lg:mt-28 border-2 border-green-400'>
           <h2>Heading 2</h2>
