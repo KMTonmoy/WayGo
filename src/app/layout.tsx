@@ -30,11 +30,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-<<<<<<< HEAD
         <div className='mb-[100px] '> <Navbar /></div>
-=======
-        <div className='mb-[100px]'> <Navbar /></div>
->>>>>>> devtonmoy
+
         {children}
         <Footer />
       </body>
