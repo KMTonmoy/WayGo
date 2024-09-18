@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 const page: React.FC = () => {
-    const [profilePic, setProfilePic] = useState<File | null>(null);
+    const [profilePic, setProfilePic] = useState(null);
 
     const handleProfilePicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];

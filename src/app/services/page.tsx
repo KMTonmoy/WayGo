@@ -8,13 +8,13 @@ const About = () => {
                 This Page is Under Development
             </h1>
             <p className="text-lg lg:text-xl text-gray-600 mb-10">
-                We're working hard to bring you this feature. Stay tuned!
+                Were working hard to bring you this feature. Stay tuned!
             </p>
             <Image
                 src="https://www.brightlogix.com/services/frontend-development/front-end-development.gif"
                 alt="Under Development"
                 className="w-full lg:w-1/2 max-w-lg rounded-lg shadow-lg mb-6"
-                width=auto
+              
             />
             <a
                 href="/"
