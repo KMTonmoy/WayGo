@@ -27,21 +27,21 @@ const AboutPage = () => {
         },
         {
             name: 'Golam',
-            image: '/path/to/golam.jpg',
+            image: 'https://avatars.githubusercontent.com/u/150286951?v=4',
             github: '#',
             linkedin: '#',
             facebook: '#',
         },
         {
             name: 'Maruf',
-            image: '/path/to/maruf.jpg',
+            image: 'https://avatars.githubusercontent.com/u/155887418?v=4',
             github: '#',
             linkedin: '#',
             facebook: '#',
         },
         {
             name: 'Rakib',
-            image: '/path/to/maruf.jpg',
+            image: 'https://avatars.githubusercontent.com/u/138750348?v=4',
             github: '#',
             linkedin: '#',
             facebook: '#',
@@ -77,7 +77,7 @@ const AboutPage = () => {
                 >
                     Welcome to WayGO, a state-of-the-art ticket management platform designed to streamline your ticketing processes.
                     Our website provides users with an intuitive interface to manage, track, and resolve tickets with ease. Powered
-                    by the latest technologies like <strong>Next.js</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>, 
+                    by the latest technologies like <strong>Next.js</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>,
                     WayGO ensures a seamless experience for users and administrators alike.
                 </motion.p>
                 <motion.p
@@ -106,9 +106,8 @@ const AboutPage = () => {
                             <img
                                 src={dev.image}
                                 alt={dev.name}
-                                width={400}
-                                height={400}
-                                className="w-full h-full object-cover"
+
+                                className="w-full  object-cover h-[400px]"
                             />
                             {/* Hover Overlay */}
                             <motion.div
@@ -117,6 +116,7 @@ const AboutPage = () => {
                                 transition={{ duration: 0.3 }}
                             >
                                 <h3 className="text-white text-xl font-bold mb-2">{dev.name}</h3>
+                                <p className="text-white text-xs font-bold mb-2">FullStack Web Developer</p>
                                 <div className="flex space-x-4">
                                     <a href={dev.github} target="_blank" rel="noopener noreferrer">
                                         <motion.img
