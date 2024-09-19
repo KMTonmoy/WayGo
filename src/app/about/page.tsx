@@ -86,7 +86,7 @@ const AboutPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                    Whether you're handling customer support tickets, IT service requests, or general inquiries, WayGO simplifies
+                    Whether you are handling customer support tickets, IT service requests, or general inquiries, WayGO simplifies
                     the ticketing workflow, making sure your tasks are well-organized and completed efficiently. Explore the features
                     of this powerful tool and elevate your ticket management experience!
                 </motion.p>
@@ -106,7 +106,6 @@ const AboutPage = () => {
                             <img
                                 src={dev.image}
                                 alt={dev.name}
-
                                 className="w-full  object-cover h-[400px]"
                             />
                             {/* Hover Overlay */}
