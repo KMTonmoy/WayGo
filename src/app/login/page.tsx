@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Link from 'next/link';
 
 const LoginPage: React.FC = () => {
@@ -34,7 +34,9 @@ const LoginPage: React.FC = () => {
                             <label htmlFor="remember-me" className="text-gray-600">Remember Me</label>
                         </div>
                         <Link href="/forgot-password" className="text-[#f0652b] hover:underline">Forgot Password?</Link>
+                        
                     </div>
+
 
                     <button className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300">
                         Log In
@@ -42,7 +44,7 @@ const LoginPage: React.FC = () => {
                 </form>
 
                 <p className="mt-5 text-center text-gray-600">
-                    Don't have an account?{' '}
+                    Don't have an account?
                     <Link href="/Signup" className="text-[#f0652b] hover:underline">Sign Up</Link>
                 </p>
             </div>
@@ -50,4 +52,4 @@ const LoginPage: React.FC = () => {
     );
 };
 
-export default LoginPage;
+export default LoginPage;   

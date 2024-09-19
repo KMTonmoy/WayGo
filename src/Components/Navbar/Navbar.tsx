@@ -26,18 +26,17 @@ const Navbar: React.FC = () => {
     ];
 
     return (
-        <div className="bg-white mb-5 fixed w-full top-0 shadow-lg">
+        <div className="bg-white mb-5 fixed w-full top-0 shadow-lg z-10">
             <div className="container mx-auto flex justify-between items-center h-[100px] px-5 lg:px-10">
-
                 <div>
                     <Image src={logo} alt="WayGO Logo" className="w-[150px]" />
                 </div>
 
                 <div className="hidden lg:flex gap-5">
                     {links.map(link => (
-                        <Link 
+                        <Link
                             key={link.path}
-                            className={`  font-medium transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
+                            className={`font-semibold transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
                             href={link.path}
                         >
                             {link.title}
@@ -54,9 +53,10 @@ const Navbar: React.FC = () => {
                         </Link>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="hidden lg:flex">
-                        <Link href="/signup" className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full group">
+                        <Link href="/Signup" className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full group">
                             <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#ff7e5f] to-[#feb47b]"></span>
-                            <span className="absolute bottom-0 right-0 w-64 h-64 -mr-10 -mb-10 transition-all duration-300 transform rotate-45 translate-x-24 opacity-30 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"></span>
+                            <span className="absolute bottom-0 right-0 w-64 h-64 -mr-10 -mb-10 transition-all duration-300 transform rotate-45 translate-x-24  opacity-30 group-hover:translate-x-0 group-hover:translate-y-0   group-hover:opacity-100"></span> 
+                            
                             <span className="relative">Signup</span>
                         </Link>
                     </motion.div>
@@ -74,19 +74,19 @@ const Navbar: React.FC = () => {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="lg:hidden bg-white shadow-lg w-full p-5"
+                    className="lg:hidden bg-white shadow-lg w-full p-5 z-20"
                 >
                     {links.map(link => (
-                        <Link 
+                        <Link
                             key={link.path}
-                            className={`block my-2 font-medium transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
+                            className={`block my-2 font-semibold transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
                             href={link.path}
                             onClick={() => setMenuOpen(false)}
                         >
                             {link.title}
                         </Link>
                     ))}
-                    
+
                     <div className="mt-5 py-4 flex gap-2">
                         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                             <Link href="/login" className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full group">

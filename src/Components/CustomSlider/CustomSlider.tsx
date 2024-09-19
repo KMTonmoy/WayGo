@@ -3,13 +3,22 @@
 
 import { useEffect, useState } from "react";
 
+// Define the type for each hot deal item
+interface HotDealItem {
+  img: string;
+  title: string;
+  description: string;
+  validTill: string;
+  promoCode: string;
+}
+
 const CustomSlider: React.FC = () => {
-  const [deal, setDeal] = useState([]);
+  const [deal, setDeal] = useState<HotDealItem[]>([]); // Use the type for the state
 
   useEffect(() => {
     fetch("/hotdeal.json")
       .then((res) => res.json())
-      .then((data) => setDeal(data))
+      .then((data: HotDealItem[]) => setDeal(data)) // Make sure the fetched data has the correct type
       .catch((err) => console.error("Error fetching data:", err));
   }, []);
 
@@ -51,18 +60,10 @@ const CustomSlider: React.FC = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="black"
             >
-              <g strokeWidth="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <path
-                  fill="black"
-                  d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
-                ></path>
-              </g>
+              <path
+                fill="black"
+                d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
+              ></path>
             </svg>
           </button>
           {/* arrow right */}
@@ -77,18 +78,10 @@ const CustomSlider: React.FC = () => {
               fill="black"
               transform="rotate(180)"
             >
-              <g strokeWidth="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <path
-                  fill="black"
-                  d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
-                ></path>
-              </g>
+              <path
+                fill="black"
+                d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
+              ></path>
             </svg>
           </button>
         </div>
@@ -109,18 +102,17 @@ const CustomSlider: React.FC = () => {
             >
               <div className=" flex justify-between ">
                 <div className="absolute -top-4 -left-4 z-10">
-                  {" "}
                   {/* Ensured z-10 to bring image above */}
                   <img
                     className="w-[150px] rounded-xl h-[150px]"
                     src={item.img}
-                    alt=""
+                    alt={item.title}
                   />
                 </div>
                 <div className="pl-36">
                   <h6 className="pt-5">{item.title}</h6>
                   <p className="pt-4">{item.description}</p>
-                  <p>Offer valid till:{item.validTill}</p>
+                  <p>Offer valid till: {item.validTill}</p>
                 </div>
               </div>
               <div className="absolute bottom-4 left-5">
