@@ -8,6 +8,7 @@ const LoginPage: React.FC = () => {
                 <h2 className="text-3xl font-semibold text-center text-[#25527E] mb-8">Login to Your Account</h2>
 
                 <form>
+                    
                     <div className="mb-4">
                         <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
                         <input
@@ -16,8 +17,9 @@ const LoginPage: React.FC = () => {
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
                             placeholder="Your Email"
                         />
-                    </div>
 
+                    </div> 
+ 
                     <div className="mb-4">
                         <label className="block text-gray-700 mb-2" htmlFor="password">Password</label>
                         <input
