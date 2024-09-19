@@ -43,7 +43,7 @@ const Banner: React.FC = () => {
         <div className="relative z-0">
             {/* Background Carousel */}
             <div
-                className="h-[800px] lg:h-[600px] bg-cover bg-center transition-all duration-700 ease-in-out"
+                className="h-[800px] lg:h-[800px] bg-cover bg-center transition-all duration-700 ease-in-out object-cover"
                 style={{ backgroundImage: `url(${images[currentImageIndex].url})` }}
             ></div>
 
@@ -67,7 +67,7 @@ const Banner: React.FC = () => {
                                 onClick={() => setActiveTransport('Flights')}
                                 className={`px-4 py-2 rounded ${activeTransport === 'Flights' ? 'bg-orange-500 text-white'
                                     : 'bg-white text-gray-700 border'
-                                    } hover:bg-orange-600`}
+                                    } hover:bg-[var(--clr-focussed)] duration-700`}
                             >
                                 Flights
                             </button>
