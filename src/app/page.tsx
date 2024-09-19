@@ -10,11 +10,17 @@ const Page = () => {
   return (
     <div className='flex flex-col gap-10'>
       <Banner />
-      <AboutShuttle />
-      <WhyChooseUs />
-      <OurServices />
-      <CustomSlider />
-      <Testimonial />
+      <main>
+        {/* About shuttle section */}
+        <section>
+        <AboutShuttle />
+        </section>
+        <WhyChooseUs />
+        <OurServices />
+        <CustomSlider />
+        <Testimonial />
+      </main>
+      
     </div>
   );
 
