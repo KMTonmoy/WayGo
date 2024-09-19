@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -6,12 +5,24 @@ import { useEffect, useState } from "react";
 const CustomSlider: React.FC = () => {
   const [deal, setDeal] = useState([]);
   const [currentSlider, setCurrentSlider] = useState(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     fetch("/hotdeal.json")
       .then((res) => res.json())
       .then((data) => setDeal(data))
       .catch((err) => console.error("Error fetching data:", err));
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Check on initial render
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const prevSlider = () =>
@@ -33,29 +44,27 @@ const CustomSlider: React.FC = () => {
     };
   }, [currentSlider]);
 
-  const isSmallScreen = window.innerWidth <= 768;
-
   return (
     <div>
       <div className="flex px-14 mt-8 justify-between">
         <h4>Hot Deals</h4>
         <ul className="flex gap-4 px-3 py-2 justify-between bg-[var(--clr-white)] rounded-full">
-          <button  className="cursor-pointer hover:bg-slate-300 hover:rounded-full px-3 py-1">
+          <button className="cursor-pointer hover:bg-slate-300 hover:rounded-full px-3 py-1">
             All
           </button>
-          <button  className="cursor-pointer hover:bg-slate-300 hover:rounded-full px-3 py-1">
+          <button className="cursor-pointer hover:bg-slate-300 hover:rounded-full px-3 py-1">
             Bus
           </button>
-          <button  className="cursor-pointer hover:bg-slate-300 hover:rounded-full px-3 py-1">
+          <button className="cursor-pointer hover:bg-slate-300 hover:rounded-full px-3 py-1">
             Train
           </button>
-          <button  className="cursor-pointer hover:bg-slate-300 hover:rounded-full px-3 py-1">
+          <button className="cursor-pointer hover:bg-slate-300 hover:rounded-full px-3 py-1">
             Flight
           </button>
         </ul>
       </div>
 
-      <div className="max-w-full min-w-[350px] mx-auto min-h-[400px] flex  md:flex-row items-center overflow-hidden gap-5 lg:gap-10 px-8 md:px-16 lg:px-24">
+      <div className="max-w-full min-w-[350px] mx-auto min-h-[400px] flex md:flex-row items-center overflow-hidden gap-5 lg:gap-10 px-8 md:px-16 lg:px-24">
         <button
           onClick={prevSlider}
           className="hover:bg-white/30 rounded-full w-6 h-6 md:w-8 md:h-8"
