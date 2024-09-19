@@ -6,7 +6,7 @@ const BlogPage: React.FC = () => {
             title: 'Top Bus Routes for Urban Exploration',
             description:
                 'Explore the most scenic and efficient bus routes that offer the best views and accessibility within urban areas. This guide will help you navigate the city like a local.',
-            image: 'https://urbanexpresscharter.com/wp-content/uploads/2024/04/Nebraska--1024x675.webp',
+            image: 'https://media.licdn.com/dms/image/D4E12AQERulTeAFmJxA/article-cover_image-shrink_720_1280/0/1702807898744?e=2147483647&v=beta&t=_5XhJH_vQdst4-b7cSBQ2QdX46dOCYQr39VcXmYECXw',
             author: 'Alice Brown',
             date: 'September 18, 2024',
         },
@@ -14,7 +14,7 @@ const BlogPage: React.FC = () => {
             title: 'The Rise of Eco-Friendly Airplanes',
             description:
                 'Learn about the latest advancements in eco-friendly aviation technology. Discover how airlines are reducing their carbon footprint and what it means for the future of air travel.',
-            image: 'https://lh7-us.googleusercontent.com/rCKh-ZdVF3aZ6-YBzJPTK5i62_Kh8gAQpHRtMmjmrtYR8bbUbkR-Q6ZXA9TOdZE0UiuhvnDh5BlbMe9niwdd834WLs90jWgTbJwmHT_jLEdtLNJOHWzATXFQYD_4PhnZlGXpBDRGXNV50gNF8eBHP4s',
+            image: 'https://media.licdn.com/dms/image/D4E12AQERulTeAFmJxA/article-cover_image-shrink_720_1280/0/1702807898744?e=2147483647&v=beta&t=_5XhJH_vQdst4-b7cSBQ2QdX46dOCYQr39VcXmYECXw',
             author: 'James Lee',
             date: 'September 21, 2024',
         },
