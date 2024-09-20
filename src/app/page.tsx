@@ -2,9 +2,10 @@ import React from "react";
 import Banner from "../Components/Banner/Banner";
 import WhyChooseUs from "../Components/WhyChooseUs";
 import Testimonial from "../Components/Testimonial";
-import CustomSlider from "../Components/CustomSlider/CustomSlider";
+// import CustomSlider from "../Components/CustomSlider/CustomSlider";
 import AboutShuttle from "../Components/AboutShuttle/About";
 import OurServices from "../Components/OurServices/OurServices";
+import HotDeal from "./HotDeal/page";
 
 const Page = () => {
   return (
@@ -13,7 +14,7 @@ const Page = () => {
       <AboutShuttle />
       <WhyChooseUs />
       <OurServices />
-      <CustomSlider />
+      <HotDeal />
       <Testimonial />
     </div>
   );

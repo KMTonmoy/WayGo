@@ -1,13 +1,14 @@
 "use client";
-import CustomSlider from "@/Components/CustomSlider/CustomSlider";
+// import CustomSlider from "@/Components/CustomSlider/CustomSlider";
 import React from "react";
+import CustomSlider from "../../Components/CustomSlider/CustomSlider";
 
 const HotDeal: React.FC = () => {
   return (
     <div>
       <div className="flex px-14 mt-8 justify-between">
         <div>
-          <h4>Hot Deals</h4>
+          <h2>Hot Deals</h2>
         </div>
         <div className="">
           <ul className="flex gap-4 px-3 py-2 justify-between bg-[var(--clr-white)] rounded-full">
