@@ -89,7 +89,7 @@ const Testimonial = () => {
                   Superb Quality!
                 </p>
                 <p className="mt-4 leading-relaxed text-gray-600">
-                  Their attention to detail and professionalism is unmatched. They ensured all my needs were met, and I couldn’t be happier with the outcome.
+                  Their attention to detail and professionalism is unmatched. They ensured all my needs were met, and I could not be happier with the outcome.
                 </p>
               </div>
             </div>
