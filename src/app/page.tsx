@@ -20,10 +20,6 @@ const Page = () => {
         <CustomSlider />
         <Testimonial />
       </main>
-<<<<<<< HEAD
-      
-=======
->>>>>>> 6e99a1921f42581d2696b822b7a5b4f1ba986e3f
     </div>
   );
 
