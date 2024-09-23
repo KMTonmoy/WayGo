@@ -46,7 +46,7 @@ const ContactPage: React.FC = () => {
                 <div className="w-full lg:w-1/2">
                     <h2 className="text-2xl font-semibold mb-6">Our Contact Information</h2>
                     <p className="mb-6 text-gray-700">
-                        We're here to assist you! Feel free to reach out to us using the form, or through our contact details below.
+                        We are here to assist you! Feel free to reach out to us using the form, or through our contact details below.
                     </p>
 
                     {/* Info Boxes */}
