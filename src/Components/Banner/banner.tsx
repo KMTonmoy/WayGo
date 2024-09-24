@@ -137,6 +137,7 @@ const Banner: React.FC = () => {
                             </div>
 
                             {/* Search Button */}
+                            
                             <div className="flex justify-center">
                                 <button className="px-6 py-3 bg-orange-500 text-white rounded hover:bg-orange-600 w-full">
                                     Search
