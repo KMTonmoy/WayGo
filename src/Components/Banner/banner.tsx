@@ -25,6 +25,7 @@ const Banner: React.FC = () => {
             const data = await response.json();
 
             setImages(data.banner);
+            
             setLoading(false);
 
         };
