@@ -1,33 +1,37 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
- 
+
 interface Image {
     url: string;
     heading: string;
     description: string;
 }
 
-const images: Image[] = [
-    {
-        url: 'https://www.emtracsystems.com/wp-content/uploads/2021/06/Banner-Red-Passenger-Train-at-Station-580.png',
-        heading: 'Explore the World by Train',
-        description: 'Experience comfortable and scenic journeys by train across the country.'
-    },
-    {
-        url: 'https://media.istockphoto.com/id/155439315/photo/passenger-airplane-flying-above-clouds-during-sunset.jpg?b=1&s=612x612&w=0&k=20&c=E68ksW1MTzGZGHOxSYHu-y9I2Nv0iqbJCkER9e3K7TM=',
-        heading: 'Fly to Your Dream Destination',
-        description: 'Book flights with us and discover the world from above.'
-    },
-    {
-        url: 'https://img.freepik.com/free-photo/group-buses-driving-along-road-sunset_157027-4307.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726012800&semt=ais_hybrid',
-        heading: 'Travel by Bus with Ease',
-        description: 'Enjoy comfortable bus rides to your desired destinations at affordable prices.'
-    }
-];
-
 const Banner: React.FC = () => {
+    const [images, setImages] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     const [activeTransport, setActiveTransport] = useState<string>('Flights');
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+
+    useEffect(() => {
+        const fetchBannerData = async () => {
+
+            const response = await fetch('http://localhost:3000/api/get-banner');
+            if (!response.ok) {
+                throw new Error('Failed to fetch banner data');
+            }
+            const data = await response.json();
+
+            setImages(data.banner);
+            setLoading(false);
+
+        };
+
+        fetchBannerData();
+    }, []);
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -37,14 +41,22 @@ const Banner: React.FC = () => {
         }, 5000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [images]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div className="relative z-0">
             {/* Background Carousel */}
             <div
                 className="h-[800px] lg:h-[800px] bg-cover bg-center transition-all duration-700 ease-in-out object-cover"
-                style={{ backgroundImage: `url(${images[currentImageIndex].url})` }}
+                style={{ backgroundImage: `url(${images[currentImageIndex]?.url})` }}
             ></div>
 
             {/* Overlay content */}
@@ -53,10 +65,10 @@ const Banner: React.FC = () => {
                     {/* Left Side - Heading and Description */}
                     <div className="text-white text-center lg:text-left">
                         <h1 className="text-3xl lg:text-5xl font-bold mb-4">
-                            {images[currentImageIndex].heading}
+                            {images[currentImageIndex]?.heading}
                         </h1>
                         <p className="mb-6 text-sm lg:text-base">
-                            {images[currentImageIndex].description}
+                            {images[currentImageIndex]?.description}
                         </p>
                     </div>
 
