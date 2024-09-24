@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
- 
+
 interface Image {
     url: string;
     heading: string;
@@ -28,31 +28,6 @@ const images: Image[] = [
 const Banner: React.FC = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     const [activeTransport, setActiveTransport] = useState<string>('Flights');
-<<<<<<< HEAD
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-
-
-    useEffect(() => {
-        const fetchBannerData = async () => {
-
-            const response = await fetch('http://localhost:3000/api/get-banner');
-            if (!response.ok) {
-                throw new Error('Failed to fetch banner data');
-            }
-            const data = await response.json();
-
-            setImages(data.banner);
-            
-            setLoading(false);
-
-        };
-
-        fetchBannerData();
-    }, []);
-
-=======
->>>>>>> parent of 1d0369b (Banner Dynamic Created)
 
     useEffect(() => {
         const interval = setInterval(() => {
