@@ -1,32 +1,78 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
+import { imageUpload } from '../../api/utils/index';
 
 const Page: React.FC = () => {
-    const [profilePic, setProfilePic] = useState<File | null>(null);
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [image, setImage] = useState<File | null>(null);
+
+    const {
+        createUser,
+        updateUserProfile
+    } = useContext(AuthContext);
 
     const handleProfilePicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            setProfilePic(file);
+
+            setImage(file);
         }
     };
 
-    console.log(profilePic)
+    const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
+        if (!image) {
+            Swal.fire({
+                title: 'Profile Picture Required',
+                text: 'Please upload a profile picture.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        try {
+            const imageUrl = await imageUpload(image);
+            await createUser(email, password);
+            await updateUserProfile(name, imageUrl);
+            Swal.fire({
+                title: 'Signup Successful',
+                text: 'You have successfully signed up.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        } catch (err) {
+            Swal.fire({
+                title: 'Signup Failed',
+                text: err.message,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    };
 
     return (
         <div className="min-h-screen bg-gray-100 flex justify-center items-center py-10 px-5">
             <div className="bg-white shadow-lg rounded-lg w-full max-w-md p-8">
                 <h2 className="text-3xl font-semibold text-center text-[#25527E] mb-8">Create Your Account</h2>
 
-                <form>
+                <form onSubmit={handleSignup}>
                     <div className="mb-4">
                         <label className="block text-gray-700 mb-2" htmlFor="name">Full Name</label>
                         <input
                             type="text"
                             id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
                             placeholder="Your Full Name"
+                            required
                         />
                     </div>
 
@@ -35,8 +81,11 @@ const Page: React.FC = () => {
                         <input
                             type="email"
                             id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
                             placeholder="Your Email"
+                            required
                         />
                     </div>
 
@@ -55,18 +104,11 @@ const Page: React.FC = () => {
                         <input
                             type="password"
                             id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
                             placeholder="Your Password"
-                        />
-                    </div>
-
-                    <div className="mb-6">
-                        <label className="block text-gray-700 mb-2" htmlFor="confirm-password">Confirm Password</label>
-                        <input
-                            type="password"
-                            id="confirm-password"
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
-                            placeholder="Confirm Password"
+                            required
                         />
                     </div>
 
@@ -78,10 +120,11 @@ const Page: React.FC = () => {
                             accept="image/*"
                             onChange={handleProfilePicChange}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
+                            required
                         />
                     </div>
 
-                    <button className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300">
+                    <button type="submit" className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300">
                         Sign Up
                     </button>
                 </form>
