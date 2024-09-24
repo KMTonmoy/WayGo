@@ -4,9 +4,9 @@ import { connectDB } from "../../../lib/connectDB";
 
 export const GET = async () => {
     const db = await connectDB()
-    const bannerCollection = db.collection('BannerCollection')
+    const blogCollection = db.collection('blogCollection')
     try {
-        const banner = await bannerCollection.find().toArray();
+        const banner = await blogCollection.find().toArray();
         return NextResponse.json({ banner })
     } catch (error) {
         console.log(error);
