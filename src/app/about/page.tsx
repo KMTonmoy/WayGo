@@ -13,14 +13,14 @@ const AboutPage = () => {
         },
         {
             name: 'Tonmoy',
-            image: 'https://scontent.fdac24-2.fna.fbcdn.net/v/t39.30808-6/437748294_392400403710156_4285802983513536949_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeENSq_9DY60UtJ6UragaEOV2AFuFOitDkbYAW4U6K0ORvAbURclhRwpKpsozcwZ_9U-80M_EPYey5j3E443hQbt&_nc_ohc=pdTuVU7VQI0Q7kNvgFi_LdD&_nc_ht=scontent.fdac24-2.fna&_nc_gid=AmG8OIGRKvbReTgrWWz7EqE&oh=00_AYCWgdYGny7Eeg0dsVAjj0HSuDC8C63WLTZa1yqv03qeYg&oe=66F119CB',
+            image: 'https://scontent.fdac24-2.fna.fbcdn.net/v/t39.30808-6/437748294_392400403710156_4285802983513536949_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeENSq_9DY60UtJ6UragaEOV2AFuFOitDkbYAW4U6K0ORvAbURclhRwpKpsozcwZ_9U-80M_EPYey5j3E443hQbt&_nc_ohc=rW6GsXQFqv0Q7kNvgFINx5V&_nc_ht=scontent.fdac24-2.fna&oh=00_AYCmltGdwrvqQ8JIC-wb-ga-BA1UndG7Kafgdepqkw0xgw&oe=66F821CB',
             github: '#',
             linkedin: '#',
             facebook: '#',
         },
         {
             name: 'Sobuj',
-            image: 'https://scontent.fdac24-4.fna.fbcdn.net/v/t39.30808-6/456106349_1035880118095107_943714043369380548_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGbHT_MIy4xNh5wJS4SbUZSLBq0cu5F5jAsGrRy7kXmMELljBpxT9gD9rK1sXCY-bBp9_BT0ARimWqsiiKEONB8&_nc_ohc=UguC5wW44D8Q7kNvgF9f5ri&_nc_ht=scontent.fdac24-4.fna&oh=00_AYBLaHjA7hRpGnnHuQnTuFyfMlEeZ_-gfabwglfxLEj4NA&oe=66F0F29F',
+            image: 'https://scontent.fdac138-1.fna.fbcdn.net/v/t39.30808-6/448656210_997699081913211_2341890476413512821_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHdsOJ7iOR0gxAtrryTXS_BAzSnRdNH6iMDNKdF00fqI3qY4tTnJWS5gNWbKwCvoEyhUheiTrlGXTCu8J1Bldxq&_nc_ohc=x6chqIMqFD8Q7kNvgGCrfUj&_nc_ht=scontent.fdac138-1.fna&_nc_gid=AadhqA-9Kd9RBDMunY_CqAD&oh=00_AYDt9UxJSuX3TqyQMhkmGQrfirlS0e_zT_-9odWSLBWn3w&oe=66F84464',
             github: '#',
             linkedin: '#',
             facebook: '#',
