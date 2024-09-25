@@ -17,7 +17,7 @@ const Banner: React.FC = () => {
     useEffect(() => {
         const fetchBannerData = async () => {
             try {
-                const response = await fetch('http://localhost:8000/banners');
+                const response = await fetch('https://way-go-server.vercel.app/banners');
                 if (!response.ok) {
                     throw new Error('Failed to fetch banner data');
                 }
@@ -72,13 +72,7 @@ const Banner: React.FC = () => {
                         <div className="flex space-x-2 mb-4 justify-center lg:justify-start">
                             <button
                                 onClick={() => setActiveTransport('Flights')}
-<<<<<<< HEAD
                                 className={`px-4 py-2 rounded ${activeTransport === 'Flights' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700 border'} hover:bg-[var(--clr-focussed)] duration-700`}
-=======
-                                className={`px-4 py-2 rounded ${activeTransport === 'Flights' ? 'bg-orange-500 text-white'
-                                    : 'bg-white text-gray-700 border'
-                                    } hover:bg-[var(--clr-focussed)] duration-700`}
->>>>>>> 91e1f64617355557f063f3f4fdf6b47fd352a94a
                             >
                                 Flights
                             </button>

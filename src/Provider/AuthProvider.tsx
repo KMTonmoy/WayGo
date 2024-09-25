@@ -50,7 +50,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         };
 
         try {
-            const existingUserResponse = await axios.get(`http://localhost:8000/users/${user.email}`);
+            const existingUserResponse = await axios.get(`https://way-go-server.vercel.app/users/${user.email}`);
             const existingUser = existingUserResponse.data;
 
             if (existingUser) {
@@ -58,7 +58,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
             }
 
 
-            const { data } = await axios.put('http://localhost:8000/user', currentUser);
+            const { data } = await axios.put('https://way-go-server.vercel.app/user', currentUser);
             return data;
         } catch (error) {
             console.error("Error saving user to MongoDB:", error);

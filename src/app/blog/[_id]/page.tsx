@@ -19,7 +19,7 @@ const Page: React.FC<{ params: { _id: string } }> = ({ params }) => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/blogs/${params._id}`);
+                const response = await fetch(`https://way-go-server.vercel.app/blogs/${params._id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch blog');
                 }
