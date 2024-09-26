@@ -4,28 +4,33 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
-const page: React.FC = () => {
+const Page: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const { signIn } = useContext(AuthContext);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         try {
             await signIn(email, password);
             Swal.fire({
                 title: 'Login Successful',
                 text: 'You have successfully logged in.',
                 icon: 'success',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
             });
-        } catch (error) {
+        } catch (error: unknown) {
+            const errorMessage = (error as Error)?.message || 'Please check your credentials and try again.';
             Swal.fire({
                 title: 'Login Failed',
-                text: error.message || 'Please check your credentials and try again.',
+                text: errorMessage,
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
             });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -34,7 +39,7 @@ const page: React.FC = () => {
             <div className="bg-white shadow-lg rounded-lg w-full max-w-md p-8">
                 <h2 className="text-3xl font-semibold text-center text-[#25527E] mb-8">Login to Your Account</h2>
 
-                <form onSubmit={handleLogin}> {/* Link handleLogin to the form submission */}
+                <form onSubmit={handleLogin}>
                     <div className="mb-4">
                         <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
                         <input
@@ -42,9 +47,11 @@ const page: React.FC = () => {
                             id="email"
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
                             placeholder="Your Email"
-                            value={email} // Bind email state to input
-                            onChange={(e) => setEmail(e.target.value)} // Update state on change
-                            required // Make it a required field
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                            title="Enter a valid email address"
                         />
                     </div>
 
@@ -55,9 +62,9 @@ const page: React.FC = () => {
                             id="password"
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
                             placeholder="Your Password"
-                            value={password} // Bind password state to input
-                            onChange={(e) => setPassword(e.target.value)} // Update state on change
-                            required // Make it a required field
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </div>
 
@@ -70,15 +77,18 @@ const page: React.FC = () => {
                     </div>
 
                     <button
-                        type="submit" // Ensure the button submits the form
-                        className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300"
+                        type="submit"
+                        className={`w-full p-3 font-semibold rounded-lg transition-colors duration-300 ${
+                            loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#f0652b] hover:bg-[#e55c28] text-white'
+                        }`}
+                        disabled={loading}
                     >
-                        Log In
+                        {loading ? 'Logging in...' : 'Log In'}
                     </button>
                 </form>
 
                 <p className="mt-5 text-center text-gray-600">
-                    Dont have an account?
+                    Don&apos;t have an account?{' '}
                     <Link href="/Signup" className="text-[#f0652b] hover:underline">Sign Up</Link>
                 </p>
             </div>
@@ -86,4 +96,4 @@ const page: React.FC = () => {
     );
 };
 
-export default page;
+export default Page;
