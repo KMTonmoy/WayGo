@@ -2,9 +2,10 @@ import React from 'react';
 import WhyChooseUs from '../Components/WhyChooseUs';
 import Testimonial from '../Components/Testimonial';
 import CustomSlider from '../Components/CustomSlider/CustomSlider';
-import AboutShuttle from '../Components/AboutShuttle/About';
+ 
 import OurServices from '../Components/OurServices/OurServices';
 import Banner from '../Components/Banner/banner';
+import AboutShuttle from '../Components/AboutShuttle/About';
 
 const Page = () => {
   return (
