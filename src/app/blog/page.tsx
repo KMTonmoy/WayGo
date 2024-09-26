@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Link from 'next/link';
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
@@ -24,7 +24,7 @@ const BlogPage: React.FC = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('https://way-go-server.vercel.app/blogs');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
         if (!response.ok) throw new Error('Failed to fetch blogs');
         const data = await response.json();
         setBlogs(data);
@@ -82,36 +82,19 @@ const BlogPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Pagination Controls */}
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center items-center mt-8 space-x-2">
           <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
-            className={`px-4 py-2 mx-1 text-white bg-gray-600 rounded ${
-              currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+            className={`px-4 py-2 ${currentPage === 1 ? 'bg-gray-300' : 'bg-[#f0652b] hover:bg-[#d05424]'} text-white rounded`}
           >
             Previous
           </button>
-
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => setCurrentPage(index + 1)}
-              className={`px-4 py-2 mx-1 text-white rounded ${
-                currentPage === index + 1 ? 'bg-[#f0652b]' : 'bg-gray-600'
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}
-
+          <span>{currentPage} of {totalPages}</span>
           <button
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
-            className={`px-4 py-2 mx-1 text-white bg-gray-600 rounded ${
-              currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+            className={`px-4 py-2 ${currentPage === totalPages ? 'bg-gray-300' : 'bg-[#f0652b] hover:bg-[#d05424]'} text-white rounded`}
           >
             Next
           </button>

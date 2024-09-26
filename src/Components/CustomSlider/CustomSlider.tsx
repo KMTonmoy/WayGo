@@ -1,24 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
 const CustomSlider: React.FC = () => {
-  const [deal, setDeal] = useState([]);
+  const [deal, setDeal] = useState<any[]>([]);
   const [currentSlider, setCurrentSlider] = useState(0);
 
   useEffect(() => {
-    fetch("/hotdeal.json")
-      .then((res) => res.json())
-      .then((data) => setDeal(data))
-      .catch((err) => console.error("Error fetching data:", err));
+    const fetchDeals = async () => {
+      try {
+        const res = await fetch("/hotdeal.json");
+        const data = await res.json();
+        setDeal(data);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    };
+    fetchDeals();
   }, []);
 
-  const prevSlider = () =>
-    setCurrentSlider(currentSlider === 0 ? deal.length - 1 : currentSlider - 1);
+  const prevSlider = useCallback(() => {
+    setCurrentSlider((prev) => (prev === 0 ? deal.length - 1 : prev - 1));
+  }, [deal.length]);
 
-  const nextSlider = () =>
-    setCurrentSlider(currentSlider === deal.length - 1 ? 0 : currentSlider + 1);
+  const nextSlider = useCallback(() => {
+    setCurrentSlider((prev) => (prev === deal.length - 1 ? 0 : prev + 1));
+  }, [deal.length]);
 
   useEffect(() => {
     const intervalId = setInterval(nextSlider, 10000);
