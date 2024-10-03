@@ -3,7 +3,7 @@ import { RiBusLine } from "react-icons/ri";
 import { PiHandshake } from "react-icons/pi";
 import { SiTicktick } from "react-icons/si";
 import { FaPeopleGroup } from "react-icons/fa6";
-import Image from 'next/image'
+import Image from 'next/image';
 
 function WhyChooseUs() {
   return (
@@ -74,8 +74,7 @@ function WhyChooseUs() {
         </div>
       </div>
     </div>
-
-  )
+  );
 }
 
-export default WhyChooseUs
+export default WhyChooseUs;

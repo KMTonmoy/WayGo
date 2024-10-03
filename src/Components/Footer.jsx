@@ -23,11 +23,10 @@ const socialIconVariant = {
   },
 };
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <footer className="bg-[#000000] text-white py-8 px-10 mt-10">
-
-      <div className='flex md:flex-row flex-col flex-wrap md:justify-around gap-10  md:gap-5 items-center'>
+      <div className='flex md:flex-row flex-col flex-wrap md:justify-around gap-10 md:gap-5 items-center'>
         <motion.div
           className='md:w-[300px]'
           initial={{ opacity: 0, y: 50 }}
@@ -97,9 +96,18 @@ const Footer: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <h4 className='mb-2'>Contact Info</h4>
-          <p className='flex gap-2 items-center py-2 border-b-[1px] border-solid border-gray-600'><span className='text-orange-500'><CiLocationOn /></span>Jl. Raya Kuta No.21, Kuta, Bali 80361 </p>
-          <p className='flex gap-2 items-center py-2 border-b-[1px] border-solid border-gray-600'><span className='text-orange-500'><FaPhoneAlt /></span>(+62)81587 6218</p>
-          <p className='flex gap-2 items-center py-2'><span className='text-orange-500'><MdOutlineMail /></span>support@domain.com</p>
+          <p className='flex gap-2 items-center py-2 border-b-[1px] border-solid border-gray-600'>
+            <span className='text-orange-500'><CiLocationOn /></span>
+            Jl. Raya Kuta No.21, Kuta, Bali 80361
+          </p>
+          <p className='flex gap-2 items-center py-2 border-b-[1px] border-solid border-gray-600'>
+            <span className='text-orange-500'><FaPhoneAlt /></span>
+            (+62)81587 6218
+          </p>
+          <p className='flex gap-2 items-center py-2'>
+            <span className='text-orange-500'><MdOutlineMail /></span>
+            support@domain.com
+          </p>
         </motion.div>
 
         <motion.div

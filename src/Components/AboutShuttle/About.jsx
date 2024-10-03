@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AboutShuttle: React.FC = () => {
+const AboutShuttle = () => {
     return (
         <div className="container mx-auto px-5 lg:px-10 py-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -13,7 +13,7 @@ const AboutShuttle: React.FC = () => {
                         More Than 25 Years We Provide Bus Charter Service For You
                     </h3>
                     <p className="text-gray-700 mb-6">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc 
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
                     </p>
                     <ul className="space-y-2">
                         <li className="text-lg text-gray-800">

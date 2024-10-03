@@ -9,7 +9,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 import { AuthContext } from '../../Provider/AuthProvider';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const pathName = usePathname();
     const { user, logOut } = useContext(AuthContext);
@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
     ];
 
     return (
-        <div className="bg-white  fixed w-full top-0 shadow-lg z-10">
+        <div className="bg-white fixed w-full top-0 shadow-lg z-10">
             <div className="container mx-auto flex justify-between items-center h-[80px] px-5 lg:px-10">
                 <div>
                     <Image src={logo} alt="WayGO Logo" className="w-[150px]" />
@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
                     ) : (
                         <div className="flex items-center gap-2">
                             <img src={user.photoURL} className='rounded-full h-[50px] w-[50px] border-2 border-[#f0652b]' alt="User Profile" />
-                            <button onClick={() => logOut()} className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]   hidden">
+                            <button onClick={() => logOut()} className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424] hidden">
                                 Logout
                             </button>
                         </div>
@@ -86,27 +86,17 @@ const Navbar: React.FC = () => {
                     className="lg:hidden bg-white shadow-lg w-full p-5 z-20"
                 >
                     {links.map(link => (
-
-                        <>
-
-                            <Link
-                                key={link.path}
-                                className={`block my-2 font-semibold transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
-                                href={link.path}
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                {link.title}
-                            </Link>
-
-
-
-
-                        </>
-
-
+                        <Link
+                            key={link.path}
+                            className={`block my-2 font-semibold transition-colors duration-300 ${link.path === pathName ? 'text-[#f0652b] underline' : 'hover:text-[#f0652b]'}`}
+                            href={link.path}
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            {link.title}
+                        </Link>
                     ))}
                     {user && (
-                        <button onClick={() => logOut()} className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]  ">
+                        <button onClick={() => logOut()} className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]">
                             Logout
                         </button>
                     )}

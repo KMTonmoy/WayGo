@@ -3,20 +3,11 @@ import Link from 'next/link';
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 
-interface Blog {
-  _id: string;
-  title: string;
-  description: string;
-  image: string;
-  author: string;
-  date: string;
-}
-
-const BlogPage: React.FC = () => {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+const BlogPage = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const blogsPerPage = 6;
   const { user } = useContext(AuthContext);
@@ -28,7 +19,7 @@ const BlogPage: React.FC = () => {
         if (!response.ok) throw new Error('Failed to fetch blogs');
         const data = await response.json();
         setBlogs(data);
-      } catch (err: any) {
+      } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
