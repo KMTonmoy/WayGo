@@ -8,8 +8,8 @@ export default function RootLayout({ children }) {
 
         <div>
             <AuthProvider>
-                <div className='flex gap-5'>
-                    <Sidebar/>
+                <div className='flex '>
+                    <Sidebar />
                     <main className='flex justify-center w-full'>{children}</main>
                 </div>
 

@@ -30,15 +30,17 @@ const Sidebar = () => {
 
     const adminLinks = [
         ...commonLinks,
-        { name: 'Block User', icon: <FaBan />, path: '/dashboard/BlockUser' },
-        { name: 'Block Agent', icon: <FaShieldAlt />, path: '/dashboard/BlockAgent' },
-        { name: 'Blocked Users', icon: <FaUserAlt />, path: '/dashboard/BlockedUsers' },
+        { name: 'Manage User', icon: <FaUserAlt />, path: '/dashboard/ManageUser' },
+        { name: 'Manage Agent', icon: <FaShieldAlt />, path: '/dashboard/ManageAgent' },
+        { name: 'Blocked Users', icon: <FaBan />, path: '/dashboard/BlockedUsers' },
     ];
 
     const agentLinks = [
         ...commonLinks,
-        { name: 'Block User', icon: <FaBan />, path: '/dashboard/BlockUser' },
-        { name: 'Block Agent', icon: <FaShieldAlt />, path: '/dashboard/BlockAgent' },
+        { name: 'Manage User', icon: <FaUserAlt />, path: '/dashboard/ManageUser' },
+        { name: 'Manage Agent', icon: <FaShieldAlt />, path: '/dashboard/ManageAgent' },
+        { name: 'Blocked Users', icon: <FaBan />, path: '/dashboard/BlockedUsers' },
+
     ];
 
     const links = role === 'admin' ? adminLinks : role === 'agent' ? agentLinks : commonLinks;
