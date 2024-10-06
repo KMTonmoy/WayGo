@@ -1,25 +1,21 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client';
+import React, { useEffect, useState } from 'react';
 
-interface Image {
-  url: string;
-  heading: string;
-  description: string;
-}
-
-const Banner: React.FC = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const [activeTransport, setActiveTransport] = useState<string>("Flights");
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [images, setImages] = useState<Image[]>([]);
+const Banner = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeTransport, setActiveTransport] = useState('Flights');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     const fetchBannerData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/banners");
+        const response = await fetch(
+          'https://way-go-server.vercel.app/banners'
+        );
         if (!response.ok) {
-          throw new Error("Failed to fetch banner data");
+          throw new Error('Failed to fetch banner data');
         }
         const data = await response.json();
         setImages(data);
@@ -35,7 +31,7 @@ const Banner: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
+      setCurrentImageIndex(prevIndex =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
@@ -67,31 +63,31 @@ const Banner: React.FC = () => {
           <div className="bg-white bg-opacity-50 backdrop-blur-lg rounded-lg p-5 shadow-lg w-full lg:w-1/2 max-w-lg mx-auto">
             <div className="flex space-x-2 mb-4 justify-center lg:justify-start">
               <button
-                onClick={() => setActiveTransport("Flights")}
+                onClick={() => setActiveTransport('Flights')}
                 className={`px-4 py-2 rounded ${
-                  activeTransport === "Flights"
-                    ? "bg-orange-500 text-white"
-                    : "bg-white text-gray-700 border"
+                  activeTransport === 'Flights'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
                 } hover:bg-[var(--clr-focussed)] duration-700`}
               >
                 Flights
               </button>
               <button
-                onClick={() => setActiveTransport("Trains")}
+                onClick={() => setActiveTransport('Trains')}
                 className={`px-4 py-2 rounded ${
-                  activeTransport === "Trains"
-                    ? "bg-orange-500 text-white"
-                    : "bg-white text-gray-700 border"
+                  activeTransport === 'Trains'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
                 } hover:bg-orange-600`}
               >
                 Trains
               </button>
               <button
-                onClick={() => setActiveTransport("Buses")}
+                onClick={() => setActiveTransport('Buses')}
                 className={`px-4 py-2 rounded ${
-                  activeTransport === "Buses"
-                    ? "bg-orange-500 text-white"
-                    : "bg-white text-gray-700 border"
+                  activeTransport === 'Buses'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
                 } hover:bg-orange-600`}
               >
                 Buses

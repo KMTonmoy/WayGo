@@ -1,31 +1,22 @@
-"use client";
+'use client';
 // import CustomSlider from "@/Components/CustomSlider/CustomSlider";
-import React from "react";
-import CustomSlider from "../../Components/CustomSlider/CustomSlider";
+import React from 'react';
+import CustomSlider from '../../Components/CustomSlider/CustomSlider';
 
 const HotDeal: React.FC = () => {
   return (
     <div>
       <div className="flex px-14 mt-8 justify-between">
-        <div>
-          <h2>Hot Deals</h2>
-        </div>
-        <div className="">
-          <ul className="flex gap-4 px-3 py-2 justify-between bg-[var(--clr-white)] rounded-full">
-            <li className="hover:bg-slate-300 hover:rounded-full px-3 py-1">
-              All
+        <h4 className="text-lg font-semibold text-gray-800">Hot Deals</h4>
+        <ul className="flex gap-4 px-3 py-2 bg-white rounded-full shadow-lg">
+          {['All', 'Bus', 'Train', 'Flight'].map(category => (
+            <li key={category}>
+              <button className="hover:bg-gray-200 rounded-full px-3 py-1">
+                {category}
+              </button>
             </li>
-            <li className="hover:bg-slate-300 hover:rounded-full px-3 py-1">
-              Bus
-            </li>
-            <li className="hover:bg-slate-300 hover:rounded-full px-3 py-1">
-              Train
-            </li>
-            <li className="hover:bg-slate-300 hover:rounded-full px-3 py-1">
-              Flight
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </div>
       <div className="mb-0 lg:mb-10">
         <CustomSlider />

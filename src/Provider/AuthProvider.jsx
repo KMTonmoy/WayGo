@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useState, ReactNode, FC } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
@@ -10,38 +10,20 @@ import {
     signInWithPopup,
     signOut,
     updateProfile,
-    User as FirebaseUser
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import axios from 'axios';
 
-interface AuthContextType {
-    user: FirebaseUser | null;
-    loading: boolean;
-    createUser: (email: string, password: string, name: string) => Promise<void>;
-    signIn: (email: string, password: string) => Promise<void>;
-    signInWithGoogle: () => Promise<void>;
-    logOut: () => Promise<void>;
-    updateUserProfile: (name: string, photo: string) => Promise<void>;
-    saveUser: (user: FirebaseUser) => Promise<void>;
-}
-
-interface AuthProviderProps {
-    children: ReactNode;
-}
-
-
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
-    const [user, setUser] = useState<FirebaseUser | null>(null);
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
-    const saveUserToMongoDB = async (user: FirebaseUser) => {
+    const saveUserToMongoDB = async (user) => {
         const currentUser = {
             email: user.email,
             name: user.displayName || '',
@@ -50,15 +32,14 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         };
 
         try {
-            const existingUserResponse = await axios.get(`http://localhost:8000/users/${user.email}`);
+            const existingUserResponse = await axios.get(`https://way-go-server.vercel.app/users/${user.email}`);
             const existingUser = existingUserResponse.data;
 
             if (existingUser) {
                 return existingUser;
             }
 
-
-            const { data } = await axios.put('http://localhost:8000/user', currentUser);
+            const { data } = await axios.put('https://way-go-server.vercel.app/user', currentUser);
             return data;
         } catch (error) {
             console.error("Error saving user to MongoDB:", error);
@@ -66,13 +47,11 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         }
     };
 
-    const createUser = async (email: string, password: string, name: string) => {
+    const createUser = async (email, password, name) => {
         setLoading(true);
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            // Update user profile with the provided name
             await updateProfile(userCredential.user, { displayName: name });
-            // Save user data to MongoDB
             await saveUserToMongoDB(userCredential.user);
         } catch (error) {
             console.error("Error creating user:", error);
@@ -82,7 +61,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         }
     };
 
-    const signIn = async (email: string, password: string) => {
+    const signIn = async (email, password) => {
         setLoading(true);
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -121,7 +100,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         }
     };
 
-    const updateUserProfile = async (name: string, photo: string) => {
+    const updateUserProfile = async (name, photo) => {
         if (!auth.currentUser) return;
         try {
             await updateProfile(auth.currentUser, {
@@ -144,7 +123,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         return () => unsubscribe();
     }, []);
 
-    const authInfo: AuthContextType = {
+    const authInfo = {
         user,
         loading,
         createUser,
@@ -152,7 +131,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         signInWithGoogle,
         logOut,
         updateUserProfile,
-        saveUser: saveUserToMongoDB
+        saveUser: saveUserToMongoDB,
     };
 
     return (

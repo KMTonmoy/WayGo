@@ -1,11 +1,10 @@
 import React from 'react';
 import WhyChooseUs from '../Components/WhyChooseUs';
 import Testimonial from '../Components/Testimonial';
-import CustomSlider from '../Components/CustomSlider/CustomSlider';
- 
 import OurServices from '../Components/OurServices/OurServices';
 import Banner from '../Components/Banner/banner';
 import AboutShuttle from '../Components/AboutShuttle/About';
+import HotDeal from './HotDeal/page';
 
 const Page = () => {
   return (
@@ -14,11 +13,11 @@ const Page = () => {
       <main>
         {/* About shuttle section */}
         <section>
-        <AboutShuttle />
+          <AboutShuttle />
         </section>
         <WhyChooseUs />
         <OurServices />
-        <CustomSlider />
+        <HotDeal />
         <Testimonial />
       </main>
     </div>
