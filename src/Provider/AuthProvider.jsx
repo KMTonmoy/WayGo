@@ -1,16 +1,6 @@
-"use client";
-
+'use client'
 import { createContext, useEffect, useState } from "react";
-import {
-    GoogleAuthProvider,
-    createUserWithEmailAndPassword,
-    getAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    signOut,
-    updateProfile,
-} from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import axios from 'axios';
 
@@ -23,36 +13,10 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const saveUserToMongoDB = async (user) => {
-        const currentUser = {
-            email: user.email,
-            name: user.displayName || '',
-            photo: user.photoURL || '',
-            role: 'user',
-        };
-
-        try {
-            const existingUserResponse = await axios.get(`https://way-go-server.vercel.app/users/${user.email}`);
-            const existingUser = existingUserResponse.data;
-
-            if (existingUser) {
-                return existingUser;
-            }
-
-            const { data } = await axios.put('https://way-go-server.vercel.app/user', currentUser);
-            return data;
-        } catch (error) {
-            console.error("Error saving user to MongoDB:", error);
-            throw error;
-        }
-    };
-
-    const createUser = async (email, password, name) => {
+    const createUser = async (email, password) => {
         setLoading(true);
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(userCredential.user, { displayName: name });
-            await saveUserToMongoDB(userCredential.user);
+            await createUserWithEmailAndPassword(auth, email, password);
         } catch (error) {
             console.error("Error creating user:", error);
             throw error;
@@ -64,8 +28,7 @@ const AuthProvider = ({ children }) => {
     const signIn = async (email, password) => {
         setLoading(true);
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            await saveUserToMongoDB(userCredential.user);
+            await signInWithEmailAndPassword(auth, email, password);
         } catch (error) {
             console.error("Error signing in:", error);
             throw error;
@@ -77,8 +40,7 @@ const AuthProvider = ({ children }) => {
     const signInWithGoogle = async () => {
         setLoading(true);
         try {
-            const userCredential = await signInWithPopup(auth, googleProvider);
-            await saveUserToMongoDB(userCredential.user);
+            await signInWithPopup(auth, googleProvider);
         } catch (error) {
             console.error("Error signing in with Google:", error);
             throw error;
@@ -90,8 +52,10 @@ const AuthProvider = ({ children }) => {
     const logOut = async () => {
         setLoading(true);
         try {
+            await axios.get(`https://way-go-server.vercel.app/logout`, {
+                withCredentials: true,
+            });
             await signOut(auth);
-            localStorage.removeItem('access-token');
         } catch (error) {
             console.error("Error logging out:", error);
             throw error;
@@ -101,23 +65,83 @@ const AuthProvider = ({ children }) => {
     };
 
     const updateUserProfile = async (name, photo) => {
-        if (!auth.currentUser) return;
         try {
             await updateProfile(auth.currentUser, {
                 displayName: name,
                 photoURL: photo,
             });
-
-            await saveUserToMongoDB(auth.currentUser);
         } catch (error) {
             console.error("Error updating user profile:", error);
             throw error;
         }
     };
 
+    const getToken = async (email) => {
+        try {
+            const { data } = await axios.post(
+                `https://way-go-server.vercel.app/jwt`,
+                { email },
+                { withCredentials: true }
+            );
+            return data.token;
+        } catch (error) {
+            console.error("Error getting token:", error);
+            throw error;
+        }
+    };
+
+
+    const saveUser = async (user) => {
+        try {
+
+            const existingUserResponse = await axios.get(
+                `https://way-go-server.vercel.app/users/${user?.email}`
+            );
+            const existingUser = existingUserResponse.data;
+
+
+            if (existingUser) {
+
+                return existingUser;
+            }
+
+
+            const currentUser = {
+                email: user?.email,
+                name: user?.displayName,
+                photo: user?.photoURL,
+                role: 'user',
+            };
+            const { data } = await axios.put(
+                `https://way-go-server.vercel.app/user`,
+                currentUser
+            );
+            return data;
+        } catch (error) {
+            console.error("Error saving user:", error);
+            throw error;
+        }
+    };
+
+
+
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
+            if (currentUser) {
+                try {
+                    const token = await getToken(currentUser.email);
+                    await saveUser(currentUser);
+                    localStorage.setItem('access-token', token);
+
+                    // Set Axios default headers
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                } catch (error) {
+                    console.error("Error handling auth state change:", error);
+                }
+            } else {
+                localStorage.removeItem('access-token');
+            }
             setLoading(false);
         });
         return () => unsubscribe();
@@ -130,8 +154,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         signInWithGoogle,
         logOut,
-        updateUserProfile,
-        saveUser: saveUserToMongoDB,
+        updateUserProfile
     };
 
     return (

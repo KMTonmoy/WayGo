@@ -29,7 +29,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="bg-white fixed w-full top-0 shadow-lg z-10">
+      <div className="bg-white fixed   w-full top-0 shadow-lg z-50">
         <div className="container mx-auto flex justify-between items-center h-[80px] px-5 lg:px-10">
           <div>
             <Image src={logo} alt="WayGO Logo" className="w-[150px]" />

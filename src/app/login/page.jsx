@@ -1,12 +1,12 @@
-"use client";
+'use client'; // Ensures this component is rendered client-side
 
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Correct import for client-side navigation in Next.js 13+
 
 const LoginPage = () => {
-  const { loginUser } = useContext(AuthContext);
-  const router = useRouter();
+  const { signIn } = useContext(AuthContext);
+  const router = useRouter(); // Correct hook for navigation
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -17,8 +17,8 @@ const LoginPage = () => {
     setError(null);
     setLoading(true);
     try {
-      await loginUser(email, password);
-      router.push("/");
+      await signIn(email, password);
+      router.push("/"); // Use router.push for client-side navigation
     } catch (err) {
       setError(err.message);
     } finally {
@@ -58,9 +58,7 @@ const LoginPage = () => {
           </div>
           <button
             type="submit"
-            className={`w-full py-2 px-4 font-semibold text-white rounded-md ${
-              loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#25527E] hover:bg-[#20496E]"
-            }`}
+            className={`w-full py-2 px-4 font-semibold text-white rounded-md ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-orange-600 hover:bg-orange-800 duration-700"}`}
             disabled={loading}
           >
             {loading ? "Logging in..." : "Log In"}
