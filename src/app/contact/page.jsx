@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
-const ContactPage: React.FC = () => {
+const ContactPage = () => {
     return (
         <div className="container mx-auto py-12 px-5 lg:px-20">
             <h1 className="text-3xl font-bold text-center mb-10">Contact Us</h1>
@@ -91,9 +91,6 @@ const ContactPage: React.FC = () => {
                     ></iframe>
                 </div>
             </div>
-
-
-
         </div>
     );
 };

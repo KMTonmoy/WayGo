@@ -106,7 +106,7 @@ const AboutPage = () => {
                             <img
                                 src={dev.image}
                                 alt={dev.name}
-                                className="w-full  object-cover h-[400px]"
+                                className="w-full object-cover h-[400px]"
                             />
                             {/* Hover Overlay */}
                             <motion.div

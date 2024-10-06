@@ -3,8 +3,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
-const CustomSlider: React.FC = () => {
-  const [deal, setDeal] = useState<any[]>([]);
+const CustomSlider = () => {
+  const [deal, setDeal] = useState([]);
   const [currentSlider, setCurrentSlider] = useState(0);
 
   useEffect(() => {

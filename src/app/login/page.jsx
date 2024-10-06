@@ -4,22 +4,22 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useRouter } from "next/navigation";
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
   const { loginUser } = useContext(AuthContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
     try {
       await loginUser(email, password);
       router.push("/");
-    } catch (err: any) {
+    } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
