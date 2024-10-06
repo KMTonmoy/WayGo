@@ -29,7 +29,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="bg-white fixed   w-full top-0 shadow-lg z-50">
+      <div className="bg-white fixed w-full top-0 shadow-lg z-50">
         <div className="container mx-auto flex justify-between items-center h-[80px] px-5 lg:px-10">
           <div>
             <Image src={logo} alt="WayGO Logo" className="w-[150px]" />
@@ -49,15 +49,24 @@ const Navbar = () => {
                 {link.title}
               </Link>
             ))}
+            {user && (
+              <Link
+                href="/dashboard"
+                className={`font-semibold transition-colors duration-300 ${
+                  pathName === '/dashboard'
+                    ? 'text-[#f0652b] underline'
+                    : 'hover:text-[#f0652b]'
+                }`}
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center">
             {!user ? (
               <div className="flex gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/login"
                     className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
@@ -65,12 +74,9 @@ const Navbar = () => {
                     Login
                   </Link>
                 </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
-                    href="/Signup"
+                    href="/signup"
                     className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
                   >
                     Signup
@@ -94,10 +100,7 @@ const Navbar = () => {
             )}
 
             <div className="lg:hidden flex items-center ml-5">
-              <button
-                onClick={handleMenuToggle}
-                className="text-2xl text-gray-600"
-              >
+              <button onClick={handleMenuToggle} className="text-2xl text-gray-600">
                 {menuOpen ? <FaTimes /> : <FaBars />}
               </button>
             </div>
@@ -127,6 +130,18 @@ const Navbar = () => {
               </Link>
             ))}
             {user && (
+              <Link
+                href="/dashboard"
+                className={`block my-2 font-semibold transition-colors duration-300 ${
+                  pathName === '/dashboard'
+                    ? 'text-[#f0652b] underline'
+                    : 'hover:text-[#f0652b]'
+                }`}
+              >
+                Dashboard
+              </Link>
+            )}
+            {user && (
               <button
                 onClick={() => logOut()}
                 className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
@@ -134,13 +149,9 @@ const Navbar = () => {
                 Logout
               </button>
             )}
-
             {!user && (
               <div className="mt-5 py-4 flex gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/login"
                     className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
@@ -148,12 +159,9 @@ const Navbar = () => {
                     Login
                   </Link>
                 </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
-                    href="/Signup"
+                    href="/signup"
                     className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
                   >
                     Signup
