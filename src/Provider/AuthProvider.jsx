@@ -76,35 +76,16 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const getToken = async (email) => {
-        try {
-            const { data } = await axios.post(
-                `https://way-go-server.vercel.app/jwt`,
-                { email },
-                { withCredentials: true }
-            );
-            return data.token;
-        } catch (error) {
-            console.error("Error getting token:", error);
-            throw error;
-        }
-    };
-
-
     const saveUser = async (user) => {
         try {
-
             const existingUserResponse = await axios.get(
                 `https://way-go-server.vercel.app/users/${user?.email}`
             );
             const existingUser = existingUserResponse.data;
 
-
             if (existingUser) {
-
                 return existingUser;
             }
-
 
             const currentUser = {
                 email: user?.email,
@@ -123,24 +104,17 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
             if (currentUser) {
                 try {
-                    const token = await getToken(currentUser.email);
                     await saveUser(currentUser);
-                    localStorage.setItem('access-token', token);
-
-                    // Set Axios default headers
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                 } catch (error) {
                     console.error("Error handling auth state change:", error);
                 }
             } else {
-                localStorage.removeItem('access-token');
+                // If there is no current user, you might not need this logic
             }
             setLoading(false);
         });
