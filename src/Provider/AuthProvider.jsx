@@ -108,11 +108,13 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
             if (currentUser) {
-                try {
-                    await saveUser(currentUser);
-                } catch (error) {
-                    console.error("Error handling auth state change:", error);
-                }
+                setTimeout(async () => {
+                    try {
+                        await saveUser(currentUser);
+                    } catch (error) {
+                        console.error("Error handling auth state change:", error);
+                    }
+                }, 5000); // Delayed save operation for 5 seconds
             } else {
                 // If there is no current user, you might not need this logic
             }

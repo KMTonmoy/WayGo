@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
@@ -30,11 +30,11 @@ const BlockedUser = () => {
     }, []);
 
     useEffect(() => {
-        const filtered = blockedUsers.filter(
-            (user) =>
-                user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                user.email.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        const filtered = blockedUsers.filter((user) => {
+            const nameMatch = user.name && user.name.toLowerCase().includes(searchTerm.toLowerCase());
+            const emailMatch = user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase());
+            return nameMatch || emailMatch;
+        });
         setFilteredUsers(filtered);
     }, [searchTerm, blockedUsers]);
 
