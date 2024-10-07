@@ -1,20 +1,11 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-interface Blog {
-    _id: string;
-    title: string;
-    description: string;
-    image: string;
-    author: string;
-    date: string;
-}
-
-const Page: React.FC<{ params: { _id: string } }> = ({ params }) => {
-    const [blog, setBlog] = useState<Blog | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+const Page = ({ params }) => {
+    const [blog, setBlog] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -53,7 +44,7 @@ const Page: React.FC<{ params: { _id: string } }> = ({ params }) => {
     }
 
     return (
-        <div className="mt-20  bg-gray-100 py-10 px-5">
+        <div className="mt-20  py-10 px-5">
             <div className="container mx-auto bg-white shadow-lg rounded-lg p-6">
                 <h1 className="text-3xl font-semibold mb-4 text-[#25527E]">{blog.title}</h1>
                 <img src={blog.image} alt={blog.title} className="w-full h-full object-cover mb-6 rounded" />

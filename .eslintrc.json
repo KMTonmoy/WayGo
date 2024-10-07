@@ -3,6 +3,9 @@
   "rules": {
     "react/no-unescaped-entities": "off",
     "@next/next/no-img-element": "off",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "no-unused-vars": "warn", // Warn for unused variables
+    "@typescript-eslint/no-explicit-any": "warn" // Warn for any types
   }
 }
+

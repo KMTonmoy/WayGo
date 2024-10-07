@@ -34,7 +34,7 @@ const services = [
     }
 ];
 
-const OurServices: React.FC = () => {
+const OurServices = () => {
     return (
         <div className="container mx-auto px-5 lg:px-10 py-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-center mb-10 text-[#25527E]">
