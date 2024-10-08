@@ -33,6 +33,7 @@ const Sidebar = () => {
         { name: 'Manage User', icon: <FaUserAlt />, path: '/dashboard/ManageUser' },
         { name: 'Manage Agent', icon: <FaShieldAlt />, path: '/dashboard/ManageAgent' },
         { name: 'Blocked Users', icon: <FaBan />, path: '/dashboard/BlockedUsers' },
+        { name: 'Customize Banner', icon: <FaBan />, path: '/dashboard/CustomizeBanner' },
     ];
 
     const agentLinks = [
