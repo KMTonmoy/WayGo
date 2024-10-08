@@ -8,8 +8,14 @@ import HotDeal from './HotDeal/page';
 
 const Page = () => {
   return (
-    <div className="flex flex-col gap-10">
-      <Banner />
+    <div className="flex  flex-col gap-10">
+
+
+      <div className='md:px-[220px] py-5'>
+        <Banner />
+
+      </div>
+
       <main>
         {/* About shuttle section */}
         <section>
