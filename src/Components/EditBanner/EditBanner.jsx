@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 const EditBanner = () => {
@@ -13,7 +13,6 @@ const EditBanner = () => {
         description: '',
         url: ''
     });
-    const intervalRef = useRef(null);
 
     useEffect(() => {
         const fetchBannerData = async () => {
@@ -30,15 +29,6 @@ const EditBanner = () => {
         };
         fetchBannerData();
     }, []);
-
-    useEffect(() => {
-        intervalRef.current = setInterval(() => {
-            setCurrentImageIndex(prevIndex =>
-                prevIndex === images.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 5000);
-        return () => clearInterval(intervalRef.current);
-    }, [images.length]);
 
     const handleDelete = async (id) => {
         const result = await Swal.fire({
@@ -133,7 +123,6 @@ const EditBanner = () => {
                 <button className="bg-gray-600 text-white px-4 py-2 rounded" onClick={() => setCurrentImageIndex(prevIndex => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))}>Next</button>
             </div>
 
-            {/* Modal for Editing */}
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/2">
