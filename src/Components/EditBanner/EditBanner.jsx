@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 const EditBanner = () => {
@@ -98,25 +98,31 @@ const EditBanner = () => {
             {images.length === 0 ? (
                 <div className="text-center">No banners available. Please add a banner.</div>
             ) : (
-                <div className="relative h-[800px] lg:h-[800px] transition-all duration-700 ease-in-out">
-                    <img src={images[currentImageIndex].url} alt={images[currentImageIndex].heading} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                        <div className="container mx-auto grid lg:grid-cols-2 gap-5 items-center px-5 lg:px-10">
-                            <div className="text-white text-center lg:text-left">
-                                <h1 className="text-3xl lg:text-5xl font-bold mb-4">
-                                    {images[currentImageIndex].heading}
-                                </h1>
-                                <p className="mb-6 text-sm lg:text-base">
-                                    {images[currentImageIndex].description}
-                                </p>
-                                <div className="flex space-x-2 justify-center lg:justify-start">
-                                    <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={handleEdit}>Edit</button>
-                                    <button className="bg-red-600 text-white px-4 py-2 rounded" onClick={() => handleDelete(images[currentImageIndex]._id)}>Delete</button>
+                images[currentImageIndex] && (
+                    <div className="relative h-[800px] lg:h-[800px] transition-all duration-700 ease-in-out">
+                        <img
+                            src={images[currentImageIndex].url}
+                            alt={images[currentImageIndex].heading}
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <div className="container mx-auto grid lg:grid-cols-2 gap-5 items-center px-5 lg:px-10">
+                                <div className="text-white text-center lg:text-left">
+                                    <h1 className="text-3xl lg:text-5xl font-bold mb-4">
+                                        {images[currentImageIndex].heading}
+                                    </h1>
+                                    <p className="mb-6 text-sm lg:text-base">
+                                        {images[currentImageIndex].description}
+                                    </p>
+                                    <div className="flex space-x-2 justify-center lg:justify-start">
+                                        <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={handleEdit}>Edit</button>
+                                        <button className="bg-red-600 text-white px-4 py-2 rounded" onClick={() => handleDelete(images[currentImageIndex]._id)}>Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                )
             )}
             <div className="absolute bottom-4 left-4 flex space-x-2">
                 <button className="bg-gray-600 text-white px-4 py-2 rounded" onClick={() => setCurrentImageIndex(prevIndex => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))}>Previous</button>
