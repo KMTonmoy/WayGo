@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react';
-import { FaHome, FaUserAlt, FaCog, FaSignOutAlt, FaBars, FaTimes, FaShieldAlt, FaBan } from 'react-icons/fa';
+import { FaHome, FaUserAlt, FaCog, FaSignOutAlt, FaBars, FaTimes, FaShieldAlt, FaBan, FaPaintBrush } from 'react-icons/fa';
 import Link from 'next/link';
 import { AuthContext } from '../../Provider/AuthProvider';
 
@@ -33,6 +33,7 @@ const Sidebar = () => {
         { name: 'Manage User', icon: <FaUserAlt />, path: '/dashboard/ManageUser' },
         { name: 'Manage Agent', icon: <FaShieldAlt />, path: '/dashboard/ManageAgent' },
         { name: 'Blocked Users', icon: <FaBan />, path: '/dashboard/BlockedUsers' },
+        { name: 'Customize Banner', icon: <FaPaintBrush />, path: '/dashboard/CustomizeBanner' },
     ];
 
     const agentLinks = [
