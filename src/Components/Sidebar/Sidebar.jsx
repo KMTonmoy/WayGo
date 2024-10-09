@@ -1,6 +1,8 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react';
-import { FaHome, FaUserAlt, FaCog, FaSignOutAlt, FaBars, FaTimes, FaShieldAlt, FaBan, FaPaintBrush } from 'react-icons/fa';
+import { FaHome, FaUserAlt, FaCog, FaSignOutAlt, FaBars, FaTimes, FaShieldAlt, FaBan, FaPaintBrush, FaBus } from 'react-icons/fa';
+import { RiBusWifiFill } from "react-icons/ri";
+
 import Link from 'next/link';
 import { AuthContext } from '../../Provider/AuthProvider';
 
@@ -34,6 +36,8 @@ const Sidebar = () => {
         { name: 'Manage Agent', icon: <FaShieldAlt />, path: '/dashboard/ManageAgent' },
         { name: 'Blocked Users', icon: <FaBan />, path: '/dashboard/BlockedUsers' },
         { name: 'Customize Banner', icon: <FaPaintBrush />, path: '/dashboard/CustomizeBanner' },
+        { name: 'Add Bus', icon: <FaBus />, path: '/dashboard/AddBus' },
+        { name: 'Manage Bus', icon: <RiBusWifiFill />, path: '/dashboard/ManageBus' },
     ];
 
     const agentLinks = [
@@ -47,7 +51,7 @@ const Sidebar = () => {
     const links = role === 'admin' ? adminLinks : role === 'agent' ? agentLinks : commonLinks;
 
     return (
-        <div className="flex min-h-screen bg-gray-800 text-white">
+        <div className="flex md:z-0 md:w-[300px]  z-50 min-h-screen bg-gray-800 text-white">
             <button onClick={toggleSidebar} className="lg:hidden p-4 text-2xl focus:outline-none">
                 {isOpen ? <FaTimes /> : <FaBars />}
             </button>
@@ -68,13 +72,7 @@ const Sidebar = () => {
                         </Link>
                     ))}
                 </nav>
-
-                <div className="absolute bottom-0 w-full">
-                    <button onClick={() => logOut()} className="w-full flex items-center justify-center py-4 bg-gray-800 hover:bg-red-600 transition-colors duration-300">
-                        <FaSignOutAlt className="text-xl" />
-                        <span className="ml-2">Logout</span>
-                    </button>
-                </div>
+ 
             </div>
         </div>
     );

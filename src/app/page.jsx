@@ -8,16 +8,22 @@ import HotDeal from './HotDeal/page';
 
 const Page = () => {
   return (
-    <div className="flex flex-col gap-10">
-      <Banner />
+    <div className="flex  flex-col gap-10">
+
+
+      <div className=' '>
+        <Banner />
+
+      </div>
+
       <main>
         {/* About shuttle section */}
         <section>
+          <HotDeal />
           <AboutShuttle />
         </section>
         <WhyChooseUs />
         <OurServices />
-        <HotDeal />
         <Testimonial />
       </main>
     </div>

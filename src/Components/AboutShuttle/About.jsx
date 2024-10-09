@@ -3,7 +3,7 @@ import React from 'react';
 const AboutShuttle = () => {
     return (
         <div className="container mx-auto px-5 lg:px-10 py-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10  items-center">
                 {/* Left Side - Text Content */}
                 <div>
                     <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-[#25527E]">
@@ -17,7 +17,7 @@ const AboutShuttle = () => {
                     </p>
                     <ul className="space-y-2">
                         <li className="text-lg text-gray-800">
-                            <strong>✔ Brilient Client Service</strong> 
+                            <strong>✔ Brilient Client Service</strong>
                         </li>
                         <li className="text-lg text-gray-800">
                             <strong>✔ 24/7 Support</strong>
@@ -45,7 +45,7 @@ const AboutShuttle = () => {
                     <img
                         src="https://templatekit.jegtheme.com/shuttle/wp-content/uploads/sites/300/elementor/thumbs/the-girls-enter-the-doors-of-a-blue-bus-that-has-arrived-at-the-bus-stop--e1656575414346-pr2ezsmmrawcmkiwtv7o9n2a7ydrrpmhfdv79k8qho.jpg"
                         alt="Bus Charter Service"
-                        className="w-full h-auto rounded-lg shadow-lg"
+                        className="w-[550px] h-[600px] rounded-lg shadow-lg"
                     />
                 </div>
             </div>
