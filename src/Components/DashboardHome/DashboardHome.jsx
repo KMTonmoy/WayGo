@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import CountUp from 'react-countup';
@@ -69,7 +69,7 @@ const DashboardHome = () => {
         <div className="p-8">
             <h1 className="text-4xl font-bold text-center mb-6 text-orange-600">Welcome to Your Dashboard</h1>
             {role && <p className="text-lg text-center mb-4 text-gray-700">You are logged in as: <strong className='uppercase text-orange-500'>{role}</strong></p>}
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-8 z-0">
                 <DashboardCard
                     title="Total Users"
                     count={userCount}
@@ -92,18 +92,19 @@ const DashboardHome = () => {
 
 const DashboardCard = ({ title, count, icon }) => {
     return (
-        <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg py-8 px-6 w-full md:w-80 flex items-center transition-transform transform hover:scale-105">
-            <div className="mr-4">
+        <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg py-8 px-6 w-full md:w-80 z-0 flex items-center transition-transform transform hover:scale-105 hover:shadow-xl duration-300 ease-in-out">
+            <div className="mr-4 text-5xl">
                 {icon}
             </div>
             <div>
-                <h2 className="text-3xl font-bold text-orange-600">
+                <h2 className="text-4xl font-bold text-orange-600">
                     <CountUp start={0} end={count} duration={2.75} />
                 </h2>
-                <p className="text-gray-600">{title}</p>
+                <p className="text-gray-600 mt-2">{title}</p>
             </div>
         </div>
     );
 };
+
 
 export default DashboardHome;

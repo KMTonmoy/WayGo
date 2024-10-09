@@ -51,7 +51,7 @@ const Sidebar = () => {
     const links = role === 'admin' ? adminLinks : role === 'agent' ? agentLinks : commonLinks;
 
     return (
-        <div className="flex min-h-screen bg-gray-800 text-white">
+        <div className="flex md:z-0 md:w-[300px]  z-50 min-h-screen bg-gray-800 text-white">
             <button onClick={toggleSidebar} className="lg:hidden p-4 text-2xl focus:outline-none">
                 {isOpen ? <FaTimes /> : <FaBars />}
             </button>
@@ -72,13 +72,7 @@ const Sidebar = () => {
                         </Link>
                     ))}
                 </nav>
-
-                <div className="absolute bottom-0 w-full">
-                    <button onClick={() => logOut()} className="w-full flex items-center justify-center py-4 bg-gray-800 hover:bg-red-600 transition-colors duration-300">
-                        <FaSignOutAlt className="text-xl" />
-                        <span className="ml-2">Logout</span>
-                    </button>
-                </div>
+ 
             </div>
         </div>
     );

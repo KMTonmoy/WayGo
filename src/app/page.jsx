@@ -11,7 +11,7 @@ const Page = () => {
     <div className="flex  flex-col gap-10">
 
 
-      <div className='md:px-[220px] py-5'>
+      <div className=' '>
         <Banner />
 
       </div>
@@ -19,11 +19,11 @@ const Page = () => {
       <main>
         {/* About shuttle section */}
         <section>
+          <HotDeal />
           <AboutShuttle />
         </section>
         <WhyChooseUs />
         <OurServices />
-        <HotDeal />
         <Testimonial />
       </main>
     </div>
