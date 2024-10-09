@@ -49,7 +49,7 @@ const Banner = () => {
   }
 
   return (
-    <div className="relative z-0">
+    <div className="relative mt-10 z-0">
       <div
         className="h-[600px] lg:h-[600px] bg-cover bg-center transition-all duration-700 ease-in-out object-cover bg-clip-content rounded-lg overflow-hidden"
         style={{ backgroundImage: `url(${images[currentImageIndex]?.url})` }}
@@ -67,7 +67,7 @@ const Banner = () => {
           </div>
 
           <div className="bg-white bg-opacity-50 backdrop-blur-lg rounded-lg p-5 shadow-lg w-full lg:w-1/2 max-w-lg mx-auto">
-            <div className="flex mb-4 justify-center">
+            <div className="flex mb-4 gap-5 justify-center">
               <button
                 onClick={() => setActiveTransport('Flights')}
                 className={`px-4 py-2 rounded-full ${activeTransport === 'Flights'

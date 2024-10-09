@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "My App Title",
+  title: "WayGo",
   description: "WayGO Travel Ticket Management System",
 };
 

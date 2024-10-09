@@ -126,12 +126,7 @@ const ManageBus = () => {
                                 <p className="text-gray-600">WiFi: <span className="text-orange-500">{bus.wifi ? 'Yes' : 'No'}</span></p>
                             </div>
                             <div className="absolute top-4 right-4 flex space-x-2">
-                                <button
-                                    onClick={() => handleEdit(bus._id)}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                                >
-                                    Edit
-                                </button>
+                              
                                 <button
                                     onClick={() => handleDelete(bus._id)}
                                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
