@@ -7,6 +7,7 @@ const Banner = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
+  const [tripType, setTripType] = useState('one-way');
 
   useEffect(() => {
     const fetchBannerData = async () => {
@@ -94,6 +95,36 @@ const Banner = () => {
               </button>
             </div>
 
+            {/* Conditional Radio Buttons for Bus */}
+            {activeTransport === 'Buses' && (
+              <div className="mb-4">
+                <div className="flex space-x-4">
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      className="form-radio"
+                      name="tripType"
+                      value="one-way"
+                      checked={tripType === 'one-way'}
+                      onChange={() => setTripType('one-way')}
+                    />
+                    <span className="ml-2">One Way</span>
+                  </label>
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      className="form-radio"
+                      name="tripType"
+                      value="round-way"
+                      checked={tripType === 'round-way'}
+                      onChange={() => setTripType('round-way')}
+                    />
+                    <span className="ml-2">Round Way</span>
+                  </label>
+                </div>
+              </div>
+            )}
+
             <form className="space-y-4">
               <div>
                 <label className="block text-gray-700 font-medium">From</label>
@@ -119,6 +150,7 @@ const Banner = () => {
                 </select>
               </div>
 
+              {/* Conditional Date Inputs */}
               <div>
                 <label className="block text-gray-700 font-medium">
                   Departure Date
@@ -128,6 +160,18 @@ const Banner = () => {
                   className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
                 />
               </div>
+
+              {tripType === 'round-way' && (
+                <div>
+                  <label className="block text-gray-700 font-medium">
+                    Return Date
+                  </label>
+                  <input
+                    type="date"
+                    className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              )}
 
               <div>
                 <label className="block text-gray-700 font-medium">
