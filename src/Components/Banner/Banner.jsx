@@ -7,11 +7,14 @@ const Banner = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
+  const [tripType, setTripType] = useState('one-way');
 
   useEffect(() => {
     const fetchBannerData = async () => {
       try {
-        const response = await fetch('https://way-go-server.vercel.app/banners');
+        const response = await fetch(
+          'https://way-go-server.vercel.app/banners'
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch banner data');
         }
@@ -70,32 +73,65 @@ const Banner = () => {
             <div className="flex mb-4 gap-5 justify-center">
               <button
                 onClick={() => setActiveTransport('Flights')}
-                className={`px-4 py-2 rounded-full ${activeTransport === 'Flights'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-white text-gray-700 border'
-                  } hover:bg-[var(--clr-focussed)] duration-700 transition-shadow shadow-md hover:shadow-lg`}
+                className={`px-4 flex py-2 rounded-full ${
+                  activeTransport === 'Flights'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
+                } hover:bg-[var(--clr-focussed)] duration-700 transition-shadow shadow-md hover:shadow-lg`}
               >
                 Flights
               </button>
               <button
                 onClick={() => setActiveTransport('Trains')}
-                className={`px-4 py-2 rounded-full ${activeTransport === 'Trains'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-white text-gray-700 border'
-                  } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
+                className={`px-4 py-2 rounded-full ${
+                  activeTransport === 'Trains'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
+                } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
               >
                 Trains
               </button>
               <button
                 onClick={() => setActiveTransport('Buses')}
-                className={`px-4 py-2 rounded-full ${activeTransport === 'Buses'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-white text-gray-700 border'
-                  } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
+                className={`px-4 py-2 rounded-full ${
+                  activeTransport === 'Buses'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
+                } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
               >
                 Buses
               </button>
             </div>
+
+            {/* Conditional Radio Buttons for Bus */}
+            {activeTransport === 'Buses' && (
+              <div className="mb-4">
+                <div className="flex space-x-4">
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      className="form-radio"
+                      name="tripType"
+                      value="one-way"
+                      checked={tripType === 'one-way'}
+                      onChange={() => setTripType('one-way')}
+                    />
+                    <span className="ml-2">One Way</span>
+                  </label>
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      className="form-radio"
+                      name="tripType"
+                      value="round-way"
+                      checked={tripType === 'round-way'}
+                      onChange={() => setTripType('round-way')}
+                    />
+                    <span className="ml-2">Round Way</span>
+                  </label>
+                </div>
+              </div>
+            )}
 
             <form className="space-y-4">
               <div>
@@ -122,16 +158,33 @@ const Banner = () => {
                 </select>
               </div>
 
+              {/* Conditional Date Inputs */}
               <div>
-                <label className="block text-gray-700 font-medium">Departure Date</label>
+                <label className="block text-gray-700 font-medium">
+                  Departure Date
+                </label>
                 <input
                   type="date"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
+              {tripType === 'round-way' && (
+                <div>
+                  <label className="block text-gray-700 font-medium">
+                    Return Date
+                  </label>
+                  <input
+                    type="date"
+                    className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              )}
+
               <div>
-                <label className="block text-gray-700 font-medium">Seat Type</label>
+                <label className="block text-gray-700 font-medium">
+                  Seat Type
+                </label>
                 <select className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
                   <option>Business</option>
                   <option>Economy</option>
