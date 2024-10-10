@@ -12,7 +12,9 @@ const Banner = () => {
   useEffect(() => {
     const fetchBannerData = async () => {
       try {
-        const response = await fetch('https://way-go-server.vercel.app/banners');
+        const response = await fetch(
+          'https://way-go-server.vercel.app/banners'
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch banner data');
         }
@@ -71,28 +73,31 @@ const Banner = () => {
             <div className="flex mb-4 gap-5 justify-center">
               <button
                 onClick={() => setActiveTransport('Flights')}
-                className={`px-4 py-2 rounded-full ${activeTransport === 'Flights'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-white text-gray-700 border'
-                  } hover:bg-[var(--clr-focussed)] duration-700 transition-shadow shadow-md hover:shadow-lg`}
+                className={`px-4 flex py-2 rounded-full ${
+                  activeTransport === 'Flights'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
+                } hover:bg-[var(--clr-focussed)] duration-700 transition-shadow shadow-md hover:shadow-lg`}
               >
                 Flights
               </button>
               <button
                 onClick={() => setActiveTransport('Trains')}
-                className={`px-4 py-2 rounded-full ${activeTransport === 'Trains'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-white text-gray-700 border'
-                  } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
+                className={`px-4 py-2 rounded-full ${
+                  activeTransport === 'Trains'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
+                } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
               >
                 Trains
               </button>
               <button
                 onClick={() => setActiveTransport('Buses')}
-                className={`px-4 py-2 rounded-full ${activeTransport === 'Buses'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-white text-gray-700 border'
-                  } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
+                className={`px-4 py-2 rounded-full ${
+                  activeTransport === 'Buses'
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-gray-700 border'
+                } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
               >
                 Buses
               </button>
@@ -155,7 +160,9 @@ const Banner = () => {
 
               {/* Conditional Date Inputs */}
               <div>
-                <label className="block text-gray-700 font-medium">Departure Date</label>
+                <label className="block text-gray-700 font-medium">
+                  Departure Date
+                </label>
                 <input
                   type="date"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
@@ -175,7 +182,9 @@ const Banner = () => {
               )}
 
               <div>
-                <label className="block text-gray-700 font-medium">Seat Type</label>
+                <label className="block text-gray-700 font-medium">
+                  Seat Type
+                </label>
                 <select className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
                   <option>Business</option>
                   <option>Economy</option>
