@@ -41,8 +41,8 @@ const Navbar = () => {
                 key={link.path}
                 className={`font-semibold transition-colors duration-300 ${
                   link.path === pathName
-                    ? 'text-[#f0652b] underline'
-                    : 'hover:text-[#f0652b]'
+                    ? 'text-clr-focussed underline'
+                    : 'hover:text-clr-focussed'
                 }`}
                 href={link.path}
               >
@@ -54,8 +54,8 @@ const Navbar = () => {
                 href="/dashboard"
                 className={`font-semibold transition-colors duration-300 ${
                   pathName === '/dashboard'
-                    ? 'text-[#f0652b] underline'
-                    : 'hover:text-[#f0652b]'
+                    ? 'text-clr-focussed underline'
+                    : 'hover:text-clr-focussed'
                 }`}
               >
                 Dashboard
@@ -120,8 +120,8 @@ const Navbar = () => {
                 key={link.path}
                 className={`block my-2 font-semibold transition-colors duration-300 ${
                   link.path === pathName
-                    ? 'text-[#f0652b] underline'
-                    : 'hover:text-[#f0652b]'
+                    ? 'text-clr-focussed underline'
+                    : 'hover:text-clr-focussed'
                 }`}
                 href={link.path}
                 onClick={() => setMenuOpen(false)}
@@ -144,7 +144,7 @@ const Navbar = () => {
             {user && (
               <button
                 onClick={() => logOut()}
-                className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
+                className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-orange-500"
               >
                 Logout
               </button>
@@ -154,7 +154,7 @@ const Navbar = () => {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/login"
-                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
+                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#d05424]"
                   >
                     Login
                   </Link>
@@ -162,7 +162,7 @@ const Navbar = () => {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/signup"
-                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
+                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#d05424]"
                   >
                     Signup
                   </Link>

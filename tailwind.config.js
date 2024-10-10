@@ -11,6 +11,7 @@ const config = {
   theme: {
     extend: {
       colors: {
+        'clr-focussed': '#ec5024',
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

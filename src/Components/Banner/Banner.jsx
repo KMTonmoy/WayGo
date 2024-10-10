@@ -73,19 +73,19 @@ const Banner = () => {
             <div className="flex mb-4 gap-5 justify-center">
               <button
                 onClick={() => setActiveTransport('Flights')}
-                className={`px-4 flex py-2 rounded-full ${
+                className={`px-4 flex py-2 rounded-2xl ${
                   activeTransport === 'Flights'
-                    ? 'bg-orange-500 text-white'
+                    ? 'bg-clr-focussed text-white'
                     : 'bg-white text-gray-700 border'
-                } hover:bg-[var(--clr-focussed)] duration-700 transition-shadow shadow-md hover:shadow-lg`}
+                } hover:bg-orange-600 duration-700 transition-shadow shadow-md hover:shadow-lg`}
               >
                 Flights
               </button>
               <button
                 onClick={() => setActiveTransport('Trains')}
-                className={`px-4 py-2 rounded-full ${
+                className={`px-4 py-2 rounded-2xl ${
                   activeTransport === 'Trains'
-                    ? 'bg-orange-500 text-white'
+                    ? 'bg-clr-focussed text-white'
                     : 'bg-white text-gray-700 border'
                 } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
               >
@@ -93,9 +93,9 @@ const Banner = () => {
               </button>
               <button
                 onClick={() => setActiveTransport('Buses')}
-                className={`px-4 py-2 rounded-full ${
+                className={`px-4 py-2 rounded-2xl ${
                   activeTransport === 'Buses'
-                    ? 'bg-orange-500 text-white'
+                    ? 'bg-clr-focussed text-white'
                     : 'bg-white text-gray-700 border'
                 } hover:bg-orange-600 transition-shadow shadow-md hover:shadow-lg`}
               >
@@ -176,7 +176,7 @@ const Banner = () => {
                   </label>
                   <input
                     type="date"
-                    className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-clr-focussed"
                   />
                 </div>
               )}
@@ -185,14 +185,14 @@ const Banner = () => {
                 <label className="block text-gray-700 font-medium">
                   Seat Type
                 </label>
-                <select className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                <select className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-clr-focussed">
                   <option>Business</option>
                   <option>Economy</option>
                 </select>
               </div>
 
               <div className="flex justify-center">
-                <button className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-full transition-shadow shadow-md hover:shadow-lg">
+                <button className="px-6 py-3 bg-gradient-to-r from-clr-focussed to-[#ec3124] text-white rounded-lg hover:bg-orange-400 w-full transition-shadow shadow-md hover:shadow-lg">
                   Search
                 </button>
               </div>
