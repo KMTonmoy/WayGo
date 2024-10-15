@@ -51,7 +51,7 @@ const Page = () => {
             const imageUrl = await imageUpload(file);
             setBannerImage(imageUrl);
 
-            const response = await axios.post('https://way-go-server.vercel.app/banners', {
+            const response = await axios.post('https://way-go-backend.vercel.app/banners', {
                 url: imageUrl,
                 heading: title,
                 description,

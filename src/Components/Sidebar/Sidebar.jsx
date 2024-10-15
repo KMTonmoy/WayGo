@@ -17,7 +17,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         if (email) {
-            fetch(`https://way-go-server.vercel.app/users/${email}`)
+            fetch(`https://way-go-backend.vercel.app/users/${email}`)
                 .then(res => res.json())
                 .then(setData)
                 .catch(console.error);
@@ -72,7 +72,7 @@ const Sidebar = () => {
                         </Link>
                     ))}
                 </nav>
- 
+
             </div>
         </div>
     );

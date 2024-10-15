@@ -10,7 +10,7 @@ const Page = ({ params }) => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await fetch(`https://way-go-server.vercel.app/blogs/${params._id}`);
+                const response = await fetch(`https://way-go-backend.vercel.app/blogs/${params._id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch blog');
                 }
