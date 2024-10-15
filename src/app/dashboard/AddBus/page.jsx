@@ -54,7 +54,7 @@ const AddBus = () => {
                 busImage: imageUrl,
             };
 
-            const response = await fetch('https://way-go-server.vercel.app/addbus', {
+            const response = await fetch('https://way-go-backend.vercel.app/addbus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

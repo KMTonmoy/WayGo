@@ -11,7 +11,7 @@ const ManageBus = () => {
     useEffect(() => {
         const fetchBuses = async () => {
             try {
-                const response = await fetch('https://way-go-server.vercel.app/allbus');
+                const response = await fetch('https://way-go-backend.vercel.app/allbus');
                 const data = await response.json();
                 setBuses(data);
             } catch (error) {
@@ -41,7 +41,7 @@ const ManageBus = () => {
 
         if (result.isConfirmed) {
             try {
-                const response = await fetch(`https://way-go-server.vercel.app/allbus/${busId}`, {
+                const response = await fetch(`https://way-go-backend.vercel.app/allbus/${busId}`, {
                     method: 'DELETE',
                 });
                 if (response.ok) {
@@ -126,7 +126,7 @@ const ManageBus = () => {
                                 <p className="text-gray-600">WiFi: <span className="text-orange-500">{bus.wifi ? 'Yes' : 'No'}</span></p>
                             </div>
                             <div className="absolute top-4 right-4 flex space-x-2">
-                              
+
                                 <button
                                     onClick={() => handleDelete(bus._id)}
                                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"

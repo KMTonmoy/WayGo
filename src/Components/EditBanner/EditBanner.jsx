@@ -17,7 +17,7 @@ const EditBanner = () => {
     useEffect(() => {
         const fetchBannerData = async () => {
             try {
-                const response = await fetch('https://way-go-server.vercel.app/banners');
+                const response = await fetch('https://way-go-backend.vercel.app/banners');
                 if (!response.ok) throw new Error('Failed to fetch banner data');
                 const data = await response.json();
                 setImages(data);
@@ -42,7 +42,7 @@ const EditBanner = () => {
         });
         if (result.isConfirmed) {
             try {
-                const response = await fetch(`https://way-go-server.vercel.app/banners/${id}`, { method: 'DELETE' });
+                const response = await fetch(`https://way-go-backend.vercel.app/banners/${id}`, { method: 'DELETE' });
                 if (!response.ok) throw new Error('Failed to delete the banner');
                 setImages(prevImages => prevImages.filter(image => image._id !== id));
                 Swal.fire('Deleted!', 'Your banner has been deleted.', 'success');
@@ -70,7 +70,7 @@ const EditBanner = () => {
 
         const { _id } = currentImage;
         try {
-            const response = await fetch(`https://way-go-server.vercel.app/banners/${_id}`, {
+            const response = await fetch(`https://way-go-backend.vercel.app/banners/${_id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

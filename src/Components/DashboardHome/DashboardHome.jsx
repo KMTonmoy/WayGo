@@ -15,7 +15,7 @@ const DashboardHome = () => {
     useEffect(() => {
         if (email) {
             setLoading(true);
-            fetch(`https://way-go-server.vercel.app/users/${email}`)
+            fetch(`https://way-go-backend.vercel.app/users/${email}`)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error('Network response was not ok');
@@ -35,7 +35,7 @@ const DashboardHome = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`https://way-go-server.vercel.app/users`)
+        fetch(`https://way-go-backend.vercel.app/users`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Network response was not ok');
