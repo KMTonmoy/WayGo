@@ -1,3 +1,4 @@
+// Banner.js
 'use client';
 import React, { useEffect, useState } from 'react';
 import AllBus from '../../Components/AllBus/AllBus';
@@ -11,6 +12,7 @@ const Banner = () => {
   const [images, setImages] = useState([]);
   const [tripType, setTripType] = useState('one-way');
   const [searchResults, setSearchResults] = useState([]);
+  const [allBuses, setAllBuses] = useState([]);  
   const [fromLocation, setFromLocation] = useState('');
   const [toLocation, setToLocation] = useState('');
   const [departureDate, setDepartureDate] = useState('');
@@ -18,7 +20,6 @@ const Banner = () => {
   const [seatType, setSeatType] = useState('Economy');
 
   useEffect(() => {
-    // Fetching banner data using normal fetch with then/catch
     fetch('https://way-go-backend.vercel.app/banners')
       .then(response => {
         if (!response.ok) {
@@ -42,24 +43,30 @@ const Banner = () => {
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
-
     return () => clearInterval(interval);
   }, [images.length]);
 
   const handleSearch = e => {
     e.preventDefault();
-
-
-    fetch(`https://way-go-backend.vercel.app/searchBus?to=${toLocation}&form=${fromLocation}`)
+    fetch(`https://way-go-backend.vercel.app/searchBus?form=${fromLocation}&to=${toLocation}`)
       .then(response => response.json())
-      .then(json => console.log(json))
-
-
+      .then(json => {
+        setSearchResults(json);
+        if (json.length === 0) {
+          setSearchResults([]); 
+        }
+      });
   };
 
+  const fetchAllBuses = () => {
+    fetch('https://way-go-backend.vercel.app/searchBus') // Fetch all buses
+      .then(response => response.json())
+      .then(json => setAllBuses(json))
+  };
 
-  console.log(toLocation, fromLocation)
-
+  useEffect(() => {
+    fetchAllBuses(); // Fetch all buses on component mount
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -96,33 +103,6 @@ const Banner = () => {
             </div>
 
             <div className="bg-white bg-opacity-50 backdrop-blur-lg rounded-lg p-5 shadow-lg w-full lg:w-1/2 max-w-lg mx-auto">
-              <div className="mb-4">
-                <div className="flex space-x-4">
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      className="form-radio"
-                      name="tripType"
-                      value="one-way"
-                      checked={tripType === 'one-way'}
-                      onChange={() => setTripType('one-way')}
-                    />
-                    <span className="ml-2">One Way</span>
-                  </label>
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      className="form-radio"
-                      name="tripType"
-                      value="round-way"
-                      checked={tripType === 'round-way'}
-                      onChange={() => setTripType('round-way')}
-                    />
-                    <span className="ml-2">Round Way</span>
-                  </label>
-                </div>
-              </div>
-
               <form className="space-y-4" onSubmit={handleSearch}>
                 <div>
                   <label className="block text-gray-700 font-medium">From</label>
@@ -198,7 +178,6 @@ const Banner = () => {
                 </div>
 
                 <button
-                  onClick={handleSearch}
                   type="submit"
                   className="w-full py-2 px-4 bg-orange-500 text-white font-bold rounded-lg"
                 >
@@ -211,10 +190,8 @@ const Banner = () => {
       </div>
 
       <div>
-        <AllBus />
+        <AllBus searchResults={searchResults.length > 0 ? searchResults : allBuses} />
       </div>
-
-
     </div>
   );
 };
