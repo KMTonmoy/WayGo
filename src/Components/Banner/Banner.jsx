@@ -52,7 +52,7 @@ const Banner = () => {
   }
 
   return (
-    <div className="relative mt-10 z-0">
+    <div className="relative  mt-10  z-0">
       <div
         className="h-[600px] lg:h-[600px] bg-cover bg-center transition-all duration-700 ease-in-out object-cover bg-clip-content rounded-lg overflow-hidden"
         style={{ backgroundImage: `url(${images[currentImageIndex]?.url})` }}
