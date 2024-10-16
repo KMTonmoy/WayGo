@@ -1,12 +1,47 @@
 'use client';
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import Select from 'react-select'; // Import react-select
 import { imageUpload } from '../../../api/utils/index';
 
 const locations = ['Pabna', 'Dhaka', 'Borisal', 'Bogura', 'Coxbazar', 'Rangamati', 'Khagrasori'];
 
+// Sample bus names for the searchable dropdown
+const busNames = [
+    { value: 'Shamoli', label: 'Shamoli' },
+    { value: 'Hanif', label: 'Hanif' },
+    { value: 'SB', label: 'SB' },
+    { value: 'SabaLine', label: 'SabaLine' },
+    { value: 'Super Sony', label: 'Super Sony' },
+    { value: 'JR Poribohon', label: 'JR Poribohon' },
+    { value: 'Fatema', label: 'Fatema' },
+    { value: 'JS Poribohon', label: 'JS Poribohon' },
+    { value: 'Sorkar Travels', label: 'Sorkar Travels' },
+    { value: 'Ishwardi Travels', label: 'Ishwardi Travels' },
+    { value: 'Pabna Express', label: 'Pabna Express' },
+    { value: 'See Line', label: 'See Line' },
+    { value: 'Ena Poribohon', label: 'Ena Poribohon' },
+    { value: 'Bangla Star', label: 'Bangla Star' },
+    { value: 'RP Nige', label: 'RP Nige' },
+    { value: 'Five Star', label: 'Five Star' },
+    { value: 'Egal Poribohon', label: 'Egal Poribohon' },
+    { value: 'Bosundhara', label: 'Bosundhara' },
+    { value: 'Challenger', label: 'Challenger' },
+    { value: 'Green Line', label: 'Green Line' },
+    { value: 'Desh Travels', label: 'Desh Travels' },
+    { value: 'National Travels', label: 'National Travels' },
+    { value: 'Soudia', label: 'Soudia' },
+    { value: 'Pakhi', label: 'Pakhi' },
+    { value: 'Akota', label: 'Akota' },
+    { value: 'Golden Line', label: 'Golden Line' },
+    { value: 'Sokalsondha', label: 'Sokalsondha' },
+    { value: 'Raja Badsha', label: 'Raja Badsha' },
+    { value: 'Mitali', label: 'Mitali' },
+    { value: 'Modina', label: 'Modina' },
+];
+
 const AddBus = () => {
-    const [busName, setBusName] = useState('');
+    const [busName, setBusName] = useState(null);
     const [seatPrice, setSeatPrice] = useState('');
     const [totalSeats, setTotalSeats] = useState('40');
     const [from, setFrom] = useState('');
@@ -39,10 +74,20 @@ const AddBus = () => {
             return;
         }
 
+        if (!busName) {
+            Swal.fire({
+                title: 'No Bus Selected',
+                text: 'Please select a bus name before submitting.',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+            });
+            return;
+        }
+
         try {
             const imageUrl = await imageUpload(file);
             const formData = {
-                busName,
+                busName: busName.value, // Get the selected bus name
                 seatPrice,
                 totalSeats,
                 from,
@@ -70,7 +115,7 @@ const AddBus = () => {
                     confirmButtonText: 'OK',
                 });
                 // Reset form fields
-                setBusName('');
+                setBusName(null);
                 setSeatPrice('');
                 setTotalSeats('40');
                 setFrom('');
@@ -107,12 +152,12 @@ const AddBus = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-gray-700 font-medium">Bus Name</label>
-                        <input
-                            type="text"
+                        <Select
+                            options={busNames}
                             value={busName}
-                            onChange={(e) => setBusName(e.target.value)}
-                            className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter Bus Name"
+                            onChange={setBusName}
+                            placeholder="Select Bus Name"
+                            className="w-full"
                             required
                         />
                     </div>
@@ -136,7 +181,6 @@ const AddBus = () => {
                             onChange={(e) => setTotalSeats(e.target.value)}
                             className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
                         >
-                            <option value="30">30</option>
                             <option value="36">36</option>
                             <option value="40">40</option>
                         </select>
@@ -182,7 +226,7 @@ const AddBus = () => {
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium">Departure Time (HH:MM AM/PM)</label>
+                        <label className="block text-gray-700 font-medium">Departure Time</label>
                         <input
                             type="time"
                             value={departureTime}
@@ -193,7 +237,7 @@ const AddBus = () => {
                     </div>
 
                     <div>
-                        <label className="block text-gray-700 font-medium">Arrival Time (HH:MM AM/PM)</label>
+                        <label className="block text-gray-700 font-medium">Arrival Time</label>
                         <input
                             type="time"
                             value={arrivalTime}
@@ -231,23 +275,20 @@ const AddBus = () => {
                         <label className="block text-gray-700 font-medium">Bus Image</label>
                         <input
                             type="file"
+                            accept="image/*"
                             onChange={handleImageChange}
                             className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
                             required
                         />
-                        {imagePreview && (
-                            <img src={imagePreview} alt="Bus Preview" className="mt-4 w-full h-40 object-cover" />
-                        )}
+                        {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-32 h-32 object-cover rounded" />}
                     </div>
 
-                    <div className="flex justify-center">
-                        <button
-                            type="submit"
-                            className="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 w-full"
-                        >
-                            Add Bus
-                        </button>
-                    </div>
+                    <button
+                        type="submit"
+                        className="w-full py-2 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 transition duration-300"
+                    >
+                        Add Bus
+                    </button>
                 </form>
             </div>
         </div>
