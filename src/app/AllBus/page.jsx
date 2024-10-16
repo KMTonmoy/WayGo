@@ -67,7 +67,7 @@ const AllBus = ({ searchResults }) => {
                                             <p><strong>AC:</strong> {bus.ac}</p>
                                             <p><strong>WiFi:</strong> {bus.wifi}</p>
                                             <p><strong>Total Seats:</strong> {bus.totalSeats}</p>
-                                            <p className="text-xl font-bold text-orange-600">Seat Price: ${bus.seatPrice}</p>
+                                            <p className="text-xl font-bold text-orange-600">Seat Price: {bus.seatPrice} BDT</p>
                                         </div>
                                     </div>
                                 ) : (
