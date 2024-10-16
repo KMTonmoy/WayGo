@@ -1,7 +1,7 @@
 // Banner.js
 'use client';
 import React, { useEffect, useState } from 'react';
-import AllBus from '../../Components/AllBus/AllBus';
+import AllBus from '../../app/AllBus/page';
 
 const locations = ['Pabna', 'Dhaka', 'Borisal', 'Bogura', 'Coxbazar', 'Rangamati', 'Khagrasori'];
 
@@ -12,7 +12,7 @@ const Banner = () => {
   const [images, setImages] = useState([]);
   const [tripType, setTripType] = useState('one-way');
   const [searchResults, setSearchResults] = useState([]);
-  const [allBuses, setAllBuses] = useState([]);  
+  const [allBuses, setAllBuses] = useState([]);
   const [fromLocation, setFromLocation] = useState('');
   const [toLocation, setToLocation] = useState('');
   const [departureDate, setDepartureDate] = useState('');
@@ -53,7 +53,9 @@ const Banner = () => {
       .then(json => {
         setSearchResults(json);
         if (json.length === 0) {
-          setSearchResults([]); 
+          setSearchResults([]);
+        } else {
+          window.scrollTo({ top: 50, behavior: 'smooth' });
         }
       });
   };

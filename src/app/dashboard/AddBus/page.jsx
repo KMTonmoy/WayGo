@@ -136,7 +136,6 @@ const AddBus = () => {
                             onChange={(e) => setTotalSeats(e.target.value)}
                             className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
                         >
-                            <option value="30">30</option>
                             <option value="36">36</option>
                             <option value="40">40</option>
                         </select>
