@@ -14,27 +14,26 @@ const Page = ({ params }) => {
   const searchParams = useSearchParams();
   const date = searchParams.get("date");
 
-  const [payments, setPayments] = useState([]);
+  const [payments, setPayments] = useState({});
+
   useEffect(() => {
     if (Bus) {
       fetch(`https://way-go-backend.vercel.app/payments`)
-        .then((res) => {
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((data) => {
           const userPayments = data.filter(
-            (payment) => payment.BusId === Bus._id
+            (payment) =>
+              payment.BusId === Bus._id && payment?.departureDate === date
           );
           setPayments(userPayments);
+        })
+        .catch((error) => {
+          console.error("Error fetching payments:", error);
         });
     }
-  }, [Bus]);
+  }, [Bus, date]);
 
-  // console.log(date);
-
-  if (payments.length > 0) {
-    const payments = data.filter((payment) => payment.departureDate === date);
-  }
+  console.log(payments);
 
   useEffect(() => {
     const fetchBus = async () => {
