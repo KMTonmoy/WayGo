@@ -13,8 +13,7 @@ const Page = ({ params }) => {
   const date = searchParams.get("date");  
 
   console.log(date);
-
-  console.log(date);
+ 
 
   useEffect(() => {
     const fetchBus = async () => {
