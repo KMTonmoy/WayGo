@@ -2,12 +2,19 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Pay from "../../../Components/Payment/Pay";
-
+import { useSearchParams } from "next/navigation";
+ 
 const Page = ({ params }) => {
   const [Bus, setBus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const searchParams = useSearchParams();
+  const date = searchParams.get("date");  
+
+  console.log(date);
+
+  console.log(date);
 
   useEffect(() => {
     const fetchBus = async () => {
@@ -254,7 +261,6 @@ const Page = ({ params }) => {
               </div>
               <div className="w-full md:w-1/2 flex flex-col justify-center">
                 <div className="p-5 h-full bg-white flex flex-col justify-between">
-            
                   <Pay
                     selectedSeats={selectedSeats}
                     Bus={Bus}

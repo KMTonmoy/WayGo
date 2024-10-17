@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import CountUp from "react-countup";
 import { FaUser } from "react-icons/fa";
+import MyPayments from "../MyPaments/MyPayment";
 
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
@@ -166,7 +167,11 @@ const DashboardHome = () => {
             title="Total Blocked Users"
             count={blockedCount}
             icon={<span className="text-clr-focussed text-4xl">🚫</span>}
-          />
+                  />
+                  
+
+<MyPayments />
+
         </div>
       )}
     </div>
