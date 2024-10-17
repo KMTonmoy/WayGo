@@ -174,7 +174,7 @@ const Page = ({ params }) => {
                 <div>
                   <div className="flex justify-center md:justify-end mb-3">
                     <button
-                      className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] flex justify-center items-center text-center absolute bg-orange-400 shadow-md rounded-md transition duration-200`}
+                      className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] flex justify-center items-center text-center absolute bg-[#22C55E] cursor-not-allowed shadow-md rounded-md transition duration-200`}
                     >
                       <img
                         src="https://i.ibb.co.com/NpsXwN5/wheel.png"
