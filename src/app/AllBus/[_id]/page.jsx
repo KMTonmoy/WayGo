@@ -1,13 +1,39 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Pay from "../../../Components/Payment/Pay";
+import { useSearchParams } from "next/navigation";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Page = ({ params }) => {
   const [Bus, setBus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
+
+  const searchParams = useSearchParams();
+  const date = searchParams.get("date");
+
+  const [payments, setPayments] = useState({});
+
+  useEffect(() => {
+    if (Bus) {
+      fetch(`https://way-go-backend.vercel.app/payments`)
+        .then((res) => res.json())
+        .then((data) => {
+          const userPayments = data.filter(
+            (payment) =>
+              payment.BusId === Bus._id && payment?.departureDate === date
+          );
+          setPayments(userPayments);
+        })
+        .catch((error) => {
+          console.error("Error fetching payments:", error);
+        });
+    }
+  }, [Bus, date]);
+
+  console.log(payments);
 
   useEffect(() => {
     const fetchBus = async () => {
@@ -174,7 +200,7 @@ const Page = ({ params }) => {
                 <div>
                   <div className="flex justify-center md:justify-end mb-3">
                     <button
-                      className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] flex justify-center items-center text-center absolute bg-orange-400 shadow-md rounded-md transition duration-200`}
+                      className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] flex justify-center items-center text-center absolute bg-[#22C55E] cursor-not-allowed shadow-md rounded-md transition duration-200`}
                     >
                       <img
                         src="https://i.ibb.co.com/NpsXwN5/wheel.png"
@@ -254,7 +280,6 @@ const Page = ({ params }) => {
               </div>
               <div className="w-full md:w-1/2 flex flex-col justify-center">
                 <div className="p-5 h-full bg-white flex flex-col justify-between">
-            
                   <Pay
                     selectedSeats={selectedSeats}
                     Bus={Bus}

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaThList, FaThLarge } from "react-icons/fa";
 import Link from "next/link";
 
-const AllBus = ({ searchResults }) => {
+const AllBus = ({ searchResults, departureDate }) => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [layout, setLayout] = useState("list");
   const busData = searchResults;
@@ -136,7 +136,7 @@ const AllBus = ({ searchResults }) => {
                 )}
               </div>
               <div className="text-left mt-4">
-                <Link href={`/AllBus/${bus._id}`}>
+                <Link href={`/AllBus/${bus._id}?date=${departureDate}`}>
                   <button className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
                     Book a Ticket
                   </button>
