@@ -1,19 +1,40 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Pay from "../../../Components/Payment/Pay";
 import { useSearchParams } from "next/navigation";
- 
+import { AuthContext } from "../../../Provider/AuthProvider";
+
 const Page = ({ params }) => {
   const [Bus, setBus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const searchParams = useSearchParams();
-  const date = searchParams.get("date");  
 
-  console.log(date);
- 
+  const searchParams = useSearchParams();
+  const date = searchParams.get("date");
+
+  const [payments, setPayments] = useState([]);
+  useEffect(() => {
+    if (Bus) {
+      fetch(`https://way-go-backend.vercel.app/payments`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          const userPayments = data.filter(
+            (payment) => payment.BusId === Bus._id
+          );
+          setPayments(userPayments);
+        });
+    }
+  }, [Bus]);
+
+  // console.log(date);
+
+  if (payments.length > 0) {
+    const payments = data.filter((payment) => payment.departureDate === date);
+  }
 
   useEffect(() => {
     const fetchBus = async () => {

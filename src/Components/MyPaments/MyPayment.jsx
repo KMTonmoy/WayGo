@@ -44,10 +44,10 @@ const MyPayment = () => {
   }
 
   const formatTime = (timeString) => {
-    if (!timeString) return "N/A"; // Return 'N/A' if timeString is undefined
+    if (!timeString) return "N/A"; 
 
     const timeParts = timeString.split(":");
-    if (timeParts.length !== 2) return timeString; // Return original string if it's not in HH:MM format
+    if (timeParts.length !== 2) return timeString;  
 
     const [hours, minutes] = timeParts;
     const hours12 = hours % 12 || 12;
