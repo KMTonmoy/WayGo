@@ -4,7 +4,13 @@ import { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthProvider';
 
-const CheckoutForm = ({ totalToPay, paymentMonth, BusId, selectedSeats }) => {
+const CheckoutForm = ({
+  totalToPay,
+  paymentMonth,
+  BusId,
+  selectedSeats,
+  departureDate,
+}) => {
   console.log(BusId, selectedSeats);
 
   const [error, setError] = useState('');
@@ -95,6 +101,7 @@ const CheckoutForm = ({ totalToPay, paymentMonth, BusId, selectedSeats }) => {
         transactionId: paymentIntent.id,
         paymentMonth: paymentMonth,
         SubmitDate: currentDate,
+        departureDate: departureDate,
         BusId: BusId,
         selectedSeats: selectedSeats,
         status: 'pending',
@@ -112,7 +119,7 @@ const CheckoutForm = ({ totalToPay, paymentMonth, BusId, selectedSeats }) => {
         .then(data => {
           if (data?.result?.insertedId) {
             Swal.fire({
-              position: 'top-end',
+              position: 'top',
               icon: 'success',
               title: 'Payment Successful',
               text: 'Thank you for your payment!',
