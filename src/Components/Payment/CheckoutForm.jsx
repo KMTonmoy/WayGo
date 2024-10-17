@@ -4,19 +4,21 @@ import { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthProvider';
 
-const CheckoutForm = ({ totalToPay, paymentMonth }) => {
+const CheckoutForm = ({ totalToPay, paymentMonth, BusId, selectedSeats }) => {
+  console.log(BusId, selectedSeats);
+
   const [error, setError] = useState('');
   const [clientSecret, setClientSecret] = useState('');
   const [transactionId, setTransactionId] = useState('');
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
-  const navigate = '/';
   const today = new Date();
   const currentDate = `${today.getDate().toString().padStart(2, '0')}/${
     today.getMonth() + 1
   }/${today.getFullYear()}`;
 
+  // Fetch client secret from backend
   useEffect(() => {
     if (totalToPay > 0) {
       fetch('http://localhost:8000/create-payment-intent', {
@@ -28,10 +30,15 @@ const CheckoutForm = ({ totalToPay, paymentMonth }) => {
       })
         .then(response => response.json())
         .then(data => {
-          setClientSecret(data.clientSecret); // Set clientSecret for Stripe confirmation
+          setClientSecret(data.clientSecret);
         })
         .catch(error => {
           console.error('Error fetching client secret:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Payment Initialization Failed',
+            text: 'Unable to proceed with payment. Please try again later.',
+          });
         });
     }
   }, [totalToPay]);
@@ -44,27 +51,29 @@ const CheckoutForm = ({ totalToPay, paymentMonth }) => {
     }
 
     const card = elements.getElement(CardElement);
-
-    if (card === null) {
+    if (!card) {
+      setError('Payment information not available.');
       return;
     }
 
-    const { error: paymentMethodError, paymentMethod } =
+    // Create payment method and confirm payment
+    const { error: paymentError, paymentMethod } =
       await stripe.createPaymentMethod({
         type: 'card',
         card,
       });
 
-    if (paymentMethodError) {
-      setError(paymentMethodError.message);
+    if (paymentError) {
+      setError(paymentError.message);
       return;
     }
 
-    // Confirm payment
+    setError(''); // Reset error if payment method creation succeeded
+
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: card,
+          card,
           billing_details: {
             email: user?.email || 'anonymous',
             name: user?.displayName || 'anonymous',
@@ -77,7 +86,7 @@ const CheckoutForm = ({ totalToPay, paymentMonth }) => {
       return;
     }
 
-    if (paymentIntent?.status === 'succeeded') {
+    if (paymentIntent.status === 'succeeded') {
       setTransactionId(paymentIntent.id);
 
       const payment = {
@@ -86,10 +95,13 @@ const CheckoutForm = ({ totalToPay, paymentMonth }) => {
         transactionId: paymentIntent.id,
         paymentMonth: paymentMonth,
         SubmitDate: currentDate,
+        BusId: BusId,
+        selectedSeats: selectedSeats,
         status: 'pending',
       };
 
-      fetch('http://localhost:8000/payments', {
+      // Save payment info to backend
+      fetch('https://way-go-backend.vercel.app/payments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,21 +114,25 @@ const CheckoutForm = ({ totalToPay, paymentMonth }) => {
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Thank you for paying your rent',
+              title: 'Payment Successful',
+              text: 'Thank you for your payment!',
               showConfirmButton: false,
               timer: 1500,
             });
-            navigate('/dashboard/payment-history'); // Navigate after successful payment
           }
         })
         .catch(error => {
           console.error('Error saving payment:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Payment Processing Failed',
+            text: 'We encountered an issue saving your payment details. Please contact support.',
+          });
         });
     }
   };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="rounded-2xl">
       <CardElement
         className="w-[450px]"
         options={{
@@ -135,15 +151,16 @@ const CheckoutForm = ({ totalToPay, paymentMonth }) => {
         }}
       />
       <button
-        className="btn btn-sm p-2 bg-slate-300 mx-auto flex btn-primary my-4"
+        className="w-[100px] h-[40px] flex items-center justify-center mx-auto bg-gradient-to-r from-orange-500 to-orange-700 text-white font-semibold rounded-md shadow-md transition-transform duration-200 hover:from-orange-400 hover:to-orange-600 transform hover:scale-105 active:scale-95 my-4"
         type="submit"
         disabled={!stripe || !clientSecret}
       >
         Pay
       </button>
+
       {error && <p className="text-red-600">{error}</p>}
       {transactionId && (
-        <p className="text-green-600">Your transaction id: {transactionId}</p>
+        <p className="text-green-600">Your transaction ID: {transactionId}</p>
       )}
     </form>
   );

@@ -7,17 +7,21 @@ import { AuthContext } from '../../Provider/AuthProvider';
 const stripePromise = loadStripe(
   'pk_test_51PLRDh1ER2eQQaKOIacKieEoEcmrxq1iXUsfZCu7itWd6KAMzuQyotjLWrjKag3KzgTsvZooEDBnfsfyVGMbznhJ00vAOF7I33'
 );
+console.log(
+  'Stripe Public Key:',
+  'pk_test_51PLRDh1ER2eQQaKOIacKieEoEcmrxq1iXUsfZCu7itWd6KAMzuQyotjLWrjKag3KzgTsvZooEDBnfsfyVGMbznhJ00vAOF7I33'
+);
 
 const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   const [coupons, setCoupons] = useState([]);
   const [discount, setDiscount] = useState(0);
   const [couponCode, setCouponCode] = useState('');
   const [memberInfo, setMemberInfo] = useState({});
-  const [totalToPay, setTotalToPay] = useState(totalPrice);
-  const [paymentDate] = useState(new Date().toISOString().substring(0, 10)); // Current date as payment date
+
+  const [paymentDate] = useState(new Date().toISOString().substring(0, 10));
   const [paymentTime, setPaymentTime] = useState(''); // State for payment time
   const [departureDate, setDepartureDate] = useState(''); // State for selected departure date
-  const [showModal, setShowModal] = useState(false); // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -32,36 +36,43 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
 
   useEffect(() => {
     const fetchCoupons = async () => {
-      const response = await fetch('http://localhost:8000/coupons');
-      const couponsData = await response.json();
-      setCoupons(couponsData);
+      try {
+        const response = await fetch(
+          'https://way-go-backend.vercel.app/coupons'
+        );
+        if (!response.ok) throw new Error('Failed to fetch coupons');
+        const couponsData = await response.json();
+        setCoupons(couponsData);
+      } catch (error) {
+        console.error(error.message);
+      }
     };
 
     const fetchMemberInfo = async () => {
-      if (user) {
-        const response = await fetch(
-          `http://localhost:8000/users/${user?.email}`
-        );
-        const userData = await response.json();
-        setMemberInfo(userData);
-        setTotalToPay(userData.rent);
+      try {
+        if (user) {
+          const response = await fetch(
+            `https://way-go-backend.vercel.app/users/${user?.email}`
+          );
+          if (!response.ok) throw new Error('Failed to fetch user info');
+          const userData = await response.json();
+          setMemberInfo(userData);
+        }
+      } catch (error) {
+        console.error(error.message);
       }
     };
 
     fetchCoupons();
     fetchMemberInfo();
-  }, [user]);
+  }, [user, totalPrice]);
 
   const handlePay = () => {
-    if (departureDate) {
-      setShowModal(true); // Open modal only if departure date is selected
-    } else {
-      alert('Please select a departure date before proceeding.');
-    }
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setShowModal(false);
+    setIsModalOpen(false);
   };
 
   return (
@@ -89,10 +100,22 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                 <p className="text-lg">{totalPrice} BDT</p>
               </div>
             </div>
+            <div className="flex gap-4">
+              <input
+                className="w-full px-3 py-1 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
+                type="text"
+                value={couponCode}
+                onChange={e => setCouponCode(e.target.value)}
+                placeholder="Enter coupon code"
+              />
+              <button className="bg-green-500 p-2 font-bold text-white rounded-md">
+                Apply
+              </button>
+            </div>
 
             <div className="mt-5">
               <p className="text-xl font-bold">
-                Total to Pay: {totalToPay} BDT
+                Total to Pay: {totalPrice} BDT
               </p>
             </div>
             <p className="text-lg font-bold">Current Date: {paymentDate} </p>
@@ -119,27 +142,62 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
             >
               Process Payment
             </button>
-          </div>
 
-          {showModal && (
-            <div className="modal-overlay">
-              <div className="modal">
-                <div className="modal-content">
+            {/* Modal */}
+            {/* {isModalOpen && (
+              <dialog id="my_modal_1" className="modal" open>
+                <div className="modal-box p-5 border-2 border-orange-500 rounded-2xl h-[300px] flex flex-col items-center justify-center gap-5">
+                  <div className="absolute right-1 top-1">
+                    <button
+                      onClick={closeModal}
+                      className="bg-orange-600  rounded-full px-[10px] py-[5px]   text-white font-bold text-xl "
+                    >
+                      X
+                    </button>
+                  </div>
                   <Elements stripe={stripePromise}>
                     <CheckoutForm
-                      totalToPay={totalToPay}
+                      totalToPay={totalPrice}
                       paymentMonth={paymentDate}
                       paymentTime={paymentTime}
                       departureDate={departureDate}
                     />
                   </Elements>
-                  <button className="modal-close" onClick={closeModal}>
-                    Close
-                  </button>
                 </div>
-              </div>
-            </div>
-          )}
+              </dialog>
+            )} */}
+            {isModalOpen && (
+              <dialog
+                id="my_modal_1"
+                className="modal fixed inset-40 flex items-center justify-center"
+                open
+              >
+                <div className="modal-box p-5 border-2 border-orange-500 rounded-2xl h-[400px] flex flex-col items-center justify-center gap-5 relative shadow-lg bg-white">
+                  <div className="absolute right-2 top-2">
+                    <button
+                      onClick={closeModal}
+                      className="bg-orange-600 rounded-full px-3 py-1 text-white font-bold text-xl hover:bg-orange-500 transition-colors duration-200"
+                    >
+                      X
+                    </button>
+                  </div>
+                  <h2 className="text-lg font-semibold text-center text-orange-600">
+                    Payment Details
+                  </h2>
+                  <Elements stripe={stripePromise}>
+                    <CheckoutForm
+                      totalToPay={totalPrice}
+                      paymentMonth={paymentDate}
+                      paymentTime={paymentTime}
+                      departureDate={departureDate}
+                      BusId={Bus._id}
+                      selectedSeats={selectedSeats}
+                    />
+                  </Elements>
+                </div>
+              </dialog>
+            )}
+          </div>
         </div>
       </div>
     </div>
