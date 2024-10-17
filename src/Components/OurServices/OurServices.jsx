@@ -60,11 +60,11 @@ const OurServices = () => {
             className="relative group bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden p-6 transition-transform duration-500 hover:shadow-2xl"
           >
             {/* Orange Background on Hover */}
-            <div className="absolute inset-0 bg-[#f0652b] h-0 group-hover:h-full transition-all duration-500 ease-in-out z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-clr-focussed to-[#ec3124] h-0 group-hover:h-full transition-all duration-500 ease-in-out z-0"></div>
 
             {/* Content including Icon */}
             <div className="relative z-10 text-center">
-              <div className="mb-4 text-[#25527E] group-hover:text-white transition-all duration-500">
+              <div className="mb-4 text-clr-focussed group-hover:text-white transition-all duration-500">
                 {service.icon}
               </div>
               <h3 className="text-2xl font-semibold text-[#25527E] group-hover:text-white transition-all duration-500">

@@ -15,7 +15,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch(`https://way-go-server.vercel.app/blogs`);
+        const response = await fetch(`https://way-go-backend.vercel.app/blogs`);
         if (!response.ok) throw new Error('Failed to fetch blogs');
         const data = await response.json();
         setBlogs(data);

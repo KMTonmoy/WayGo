@@ -11,7 +11,7 @@ const ManageUsers = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('https://way-go-server.vercel.app/users');
+                const response = await fetch('https://way-go-backend.vercel.app/users');
                 if (!response.ok) {
                     throw new Error('Failed to fetch users');
                 }
@@ -28,7 +28,7 @@ const ManageUsers = () => {
 
     const handleBlockUser = async (email) => {
         try {
-            const response = await fetch(`https://way-go-server.vercel.app/users/${email}`, {
+            const response = await fetch(`https://way-go-backend.vercel.app/users/${email}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const ManageUsers = () => {
 
     const handleMakeAgent = async (email) => {
         try {
-            const response = await fetch(`https://way-go-server.vercel.app/users/${email}`, {
+            const response = await fetch(`https://way-go-backend.vercel.app/users/${email}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

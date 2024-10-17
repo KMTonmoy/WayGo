@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
     const logOut = async () => {
         setLoading(true);
         try {
-            await axios.get(`https://way-go-server.vercel.app/logout`, {
+            await axios.get(`https://way-go-backend.vercel.app/logout`, {
                 withCredentials: true,
             });
             await signOut(auth);
@@ -79,7 +79,7 @@ const AuthProvider = ({ children }) => {
     const saveUser = async (user) => {
         try {
             const existingUserResponse = await axios.get(
-                `https://way-go-server.vercel.app/users/${user?.email}`
+                `https://way-go-backend.vercel.app/users/${user?.email}`
             );
             const existingUser = existingUserResponse.data;
 
@@ -94,7 +94,7 @@ const AuthProvider = ({ children }) => {
                 role: 'user',
             };
             const { data } = await axios.put(
-                `https://way-go-server.vercel.app/user`,
+                `https://way-go-backend.vercel.app/user`,
                 currentUser
             );
             return data;

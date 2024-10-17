@@ -11,7 +11,9 @@ const ManageBus = () => {
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const response = await fetch('https://way-go-server.vercel.app/allbus');
+        const response = await fetch(
+          'https://way-go-backend.vercel.app/allbus'
+        );
         const data = await response.json();
         setBuses(data);
       } catch (error) {
@@ -42,7 +44,7 @@ const ManageBus = () => {
     if (result.isConfirmed) {
       try {
         const response = await fetch(
-          `https://way-go-server.vercel.app/allbus/${busId}`,
+          `https://way-go-backend.vercel.app/allbus/${busId}`,
           {
             method: 'DELETE',
           }
@@ -133,11 +135,7 @@ const ManageBus = () => {
                 </p>
                 <p className="text-gray-600">
                   Seat Price:{' '}
-                  <span className="text-orange-500">{bus.seatPrice} Tk</span>
-                </p>
-                <p className="text-gray-600">
-                  Seat Type:{' '}
-                  <span className="text-orange-500">{bus.seatType}</span>
+                  <span className="text-orange-500">${bus.seatPrice}</span>
                 </p>
                 <p className="text-gray-600">
                   Total Seats:{' '}
@@ -156,10 +154,16 @@ const ManageBus = () => {
                   </span>
                 </p>
                 <p className="text-gray-600">
-                  AC: <span className="text-orange-500">{bus.ac}</span>
+                  AC:{' '}
+                  <span className="text-orange-500">
+                    {bus.ac ? 'Yes' : 'No'}
+                  </span>
                 </p>
                 <p className="text-gray-600">
-                  WiFi: <span className="text-orange-500">{bus.wifi}</span>
+                  WiFi:{' '}
+                  <span className="text-orange-500">
+                    {bus.wifi ? 'Yes' : 'No'}
+                  </span>
                 </p>
               </div>
               <div className="absolute top-4 right-4 flex space-x-2">

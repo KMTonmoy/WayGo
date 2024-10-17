@@ -12,7 +12,7 @@ const BlockedUser = () => {
     useEffect(() => {
         const fetchBlockedUsers = async () => {
             try {
-                const response = await fetch('https://way-go-server.vercel.app/users');
+                const response = await fetch('https://way-go-backend.vercel.app/users');
                 if (!response.ok) throw new Error('Failed to fetch users');
 
                 const data = await response.json();
@@ -40,7 +40,7 @@ const BlockedUser = () => {
 
     const handleUnblockUser = async (email) => {
         try {
-            const response = await fetch(`https://way-go-server.vercel.app/users/${email}`, {
+            const response = await fetch(`https://way-go-backend.vercel.app/users/${email}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

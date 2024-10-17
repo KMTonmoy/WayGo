@@ -11,7 +11,7 @@ const ManageAgent = () => {
 
     const fetchAgents = async () => {
         try {
-            const response = await fetch('https://way-go-server.vercel.app/users');
+            const response = await fetch('https://way-go-backend.vercel.app/users');
             if (!response.ok) {
                 throw new Error('Failed to fetch agents');
             }
@@ -31,7 +31,7 @@ const ManageAgent = () => {
 
     const handleBlockAgent = async (email) => {
         try {
-            const response = await fetch(`https://way-go-server.vercel.app/users/${email}`, {
+            const response = await fetch(`https://way-go-backend.vercel.app/users/${email}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const ManageAgent = () => {
 
     const handleMakeUser = async (email) => {
         try {
-            const response = await fetch(`https://way-go-server.vercel.app/users/${email}`, {
+            const response = await fetch(`https://way-go-backend.vercel.app/users/${email}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

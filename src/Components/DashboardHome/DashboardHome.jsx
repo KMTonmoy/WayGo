@@ -15,7 +15,7 @@ const DashboardHome = () => {
     useEffect(() => {
         if (email) {
             setLoading(true);
-            fetch(`https://way-go-server.vercel.app/users/${email}`)
+            fetch(`https://way-go-backend.vercel.app/users/${email}`)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error('Network response was not ok');
@@ -35,7 +35,7 @@ const DashboardHome = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`https://way-go-server.vercel.app/users`)
+        fetch(`https://way-go-backend.vercel.app/users`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Network response was not ok');
@@ -67,23 +67,23 @@ const DashboardHome = () => {
 
     return (
         <div className="p-8">
-            <h1 className="text-4xl font-bold text-center mb-6 text-orange-600">Welcome to Your Dashboard</h1>
+            <h1 className="text-4xl font-bold text-center mb-6 text-clr-focussed">Welcome to Your Dashboard</h1>
             {role && <p className="text-lg text-center mb-4 text-gray-700">You are logged in as: <strong className='uppercase text-orange-500'>{role}</strong></p>}
             <div className="flex flex-wrap justify-center gap-8 z-0">
                 <DashboardCard
                     title="Total Users"
                     count={userCount}
-                    icon={<FaUser className="text-blue-500 text-4xl" />}
+                    icon={<FaUser className="text-clr-focussed text-4xl" />}
                 />
                 <DashboardCard
                     title="Total Agents"
                     count={memberCount}
-                    icon={<span className="text-purple-500 text-4xl">🪪</span>}
+                    icon={<span className="text-clr-focussed text-4xl">🪪</span>}
                 />
                 <DashboardCard
                     title="Total Blocked Users"
                     count={blockedCount}
-                    icon={<span className="text-red-500 text-4xl">🚫</span>}
+                    icon={<span className="text-clr-focussed text-4xl">🚫</span>}
                 />
             </div>
         </div>
