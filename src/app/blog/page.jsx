@@ -15,7 +15,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
+        const response = await fetch(`https://way-go-server.vercel.app/blogs`);
         if (!response.ok) throw new Error('Failed to fetch blogs');
         const data = await response.json();
         setBlogs(data);
@@ -39,7 +39,7 @@ const BlogPage = () => {
   const totalPages = Math.ceil(blogs.length / blogsPerPage);
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-5">
+    <div className="min-h-screen   py-10 px-5">
       <div className="container mx-auto">
         <h2 className="text-3xl font-semibold text-center text-[#25527E] mb-8">Recent Posts</h2>
 

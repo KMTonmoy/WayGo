@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "My App Title",
+  title: "WayGo",
   description: "WayGO Travel Ticket Management System",
 };
 
@@ -26,7 +26,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
-          <Navbar />
+          <div className="mb-20">
+            <Navbar />
+          </div>
           <main>{children}</main>
           <Footer />
         </AuthProvider>

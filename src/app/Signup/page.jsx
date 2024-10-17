@@ -1,15 +1,18 @@
 'use client';
-
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Provider/AuthProvider';
 import { imageUpload } from '../../api/utils/index';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-const Page = () => {
+const SignupPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
   const [image, setImage] = useState(null);
+  const router = useRouter();
 
   const { createUser, updateUserProfile } = useContext(AuthContext);
 
@@ -28,7 +31,7 @@ const Page = () => {
         title: 'Profile Picture Required',
         text: 'Please upload a profile picture.',
         icon: 'warning',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
       });
       return;
     }
@@ -41,26 +44,32 @@ const Page = () => {
         title: 'Signup Successful',
         text: 'You have successfully signed up.',
         icon: 'success',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+      }).then(() => {
+        router.push('/');
       });
     } catch (err) {
       Swal.fire({
         title: 'Signup Failed',
-        text: err.message,
+        text: err.message || 'An unexpected error occurred. Please try again.',
         icon: 'error',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
       });
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center py-10 px-5">
+    <div className="min-h-screen flex justify-center items-center py-10 px-5">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-md p-8">
-        <h2 className="text-3xl font-semibold text-center text-[#25527E] mb-8">Create Your Account</h2>
+        <h2 className="text-3xl font-semibold text-center text-[#25527E] mb-8">
+          Create Your Account
+        </h2>
 
         <form onSubmit={handleSignup}>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="name">Full Name</label>
+            <label className="block text-gray-700 mb-2" htmlFor="name">
+              Full Name
+            </label>
             <input
               type="text"
               id="name"
@@ -73,7 +82,9 @@ const Page = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
+            <label className="block text-gray-700 mb-2" htmlFor="email">
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -86,17 +97,23 @@ const Page = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="phone">Phone Number</label>
+            <label className="block text-gray-700 mb-2" htmlFor="phone">
+              Phone Number
+            </label>
             <input
               type="text"
               id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
               placeholder="Your Phone Number"
             />
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="password">Password</label>
+            <label className="block text-gray-700 mb-2" htmlFor="password">
+              Password
+            </label>
             <input
               type="password"
               id="password"
@@ -109,7 +126,9 @@ const Page = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="profile-pic">Profile Picture</label>
+            <label className="block text-gray-700 mb-2" htmlFor="profile-pic">
+              Profile Picture
+            </label>
             <input
               type="file"
               id="profile-pic"
@@ -120,18 +139,23 @@ const Page = () => {
             />
           </div>
 
-          <button type="submit" className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300">
+          <button
+            type="submit"
+            className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300"
+          >
             Sign Up
           </button>
         </form>
 
         <p className="mt-5 text-center text-gray-600">
           Already have an account?{' '}
-          <a href="/login" className="text-[#f0652b] hover:underline">Log In</a>
+          <Link href="/login" className="text-[#f0652b] hover:underline">
+            Log In
+          </Link>
         </p>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default SignupPage;

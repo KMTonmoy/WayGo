@@ -25,7 +25,7 @@ const socialIconVariant = {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#000000] text-white py-8 px-10 mt-10">
+    <footer className="bg-[#000000] text-white py-8 px-10  ">
       <div className='flex md:flex-row flex-col flex-wrap md:justify-around gap-10 md:gap-5 items-center'>
         <motion.div
           className='md:w-[300px]'
