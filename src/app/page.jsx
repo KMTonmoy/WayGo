@@ -7,6 +7,7 @@ import Banner from '../Components/Banner/Banner';
 import AboutShuttle from '../Components/AboutShuttle/About';
 import HotDeal from './HotDeal/page';
 
+
 const Page = () => {
   return (
     <div>
