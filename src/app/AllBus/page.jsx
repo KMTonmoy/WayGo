@@ -1,8 +1,8 @@
-"use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaThList, FaThLarge } from "react-icons/fa";
 import Link from "next/link";
+import PropTypes from "prop-types"; // Import PropTypes for prop validation
 
 const AllBus = ({ searchResults, departureDate }) => {
   const [visibleCount, setVisibleCount] = useState(6);
@@ -159,6 +159,12 @@ const AllBus = ({ searchResults, departureDate }) => {
       )}
     </div>
   );
+};
+
+// Adding prop types validation
+AllBus.propTypes = {
+  searchResults: PropTypes.array.isRequired, // Ensure searchResults is an array
+  departureDate: PropTypes.string.isRequired, // Ensure departureDate is a string
 };
 
 export default AllBus;
