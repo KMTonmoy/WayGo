@@ -17,7 +17,7 @@ const Banner = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
-  const [tripType, setTripType] = useState("one-way");
+  // const [tripType, setTripType] = useState("one-way");
   const [searchResults, setSearchResults] = useState([]);
   const [allBuses, setAllBuses] = useState([]);
   const [fromLocation, setFromLocation] = useState("");
@@ -165,7 +165,7 @@ const Banner = () => {
                   />
                 </div>
 
-                {tripType === "round-way" && (
+                {/* {tripType === "round-way" && (
                   <div>
                     <label className="block text-gray-700 font-medium">
                       Return Date
@@ -177,7 +177,7 @@ const Banner = () => {
                       onChange={(e) => setReturnDate(e.target.value)}
                     />
                   </div>
-                )}
+                )} */}
 
                 <div>
                   <label className="block text-gray-700 font-medium">
