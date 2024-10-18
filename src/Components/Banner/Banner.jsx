@@ -17,7 +17,6 @@ const Banner = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
-  // const [tripType, setTripType] = useState("one-way");
   const [searchResults, setSearchResults] = useState([]);
   const [allBuses, setAllBuses] = useState([]);
   const [fromLocation, setFromLocation] = useState("");
@@ -164,20 +163,6 @@ const Banner = () => {
                     }}
                   />
                 </div>
-
-                {/* {tripType === "round-way" && (
-                  <div>
-                    <label className="block text-gray-700 font-medium">
-                      Return Date
-                    </label>
-                    <input
-                      type="date"
-                      className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
-                      value={returnDate}
-                      onChange={(e) => setReturnDate(e.target.value)}
-                    />
-                  </div>
-                )} */}
 
                 <div>
                   <label className="block text-gray-700 font-medium">
