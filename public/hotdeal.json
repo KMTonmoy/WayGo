@@ -61,12 +61,6 @@
     "description": "Special Limited Time Offer - Book your bus tickets to Sylhet starting from just BDT 700!",
     "promoCode": "STC10SHOP",
     "validTill": "2024-12-25"
-  },
-  {
-    "img": "https://i.ibb.co.com/Ld2fMdd/95eda4a3-30ba-4218-b078-9c0998178825.jpg",
-    "title": "On Travel Packages",
-    "description": "Up to 12% off on travel packages with Eastern Bank Visa cards.",
-    "promoCode": "EB12TRAVEL",
-    "validTill": "2024-09-30"
   }
+
 ]

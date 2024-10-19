@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import React, { useContext, useState } from 'react';
-import logo from '../../../public/logo.png';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import { usePathname } from 'next/navigation';
-import { AuthContext } from '../../Provider/AuthProvider';
+import Image from "next/image";
+import React, { useContext, useState } from "react";
+import logo from "../../../public/logo.png";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,12 +19,11 @@ const Navbar = () => {
   };
 
   const links = [
-    { title: 'Home', path: '/' },
-    { title: 'About Us', path: '/about' },
-    { title: 'Services', path: '/services' },
-    { title: 'Buy Tickets', path: '/buy' },
-    { title: 'Blog', path: '/blog' },
-    { title: 'Contact Us', path: '/contact' },
+    { title: "Home", path: "/" },
+    { title: "About Us", path: "/about" },
+    { title: "Services", path: "/services" },
+    { title: "Blog", path: "/blog" },
+    { title: "Contact Us", path: "/contact" },
   ];
 
   return (
@@ -36,13 +35,13 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:flex gap-6">
-            {links.map(link => (
+            {links.map((link) => (
               <Link
                 key={link.path}
                 className={`font-semibold transition-colors duration-300 ${
                   link.path === pathName
-                    ? 'text-clr-focussed underline'
-                    : 'hover:text-clr-focussed'
+                    ? "text-[#22c55e] underline"
+                    : "hover:text-[#1b8b44]"
                 }`}
                 href={link.path}
               >
@@ -53,9 +52,9 @@ const Navbar = () => {
               <Link
                 href="/dashboard"
                 className={`font-semibold transition-colors duration-300 ${
-                  pathName === '/dashboard'
-                    ? 'text-clr-focussed underline'
-                    : 'hover:text-clr-focussed'
+                  pathName === "/dashboard"
+                    ? "text-[#22c55e] underline"
+                    : "hover:text-[#1b8b44]"
                 }`}
               >
                 Dashboard
@@ -66,18 +65,24 @@ const Navbar = () => {
           <div className="flex items-center">
             {!user ? (
               <div className="flex gap-4">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Link
                     href="/login"
-                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
+                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#22C55E] rounded-full hover:bg-[#0ca544]"
                   >
                     Login
                   </Link>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Link
                     href="/signup"
-                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
+                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#22C55E] rounded-full hover:bg-[#0ca544]"
                   >
                     Signup
                   </Link>
@@ -87,12 +92,12 @@ const Navbar = () => {
               <div className="flex items-center gap-2">
                 <img
                   src={user.photoURL}
-                  className="rounded-full h-[50px] w-[50px] border-2 border-[#f0652b]"
+                  className="rounded-full h-[50px] w-[50px] border-2 border-[#22C55E]"
                   alt="User Profile"
                 />
                 <button
                   onClick={() => logOut()}
-                  className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424] hidden"
+                  className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#22C55E] rounded-full hover:bg-[#0ca544] hidden"
                 >
                   Logout
                 </button>
@@ -100,7 +105,10 @@ const Navbar = () => {
             )}
 
             <div className="lg:hidden flex items-center ml-5">
-              <button onClick={handleMenuToggle} className="text-2xl text-gray-600">
+              <button
+                onClick={handleMenuToggle}
+                className="text-2xl text-gray-600"
+              >
                 {menuOpen ? <FaTimes /> : <FaBars />}
               </button>
             </div>
@@ -115,13 +123,13 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="lg:hidden bg-white shadow-lg w-full p-5 z-20"
           >
-            {links.map(link => (
+            {links.map((link) => (
               <Link
                 key={link.path}
                 className={`block my-2 font-semibold transition-colors duration-300 ${
                   link.path === pathName
-                    ? 'text-clr-focussed underline'
-                    : 'hover:text-clr-focussed'
+                    ? "text-clr-focussed underline"
+                    : "hover:text-clr-focussed"
                 }`}
                 href={link.path}
                 onClick={() => setMenuOpen(false)}
@@ -133,9 +141,9 @@ const Navbar = () => {
               <Link
                 href="/dashboard"
                 className={`block my-2 font-semibold transition-colors duration-300 ${
-                  pathName === '/dashboard'
-                    ? 'text-[#f0652b] underline'
-                    : 'hover:text-[#f0652b]'
+                  pathName === "/dashboard"
+                    ? "text-[#f0652b] underline"
+                    : "hover:text-[#f0652b]"
                 }`}
               >
                 Dashboard
@@ -151,18 +159,24 @@ const Navbar = () => {
             )}
             {!user && (
               <div className="mt-5 py-4 flex gap-4">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Link
                     href="/login"
-                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#d05424]"
+                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#0ca544]"
                   >
                     Login
                   </Link>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Link
                     href="/signup"
-                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#d05424]"
+                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#0ca544]"
                   >
                     Signup
                   </Link>

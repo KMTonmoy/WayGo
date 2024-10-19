@@ -1,48 +1,78 @@
-'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
 
 const AboutPage = () => {
+  const missionText =
+    "At WayGo, we strive to revolutionize the way you book transportation tickets. Our mission is to provide an intuitive platform that ensures secure, fast, and convenient ticketing for all your travel needs.";
+
+  const features = [
+    {
+      title: "Transport Selection",
+      description: "Choose from buses, trains, flights, and more!",
+      image:
+        "https://t4.ftcdn.net/jpg/02/69/47/51/360_F_269475198_k41qahrZ1j4RK1sarncMiFHpcmE2qllQ.jpg",
+    },
+    {
+      title: "Search & Filter Tickets",
+      description: "Find tickets based on location, date, or category.",
+      image:
+        "https://www.iconpacks.net/icons/2/free-search-icon-2911-thumb.png",
+    },
+    {
+      title: "Ticket Booking",
+      description: "Select your seats and book tickets effortlessly.",
+      image:
+        "data:image/jpeg;base64,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",
+    },
+    {
+      title: "Payment Integration",
+      description:
+        "Secure payments via credit cards, mobile banking, and more.",
+      image:
+        "https://static.vecteezy.com/system/resources/previews/029/899/733/non_2x/secure-payment-credit-card-icon-with-shield-secure-transaction-stock-illustration-vector.jpg",
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex justify-center items-center flex-col ">
-      {/* About Section */}
-      <div className="container mx-auto text-center mb-16">
-        <h1 className="text-4xl font-bold text-[#25527E] mb-6">About Us</h1>
-        <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-          Welcome to WayGO, a state-of-the-art ticket management platform designed to streamline your ticketing processes. Our platform offers a seamless experience for purchasing and managing tickets for buses, trains, and flights.
-        </p>
-      </div>
+    <div className="py-10">
+      <motion.h1
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-3xl font-bold text-center mb-8"
+      >
+        About WayGo
+      </motion.h1>
 
-      {/* About This Website Section */}
-      <div className="container mx-auto text-center bg-white py-12 px-6 shadow-lg rounded-lg mb-16">
-        <motion.h2
-          className="text-3xl font-semibold text-[#25527E] mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          About WayGO
-        </motion.h2>
-        <motion.p
-          className="text-lg text-gray-600 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          WayGO is your go-to platform for purchasing and managing tickets. Whether you're planning a bus journey, a train ride, or booking a flight, WayGO ensures a hassle-free ticketing experience. Powered by cutting-edge technologies like <strong>Next.js</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>, WayGO provides an intuitive interface for users and administrators.
-        </motion.p>
-        <motion.p
-          className="text-lg text-gray-600 max-w-3xl mx-auto mt-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          Simplify your ticketing process with WayGO's efficient workflow. Whether it's managing customer support tickets, IT service requests, or general inquiries, WayGO is designed to streamline your tasks and enhance your ticket management experience.
-        </motion.p>
-      </div>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="text-lg text-center max-w-2xl mx-auto mb-12"
+      >
+        {missionText}
+      </motion.p>
 
-      {/* Developer Team Section (if necessary) */}
-      {/* Replace this section if you have information about developers */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {features.map((feature, index) => (
+          <motion.div
+            key={index}
+            className="flex flex-col items-center p-4 bg-white rounded-lg shadow-lg"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.3 }}
+          >
+            <img
+              src={feature.image}
+              alt={feature.title}
+              className="w-24 h-24 object-cover mb-4"
+            />
+            <h2 className="text-xl font-semibold mb-2">{feature.title}</h2>
+            <p className="text-gray-600 text-center">{feature.description}</p>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };

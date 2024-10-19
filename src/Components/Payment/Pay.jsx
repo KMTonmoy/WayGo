@@ -13,15 +13,10 @@ console.log(
 );
 
 const Pay = ({ Bus, selectedSeats, totalPrice }) => {
-  const [coupons, setCoupons] = useState([]);
-  const [discount, setDiscount] = useState(0);
-  const [couponCode, setCouponCode] = useState('');
-  const [memberInfo, setMemberInfo] = useState({});
-
   const [paymentDate] = useState(new Date().toISOString().substring(0, 10));
-  const [paymentTime, setPaymentTime] = useState(''); // State for payment time
-  const [departureDate, setDepartureDate] = useState(''); // State for selected departure date
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
+  const [paymentTime, setPaymentTime] = useState("");
+  const [departureDate, setDepartureDate] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -31,7 +26,7 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
       minute: '2-digit',
       hour12: true,
     });
-    setPaymentTime(formattedTime); // Set the payment time
+    setPaymentTime(formattedTime);
   }, []);
 
   useEffect(() => {
@@ -42,7 +37,7 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
         );
         if (!response.ok) throw new Error('Failed to fetch coupons');
         const couponsData = await response.json();
-        setCoupons(couponsData);
+        // setCoupons(couponsData);
       } catch (error) {
         console.error(error.message);
       }
@@ -56,7 +51,6 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
           );
           if (!response.ok) throw new Error('Failed to fetch user info');
           const userData = await response.json();
-          setMemberInfo(userData);
         }
       } catch (error) {
         console.error(error.message);

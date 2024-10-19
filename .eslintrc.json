@@ -4,8 +4,8 @@
     "react/no-unescaped-entities": "off",
     "@next/next/no-img-element": "off",
     "react-hooks/exhaustive-deps": "warn",
-    "no-unused-vars": "warn", // Warn for unused variables
+    "no-unused-vars": "off", // Turn off base rule (as it's overridden by TypeScript rule)
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }], // Warn for unused vars, allow ignoring unused function args starting with "_"
     "@typescript-eslint/no-explicit-any": "warn" // Warn for any types
   }
 }
-

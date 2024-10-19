@@ -1,68 +1,68 @@
-'use client';
-import React, { useState } from 'react';
-import Swal from 'sweetalert2';
-import Select from 'react-select'; // Import react-select
-import { imageUpload } from '../../../api/utils/index';
+"use client";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
+import Select from "react-select"; // Import react-select
+import { imageUpload } from "../../../api/utils/index";
 
 const locations = [
-  'Pabna',
-  'Dhaka',
-  'Borisal',
-  'Bogura',
-  'Coxbazar',
-  'Rangamati',
-  'Khagrasori',
+  "Pabna",
+  "Dhaka",
+  "Borisal",
+  "Bogura",
+  "Coxbazar",
+  "Rangamati",
+  "Khagrasori",
 ];
 
 // Sample bus names for the searchable dropdown
 const busNames = [
-  { value: 'Shamoli', label: 'Shamoli' },
-  { value: 'Hanif', label: 'Hanif' },
-  { value: 'SB', label: 'SB' },
-  { value: 'SabaLine', label: 'SabaLine' },
-  { value: 'Super Sony', label: 'Super Sony' },
-  { value: 'JR Poribohon', label: 'JR Poribohon' },
-  { value: 'Fatema', label: 'Fatema' },
-  { value: 'JS Poribohon', label: 'JS Poribohon' },
-  { value: 'Sorkar Travels', label: 'Sorkar Travels' },
-  { value: 'Ishwardi Travels', label: 'Ishwardi Travels' },
-  { value: 'Pabna Express', label: 'Pabna Express' },
-  { value: 'See Line', label: 'See Line' },
-  { value: 'Ena Poribohon', label: 'Ena Poribohon' },
-  { value: 'Bangla Star', label: 'Bangla Star' },
-  { value: 'RP Nige', label: 'RP Nige' },
-  { value: 'Five Star', label: 'Five Star' },
-  { value: 'Egal Poribohon', label: 'Egal Poribohon' },
-  { value: 'Bosundhara', label: 'Bosundhara' },
-  { value: 'Challenger', label: 'Challenger' },
-  { value: 'Green Line', label: 'Green Line' },
-  { value: 'Desh Travels', label: 'Desh Travels' },
-  { value: 'National Travels', label: 'National Travels' },
-  { value: 'Soudia', label: 'Soudia' },
-  { value: 'Pakhi', label: 'Pakhi' },
-  { value: 'Akota', label: 'Akota' },
-  { value: 'Golden Line', label: 'Golden Line' },
-  { value: 'Sokalsondha', label: 'Sokalsondha' },
-  { value: 'Raja Badsha', label: 'Raja Badsha' },
-  { value: 'Mitali', label: 'Mitali' },
-  { value: 'Modina', label: 'Modina' },
+  { value: "Shamoli", label: "Shamoli" },
+  { value: "Hanif", label: "Hanif" },
+  { value: "SB", label: "SB" },
+  { value: "SabaLine", label: "SabaLine" },
+  { value: "Super Sony", label: "Super Sony" },
+  { value: "JR Poribohon", label: "JR Poribohon" },
+  { value: "Fatema", label: "Fatema" },
+  { value: "JS Poribohon", label: "JS Poribohon" },
+  { value: "Sorkar Travels", label: "Sorkar Travels" },
+  { value: "Ishwardi Travels", label: "Ishwardi Travels" },
+  { value: "Pabna Express", label: "Pabna Express" },
+  { value: "See Line", label: "See Line" },
+  { value: "Ena Poribohon", label: "Ena Poribohon" },
+  { value: "Bangla Star", label: "Bangla Star" },
+  { value: "RP Nige", label: "RP Nige" },
+  { value: "Five Star", label: "Five Star" },
+  { value: "Egal Poribohon", label: "Egal Poribohon" },
+  { value: "Bosundhara", label: "Bosundhara" },
+  { value: "Challenger", label: "Challenger" },
+  { value: "Green Line", label: "Green Line" },
+  { value: "Desh Travels", label: "Desh Travels" },
+  { value: "National Travels", label: "National Travels" },
+  { value: "Soudia", label: "Soudia" },
+  { value: "Pakhi", label: "Pakhi" },
+  { value: "Akota", label: "Akota" },
+  { value: "Golden Line", label: "Golden Line" },
+  { value: "Sokalsondha", label: "Sokalsondha" },
+  { value: "Raja Badsha", label: "Raja Badsha" },
+  { value: "Mitali", label: "Mitali" },
+  { value: "Modina", label: "Modina" },
 ];
 
 const AddBus = () => {
   const [busName, setBusName] = useState(null);
-  const [seatPrice, setSeatPrice] = useState('');
-  const [totalSeats, setTotalSeats] = useState('40');
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
-  const [departureTime, setDepartureTime] = useState('');
-  const [arrivalTime, setArrivalTime] = useState('');
-  const [ac, setAc] = useState('Yes');
-  const [wifi, setWifi] = useState('Yes');
+  const [seatPrice, setSeatPrice] = useState("");
+  const [totalSeats, setTotalSeats] = useState("40");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [departureTime, setDepartureTime] = useState("");
+  const [arrivalTime, setArrivalTime] = useState("");
+  const [ac, setAc] = useState("Yes");
+  const [wifi, setWifi] = useState("Yes");
   const [busImage, setBusImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [file, setFile] = useState(null);
 
-  const handleImageChange = e => {
+  const handleImageChange = (e) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       setImagePreview(URL.createObjectURL(selectedFile));
@@ -70,24 +70,24 @@ const AddBus = () => {
     }
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
       Swal.fire({
-        title: 'No Image Selected',
-        text: 'Please select an image before submitting.',
-        icon: 'warning',
-        confirmButtonText: 'OK',
+        title: "No Image Selected",
+        text: "Please select an image before submitting.",
+        icon: "warning",
+        confirmButtonText: "OK",
       });
       return;
     }
 
     if (!busName) {
       Swal.fire({
-        title: 'No Bus Selected',
-        text: 'Please select a bus name before submitting.',
-        icon: 'warning',
-        confirmButtonText: 'OK',
+        title: "No Bus Selected",
+        text: "Please select a bus name before submitting.",
+        icon: "warning",
+        confirmButtonText: "OK",
       });
       return;
     }
@@ -95,7 +95,8 @@ const AddBus = () => {
     try {
       const imageUrl = await imageUpload(file);
       const formData = {
-        busName: busName.value, // Get the selected bus name
+        busName: busName.value,
+        status: "Available",
         seatPrice,
         totalSeats,
         from,
@@ -107,48 +108,48 @@ const AddBus = () => {
         busImage: imageUrl,
       };
 
-      const response = await fetch('https://way-go-backend.vercel.app/addbus', {
-        method: 'POST',
+      const response = await fetch("https://way-go-backend.vercel.app/addbus", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         Swal.fire({
-          title: 'Bus Added',
-          text: 'Your bus details have been successfully added.',
-          icon: 'success',
-          confirmButtonText: 'OK',
+          title: "Bus Added",
+          text: "Your bus details have been successfully added.",
+          icon: "success",
+          confirmButtonText: "OK",
         });
-        // Reset form fields
+
         setBusName(null);
-        setSeatPrice('');
-        setTotalSeats('40');
-        setFrom('');
-        setTo('');
-        setDepartureTime('');
-        setArrivalTime('');
-        setAc('Yes');
-        setWifi('Yes');
+        setSeatPrice("");
+        setTotalSeats("40");
+        setFrom("");
+        setTo("");
+        setDepartureTime("");
+        setArrivalTime("");
+        setAc("Yes");
+        setWifi("Yes");
         setBusImage(null);
         setImagePreview(null);
         setFile(null);
       } else {
         Swal.fire({
-          title: 'Submission Failed',
-          text: 'Failed to submit the bus details. Please try again.',
-          icon: 'error',
-          confirmButtonText: 'OK',
+          title: "Submission Failed",
+          text: "Failed to submit the bus details. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
         });
       }
     } catch (error) {
       Swal.fire({
-        title: 'Upload Failed',
-        text: 'Failed to upload the image. Please try again.',
-        icon: 'error',
-        confirmButtonText: 'OK',
+        title: "Upload Failed",
+        text: "Failed to upload the image. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
       });
     }
   };
@@ -177,7 +178,7 @@ const AddBus = () => {
             <input
               type="number"
               value={seatPrice}
-              onChange={e => setSeatPrice(e.target.value)}
+              onChange={(e) => setSeatPrice(e.target.value)}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Seat Price"
               required
@@ -190,7 +191,7 @@ const AddBus = () => {
             </label>
             <select
               value={totalSeats}
-              onChange={e => setTotalSeats(e.target.value)}
+              onChange={(e) => setTotalSeats(e.target.value)}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
             >
               <option value="36">36</option>
@@ -202,15 +203,15 @@ const AddBus = () => {
             <label className="block text-gray-700 font-medium">From</label>
             <select
               value={from}
-              onChange={e => {
+              onChange={(e) => {
                 setFrom(e.target.value);
-                setTo(''); // Reset 'To' when 'From' changes
+                setTo(""); // Reset 'To' when 'From' changes
               }}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
               required
             >
               <option value="">Select Departure Location</option>
-              {locations.map(location => (
+              {locations.map((location) => (
                 <option key={location} value={location}>
                   {location}
                 </option>
@@ -222,14 +223,14 @@ const AddBus = () => {
             <label className="block text-gray-700 font-medium">To</label>
             <select
               value={to}
-              onChange={e => setTo(e.target.value)}
+              onChange={(e) => setTo(e.target.value)}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
               required
             >
               <option value="">Select Destination</option>
               {locations
-                .filter(location => location !== from) // Exclude selected 'from' location
-                .map(location => (
+                .filter((location) => location !== from)
+                .map((location) => (
                   <option key={location} value={location}>
                     {location}
                   </option>
@@ -244,7 +245,7 @@ const AddBus = () => {
             <input
               type="time"
               value={departureTime}
-              onChange={e => setDepartureTime(e.target.value)}
+              onChange={(e) => setDepartureTime(e.target.value)}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -257,7 +258,7 @@ const AddBus = () => {
             <input
               type="time"
               value={arrivalTime}
-              onChange={e => setArrivalTime(e.target.value)}
+              onChange={(e) => setArrivalTime(e.target.value)}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -267,10 +268,9 @@ const AddBus = () => {
             <label className="block text-gray-700 font-medium">AC</label>
             <select
               value={ac}
-              onChange={e => setAc(e.target.value)}
+              onChange={(e) => setAc(e.target.value)}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
             >
-              <option>select...</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
@@ -280,10 +280,9 @@ const AddBus = () => {
             <label className="block text-gray-700 font-medium">WiFi</label>
             <select
               value={wifi}
-              onChange={e => setWifi(e.target.value)}
+              onChange={(e) => setWifi(e.target.value)}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"
             >
-              <option>select...</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
@@ -309,7 +308,7 @@ const AddBus = () => {
 
           <button
             type="submit"
-            className="w-full py-2 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 transition duration-300"
+            className="w-full py-2 bg-[#22C55E] text-white font-bold rounded hover:bg-[#0d8d3c] transition duration-300"
           >
             Add Bus
           </button>

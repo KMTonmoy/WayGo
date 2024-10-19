@@ -3,9 +3,10 @@ import WhyChooseUs from '../Components/WhyChooseUs';
 import Testimonial from '../Components/Testimonial';
 import Consult from '../Components/Consult';
 import OurServices from '../Components/OurServices/OurServices';
-import Banner from '../Components/Banner/banner';
+import Banner from '../Components/Banner/Banner';
 import AboutShuttle from '../Components/AboutShuttle/About';
 import HotDeal from './HotDeal/page';
+
 
 const Page = () => {
   return (
