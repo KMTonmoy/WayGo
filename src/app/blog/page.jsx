@@ -39,16 +39,16 @@ const BlogPage = () => {
   const totalPages = Math.ceil(blogs.length / blogsPerPage);
 
   return (
-    <div className="min-h-screen   py-10 px-5">
+    <div className="min-h-screen py-10 px-5 bg-gray-100">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-semibold text-center text-[#25527E] mb-8">Recent Posts</h2>
+        <h2 className="text-3xl font-semibold text-center text-green-700 mb-8">Recent Posts</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentBlogs.map((blog) => (
-            <div key={blog._id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div key={blog._id} className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <img src={blog.image} alt={blog.title} className="w-full h-48 object-cover" />
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-[#25527E] mb-2">
+                <h3 className="text-xl font-semibold text-green-600 mb-2">
                   {blog.title.length > 30 ? `${blog.title.substring(0, 25)}...` : blog.title}
                 </h3>
                 <p className="text-gray-700 mb-4">
@@ -63,7 +63,7 @@ const BlogPage = () => {
                 </div>
                 <div className="mt-5">
                   <Link href={`/blog/${blog._id}`}>
-                    <button className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-md hover:bg-[#d05424]">
+                    <button className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-green-600 rounded-md hover:bg-green-700">
                       Read More
                     </button>
                   </Link>
@@ -77,7 +77,7 @@ const BlogPage = () => {
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((prev) => prev - 1)}
-            className={`px-4 py-2 ${currentPage === 1 ? 'bg-gray-300' : 'bg-[#f0652b] hover:bg-[#d05424]'} text-white rounded`}
+            className={`px-4 py-2 ${currentPage === 1 ? 'bg-gray-300' : 'bg-green-600 hover:bg-green-700'} text-white rounded`}
           >
             Previous
           </button>
@@ -85,7 +85,7 @@ const BlogPage = () => {
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((prev) => prev + 1)}
-            className={`px-4 py-2 ${currentPage === totalPages ? 'bg-gray-300' : 'bg-[#f0652b] hover:bg-[#d05424]'} text-white rounded`}
+            className={`px-4 py-2 ${currentPage === totalPages ? 'bg-gray-300' : 'bg-green-600 hover:bg-green-700'} text-white rounded`}
           >
             Next
           </button>

@@ -180,7 +180,7 @@ const Banner = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-orange-500 text-white font-bold rounded-lg"
+                  className="w-full py-2 px-4 bg-[#22C55E] text-white font-bold rounded-lg hover:bg-[#0e8339] duration-300"
                 >
                   Search
                 </button>

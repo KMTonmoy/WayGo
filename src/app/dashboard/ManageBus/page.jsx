@@ -26,10 +26,6 @@ const ManageBus = () => {
     fetchBuses();
   }, []);
 
-  const handleEdit = (busId) => {
-    console.log("Edit bus with ID:", busId);
-  };
-
   const handleDelete = async (busId) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -68,6 +64,49 @@ const ManageBus = () => {
       } catch (error) {
         console.error("Error deleting bus:", error);
       }
+    }
+  };
+
+  const handleStatusChange = async (busId, newStatus) => {
+
+
+    console.log(busId, newStatus);
+
+
+    try {
+      const response = await fetch(
+        `https://way-go-backend.vercel.app/buses/${busId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
+      if (response.ok) {
+        // Update local state
+        setBuses((prevBuses) =>
+          prevBuses.map((bus) =>
+            bus._id === busId ? { ...bus, status: newStatus } : bus
+          )
+        );
+        Swal.fire({
+          title: "Success!",
+          text: `Bus status updated to ${newStatus}.`,
+          icon: "success",
+          confirmButtonColor: "#ff5722",
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to update bus status.",
+          icon: "error",
+          confirmButtonColor: "#ff5722",
+        });
+      }
+    } catch (error) {
+      console.error("Error updating bus status:", error);
     }
   };
 
@@ -165,6 +204,22 @@ const ManageBus = () => {
                     {bus.wifi ? "Yes" : "No"}
                   </span>
                 </p>
+                <div className="mt-4">
+                  <label htmlFor={`status-${bus._id}`} className="block mb-2">
+                    Change Status:
+                  </label>
+                  <select
+                    id={`status-${bus._id}`}
+                    value={bus.status || "Available"}
+                    onChange={(e) =>
+                      handleStatusChange(bus._id, e.target.value)
+                    }
+                    className="border border-gray-300 rounded p-2"
+                  >
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                  </select>
+                </div>
               </div>
               <div className="absolute top-4 right-4 flex space-x-2">
                 <button

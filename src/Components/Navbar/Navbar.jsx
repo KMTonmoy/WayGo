@@ -40,8 +40,8 @@ const Navbar = () => {
                 key={link.path}
                 className={`font-semibold transition-colors duration-300 ${
                   link.path === pathName
-                    ? "text-clr-focussed underline"
-                    : "hover:text-clr-focussed"
+                    ? "text-[#22c55e] underline"
+                    : "hover:text-[#1b8b44]"
                 }`}
                 href={link.path}
               >
@@ -53,8 +53,8 @@ const Navbar = () => {
                 href="/dashboard"
                 className={`font-semibold transition-colors duration-300 ${
                   pathName === "/dashboard"
-                    ? "text-clr-focussed underline"
-                    : "hover:text-clr-focussed"
+                    ? "text-[#22c55e] underline"
+                    : "hover:text-[#1b8b44]"
                 }`}
               >
                 Dashboard
@@ -71,7 +71,7 @@ const Navbar = () => {
                 >
                   <Link
                     href="/login"
-                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
+                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#22C55E] rounded-full hover:bg-[#0ca544]"
                   >
                     Login
                   </Link>
@@ -82,7 +82,7 @@ const Navbar = () => {
                 >
                   <Link
                     href="/signup"
-                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424]"
+                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#22C55E] rounded-full hover:bg-[#0ca544]"
                   >
                     Signup
                   </Link>
@@ -92,12 +92,12 @@ const Navbar = () => {
               <div className="flex items-center gap-2">
                 <img
                   src={user.photoURL}
-                  className="rounded-full h-[50px] w-[50px] border-2 border-[#f0652b]"
+                  className="rounded-full h-[50px] w-[50px] border-2 border-[#22C55E]"
                   alt="User Profile"
                 />
                 <button
                   onClick={() => logOut()}
-                  className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#f0652b] rounded-full hover:bg-[#d05424] hidden"
+                  className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#22C55E] rounded-full hover:bg-[#0ca544] hidden"
                 >
                   Logout
                 </button>
@@ -165,7 +165,7 @@ const Navbar = () => {
                 >
                   <Link
                     href="/login"
-                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#d05424]"
+                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#0ca544]"
                   >
                     Login
                   </Link>
@@ -176,7 +176,7 @@ const Navbar = () => {
                 >
                   <Link
                     href="/signup"
-                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#d05424]"
+                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#0ca544]"
                   >
                     Signup
                   </Link>

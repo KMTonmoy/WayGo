@@ -67,7 +67,7 @@ const Page = ({ params }) => {
     if (selectedSeats.includes(seat)) {
       setSelectedSeats(selectedSeats.filter((s) => s !== seat));
     } else {
-      if (selectedSeats.length < 4) {
+      if (selectedSeats.length < 6) {
         setSelectedSeats([...selectedSeats, seat]);
       }
     }
@@ -122,31 +122,31 @@ const Page = ({ params }) => {
         />
         <div className="mt-5 text-gray-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-orange-100 p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">From:</p>
               <p className="font-normal">{Bus.from}</p>
             </div>
-            <div className="bg-orange-100 p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">To:</p>
               <p className="font-normal">{Bus.to}</p>
             </div>
-            <div className="bg-orange-100 p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Departure Time:</p>
               <p className="font-normal">{formatTime(Bus.departureTime)}</p>
             </div>
-            <div className="bg-orange-100 p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Arrival Time:</p>
               <p className="font-normal">{formatTime(Bus.arrivalTime)}</p>
             </div>
-            <div className="bg-orange-100 p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Total Seats:</p>
               <p className="font-normal">{Bus.totalSeats}</p>
             </div>
-            <div className="bg-orange-100 p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Seat Price:</p>
               <p className="font-normal">{Bus.seatPrice} BDT</p>
             </div>
-            <div className="bg-orange-100 p-4 rounded-md shadow-md col-span-1 md:col-span-2">
+            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md col-span-1 md:col-span-2">
               <p className="text-lg font-medium">Amenities:</p>
               <p
                 className={`font-normal ${
@@ -174,13 +174,7 @@ const Page = ({ params }) => {
                 <h1 className="font-raleway text-2xl font-semibold">
                   Select Your Seat
                 </h1>
-                {Number(Bus.totalSeats) === 36 && (
-                  <div className="bg-red-100 p-2 mb-4 text-center">
-                    <p className="text-lg font-medium text-red-600">
-                      Special Offer: This bus has only 36 seats!
-                    </p>
-                  </div>
-                )}
+
                 <div className="flex justify-between mb-[50px] pb-2 border-dashed border-y-2 ">
                   <p className="flex gap-2 text-[#030712] font-inter text-lg mt-5">
                     <img
@@ -200,7 +194,7 @@ const Page = ({ params }) => {
                 <div>
                   <div className="flex justify-center md:justify-end mb-3">
                     <button
-                      className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] flex justify-center items-center text-center absolute bg-[#22C55E] cursor-not-allowed shadow-md rounded-md transition duration-200`}
+                      className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] flex justify-center items-center text-center absolute bg-[#11df5c5b] cursor-not-allowed shadow-md rounded-md transition duration-200`}
                     >
                       <img
                         src="https://i.ibb.co.com/NpsXwN5/wheel.png"
@@ -231,7 +225,7 @@ const Page = ({ params }) => {
                                   onClick={() => handleSeatSelection(seat)}
                                   className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] ${
                                     isSelected
-                                      ? "bg-orange-400 shadow-md"
+                                      ? "bg-[#1DD100]  shadow-md"
                                       : "bg-gray-300 shadow"
                                   } rounded-md transition duration-200`}
                                 >
@@ -263,7 +257,7 @@ const Page = ({ params }) => {
                                   onClick={() => handleSeatSelection(seat)}
                                   className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] ${
                                     isSelected
-                                      ? "bg-orange-400 shadow-md"
+                                      ? "bg-[#1DD100]  shadow-md"
                                       : "bg-gray-300 shadow"
                                   } rounded-md transition duration-200`}
                                 >
