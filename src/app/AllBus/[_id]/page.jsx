@@ -17,7 +17,9 @@ const Page = ({ params }) => {
   useEffect(() => {
     const fetchPayments = async () => {
       try {
-        const response = await fetch("https://way-go-backend.vercel.app/payments");
+        const response = await fetch(
+          "https://way-go-backend.vercel.app/payments"
+        );
         const data = await response.json();
         if (Bus) {
           const userPayments = data.filter(
@@ -66,7 +68,7 @@ const Page = ({ params }) => {
   };
 
   const handleSeatSelection = (seat) => {
-    if (bookedSeats.includes(seat)) return; // Prevent selecting already booked seats
+    if (bookedSeats.includes(seat)) return;
 
     if (selectedSeats.includes(seat)) {
       setSelectedSeats(selectedSeats.filter((s) => s !== seat));
@@ -203,7 +205,7 @@ const Page = ({ params }) => {
                                 ? "bg-green-500"
                                 : "bg-gray-300"
                             } shadow-md rounded-md transition duration-200`}
-                            disabled={isBooked} // Disable button if seat is booked
+                            disabled={isBooked}
                           >
                             {seat}
                           </button>

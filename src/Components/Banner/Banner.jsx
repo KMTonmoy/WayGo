@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import AllBus from "../../app/AllBus/page";
 
 const locations = [
@@ -18,11 +18,10 @@ const Banner = () => {
   const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const [allBuses, setAllBuses] = useState([]);
   const [fromLocation, setFromLocation] = useState("");
   const [toLocation, setToLocation] = useState("");
   const [departureDate, setDepartureDate] = useState("");
-  const [returnDate, setReturnDate] = useState("");
+
   const [seatType, setSeatType] = useState("Economy");
 
   useEffect(() => {
@@ -60,6 +59,7 @@ const Banner = () => {
       .then((response) => response.json())
       .then((json) => {
         setSearchResults(json);
+
         if (json.length === 0) {
           setSearchResults([]);
         } else {
@@ -67,16 +67,6 @@ const Banner = () => {
         }
       });
   };
-
-  const fetchAllBuses = () => {
-    fetch("https://way-go-backend.vercel.app/searchBus")
-      .then((response) => response.json())
-      .then((json) => setAllBuses(json));
-  };
-
-  useEffect(() => {
-    fetchAllBuses();
-  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -189,14 +179,30 @@ const Banner = () => {
           </div>
         </div>
       </div>
-
+      
       <div>
+        {searchResults.length === 0 &&
+          fromLocation &&
+          toLocation &&
+          departureDate && (
+            <div className="text-center text-2xl text-gray-700 py-20">
+              No bus available from {fromLocation} to {toLocation} on{" "}
+              {departureDate}.
+            </div>
+          )}
+
         <AllBus
           departureDate={departureDate}
-          // searchResults={searchResults.length > 0 ? searchResults : allBuses}
-          searchResults={searchResults.length > 0 && searchResults }
+          searchResults={searchResults.length > 0 && searchResults}
         />
       </div>
+
+      {/* <div>
+        <AllBus
+          departureDate={departureDate}
+          searchResults={searchResults.length > 0 && searchResults}
+        />
+      </div> */}
     </div>
   );
 };
