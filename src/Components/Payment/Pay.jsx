@@ -18,6 +18,7 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -73,30 +74,29 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   };
 
   const applyCoupon = () => {
+    const trimmedCouponCode = couponCode.trim().toLowerCase();
     const validCoupon = coupons.find(
-      (coupon) => coupon.promoCode === couponCode
+      (coupon) => coupon.promoCode.toLowerCase() === trimmedCouponCode
     );
 
     if (validCoupon) {
       setDiscount(validCoupon.discountPercentage);
+      setIsCouponApplied(true);
       playSuccessSound();
-
       toast.success(
         `${validCoupon.discountPercentage}% discount will be applied to your total.`
       );
     } else {
       playErrorSound();
-
       toast.error(
         "Invalid coupon code. Please check the coupon code and try again."
       );
       setDiscount(0);
+      setIsCouponApplied(false);
     }
   };
 
-  // Calculate the discounted price
   const discountedPrice = totalPrice - (totalPrice * discount) / 100;
-  // Calculate the discount amount in BDT
   const discountAmount = (totalPrice * discount) / 100;
 
   return (
@@ -136,12 +136,16 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                 />
                 <button
                   onClick={applyCoupon}
-                  className="bg-blue-500 text-white rounded px-4 py-2"
+                  disabled={isCouponApplied}
+                  className={`${
+                    isCouponApplied
+                      ? "bg-gray-400 coursor-not-allowed"
+                      : "bg-[#22C55E]"
+                  } text-white rounded px-4 py-2`}
                 >
                   Apply
                 </button>
               </div>
-              {/* Show discount percentage and amount */}
               {discount > 0 && (
                 <div className="flex justify-between mb-2 text-green-600">
                   <p className="text-lg font-medium">Discount:</p>

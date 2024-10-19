@@ -193,7 +193,8 @@ const Banner = () => {
       <div>
         <AllBus
           departureDate={departureDate}
-          searchResults={searchResults.length > 0 ? searchResults : allBuses}
+          // searchResults={searchResults.length > 0 ? searchResults : allBuses}
+          searchResults={searchResults.length > 0 && searchResults }
         />
       </div>
     </div>

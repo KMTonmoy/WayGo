@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaThList, FaThLarge } from "react-icons/fa";
 import Link from "next/link";
-import PropTypes from "prop-types";
 
 const AllBus = ({ searchResults, departureDate }) => {
   const [visibleCount, setVisibleCount] = useState(6);
@@ -22,18 +21,20 @@ const AllBus = ({ searchResults, departureDate }) => {
     setLayout((prevLayout) => (prevLayout === "list" ? "grid" : "list"));
   };
 
-  const busData = Array.isArray(searchResults) ? searchResults.filter((bus) => bus.status === "Available") : [];
+  const busData = Array.isArray(searchResults)
+    ? searchResults.filter((bus) => bus.status === "Available")
+    : [];
 
   if (busData.length === 0) {
     return (
-      <div className="text-center p-4 min-h-screen">
-        <h1 className="text-2xl font-bold text-red-500">No Buses Available</h1>
+      <div className="text-center p-4  ">
+        <h1 className="text-2xl font-bold text-red-500"> </h1>
       </div>
     );
   }
 
   return (
-    <div className="p-4 min-h-screen my-10">
+    <div className="p-4   my-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-[#22C55E]">All Buses</h2>
         <button onClick={toggleLayout} aria-label="Toggle layout view">
@@ -64,14 +65,24 @@ const AllBus = ({ searchResults, departureDate }) => {
               exit={{ opacity: 0, y: 50 }}
               layout
             >
-              <div className={` ${layout === "list" ? "w-full md:w-1/3" : "w-full"}`}>
+              <div
+                className={` ${
+                  layout === "list" ? "w-full md:w-1/3" : "w-full"
+                }`}
+              >
                 <img
                   src={bus.busImage}
                   alt={bus.busName}
                   className="w-full h-48 object-cover rounded-lg"
                 />
               </div>
-              <div className={` ${layout === "list" ? "w-full md:w-2/3" : "w-full mt-4 text-left"}`}>
+              <div
+                className={` ${
+                  layout === "list"
+                    ? "w-full md:w-2/3"
+                    : "w-full mt-4 text-left"
+                }`}
+              >
                 {layout === "list" ? (
                   <div>
                     <div className="flex justify-around py-5 items-center gap-4">
