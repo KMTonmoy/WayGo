@@ -1,39 +1,43 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Pay from "../../../Components/Payment/Pay";
 import { useSearchParams } from "next/navigation";
-import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Page = ({ params }) => {
   const [Bus, setBus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [bookedSeats, setBookedSeats] = useState([]);
 
   const searchParams = useSearchParams();
   const date = searchParams.get("date");
 
-  const [payments, setPayments] = useState({});
-
   useEffect(() => {
-    if (Bus) {
-      fetch(`https://way-go-backend.vercel.app/payments`)
-        .then((res) => res.json())
-        .then((data) => {
+    const fetchPayments = async () => {
+      try {
+        const response = await fetch(
+          "https://way-go-backend.vercel.app/payments"
+        );
+        const data = await response.json();
+        if (Bus) {
           const userPayments = data.filter(
             (payment) =>
               payment.BusId === Bus._id && payment?.departureDate === date
           );
-          setPayments(userPayments);
-        })
-        .catch((error) => {
-          console.error("Error fetching payments:", error);
-        });
-    }
-  }, [Bus, date]);
+          const bookedSeatsFromPayments = userPayments.flatMap(
+            (payment) => payment.selectedSeats
+          );
+          setBookedSeats(bookedSeatsFromPayments);
+        }
+      } catch (error) {
+        console.error("Error fetching payments:", error);
+      }
+    };
 
-  console.log(payments);
+    fetchPayments();
+  }, [Bus, date]);
 
   useEffect(() => {
     const fetchBus = async () => {
@@ -64,6 +68,8 @@ const Page = ({ params }) => {
   };
 
   const handleSeatSelection = (seat) => {
+    if (bookedSeats.includes(seat)) return;
+
     if (selectedSeats.includes(seat)) {
       setSelectedSeats(selectedSeats.filter((s) => s !== seat));
     } else {
@@ -122,50 +128,34 @@ const Page = ({ params }) => {
         />
         <div className="mt-5 text-gray-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">From:</p>
               <p className="font-normal">{Bus.from}</p>
             </div>
-            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">To:</p>
               <p className="font-normal">{Bus.to}</p>
             </div>
-            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Departure Time:</p>
               <p className="font-normal">{formatTime(Bus.departureTime)}</p>
             </div>
-            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Arrival Time:</p>
               <p className="font-normal">{formatTime(Bus.arrivalTime)}</p>
             </div>
-            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Total Seats:</p>
               <p className="font-normal">{Bus.totalSeats}</p>
             </div>
-            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md">
+            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Seat Price:</p>
               <p className="font-normal">{Bus.seatPrice} BDT</p>
-            </div>
-            <div className="bg-[#11df5c5b]  p-4 rounded-md shadow-md col-span-1 md:col-span-2">
-              <p className="text-lg font-medium">Amenities:</p>
-              <p
-                className={`font-normal ${
-                  Bus.ac === "Yes" ? "text-red-600" : "text-gray-700"
-                }`}
-              >
-                AC: {Bus.ac}
-              </p>
-              <p
-                className={`font-normal ${
-                  Bus.wifi === "Yes" ? "text-red-600" : "text-gray-700"
-                }`}
-              >
-                WiFi: {Bus.wifi}
-              </p>
             </div>
           </div>
         </div>
       </div>
+
       <div className="flex justify-between p-10 w-full">
         <div className="w-[90%]">
           <div className="mt-5">
@@ -192,86 +182,40 @@ const Page = ({ params }) => {
                   </p>
                 </div>
                 <div>
-                  <div className="flex justify-center md:justify-end mb-3">
-                    <button
-                      className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] flex justify-center items-center text-center absolute bg-[#11df5c5b] cursor-not-allowed shadow-md rounded-md transition duration-200`}
+                  {["A", "B", "C", "D", "E", "F", "G", "H", "I"].map((row) => (
+                    <div
+                      key={row}
+                      className="flex gap-5 flex-row md:justify-between items-center mb-3"
                     >
-                      <img
-                        src="https://i.ibb.co.com/NpsXwN5/wheel.png"
-                        alt="Select"
-                      />
-                    </button>
-                    <button
-                      aria-label="Select Seat"
-                      className="btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712]"
-                    ></button>
-                  </div>
-                  {Number(Bus.totalSeats) === 36 && (
-                    <>
-                      {["A", "B", "C", "D", "E", "F", "G", "H", "I"].map(
-                        (row) => (
-                          <div
-                            key={row}
-                            className="flex gap-5 flex-row md:justify-between items-center mb-3"
+                      <p>{row}</p>
+                      {[1, 2, 3, 4].map((seatNumber) => {
+                        const seat = `${row}${seatNumber}`;
+                        const isSelected = selectedSeats.includes(seat);
+                        const isBooked = bookedSeats.includes(seat);
+
+                        return (
+                          <button
+                            key={seat}
+                            aria-label={`Seat ${seat}`}
+                            onClick={() => handleSeatSelection(seat)}
+                            className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] ${
+                              isBooked
+                                ? "bg-[#1DD100] cursor-not-allowed"
+                                : isSelected
+                                ? "bg-green-500"
+                                : "bg-gray-300"
+                            } shadow-md rounded-md transition duration-200`}
+                            disabled={isBooked}
                           >
-                            <p>{row}</p>
-                            {[1, 2, 3, 4].map((seatNumber) => {
-                              const seat = `${row}${seatNumber}`;
-                              const isSelected = selectedSeats.includes(seat);
-                              return (
-                                <button
-                                  key={seat}
-                                  aria-label={`Seat ${seat}`}
-                                  onClick={() => handleSeatSelection(seat)}
-                                  className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] ${
-                                    isSelected
-                                      ? "bg-[#1DD100]  shadow-md"
-                                      : "bg-gray-300 shadow"
-                                  } rounded-md transition duration-200`}
-                                >
-                                  {seat}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        )
-                      )}
-                    </>
-                  )}
-                  {Number(Bus.totalSeats) === 40 && (
-                    <>
-                      {["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"].map(
-                        (row) => (
-                          <div
-                            key={row}
-                            className="flex gap-5 flex-row md:justify-between items-center mb-3"
-                          >
-                            <p>{row}</p>
-                            {[1, 2, 3, 4].map((seatNumber) => {
-                              const seat = `${row}${seatNumber}`;
-                              const isSelected = selectedSeats.includes(seat);
-                              return (
-                                <button
-                                  key={seat}
-                                  aria-label={`Seat ${seat}`}
-                                  onClick={() => handleSeatSelection(seat)}
-                                  className={`btn text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-[#030712] ${
-                                    isSelected
-                                      ? "bg-[#1DD100]  shadow-md"
-                                      : "bg-gray-300 shadow"
-                                  } rounded-md transition duration-200`}
-                                >
-                                  {seat}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        )
-                      )}
-                    </>
-                  )}
+                            {seat}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ))}
                 </div>
               </div>
+
               <div className="w-full md:w-1/2 flex flex-col justify-center">
                 <div className="p-5 h-full bg-white flex flex-col justify-between">
                   <Pay
