@@ -8,6 +8,7 @@ const MyPayment = () => {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [visiblePayments, setVisiblePayments] = useState(15);
 
   useEffect(() => {
     if (email) {
@@ -23,7 +24,7 @@ const MyPayment = () => {
           const userPayments = data.filter(
             (payment) => payment.email === email
           );
-          setPayments(userPayments);
+          setPayments(userPayments.reverse());
           setLoading(false);
         })
         .catch((err) => {
@@ -43,22 +44,22 @@ const MyPayment = () => {
     return <div className="text-red-500">{error}</div>;
   }
 
-  const formatTime = (timeString) => {
-    if (!timeString) return "N/A";
-
-    const timeParts = timeString.split(":");
-    if (timeParts.length !== 2) return timeString;
-
-    const [hours, minutes] = timeParts;
-    const hours12 = hours % 12 || 12;
-    const ampm = hours < 12 ? "AM" : "PM";
-    return `${hours12}:${minutes} ${ampm}`;
+  const calculateTotal = (paymentArray) => {
+    return paymentArray.reduce((total, payment) => total + payment.price, 0);
   };
 
-  const totalPayment = payments.reduce(
-    (total, payment) => total + payment.price,
-    0
-  );
+  const displayedPayments = payments.slice(0, visiblePayments);
+  const displayedTotal = calculateTotal(displayedPayments);
+
+  const overallTotal = calculateTotal(payments);
+
+  const handleShowMore = () => {
+    setVisiblePayments((prev) => prev + 10);
+  };
+
+  const handleShowLess = () => {
+    setVisiblePayments(10);
+  };
 
   return (
     <div className="p-8">
@@ -66,27 +67,25 @@ const MyPayment = () => {
       {payments.length === 0 ? (
         <p className="text-center text-gray-500">No payment records found.</p>
       ) : (
-        <motion.table
-          className="min-w-[800px] bg-white border border-gray-300"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="py-2 px-4 border">Payment Date</th>
-              <th className="py-2 px-4 border">Payment Time</th>
-              <th className="py-2 px-4 border">Transaction ID</th>
-              <th className="py-2 px-4 border">Selected Seats</th>
-              <th className="py-2 px-4 border">Total Payment</th>
-            </tr>
-          </thead>
-          <tbody>
-            {payments
-              .slice()
-              .reverse()
-              .map((payment) => {
-                const [date, time] = payment.SubmitDate.split(" ");
+        <>
+          <motion.table
+            className="min-w-[800px] bg-white border border-gray-300"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="py-2 px-4 border">Payment Date</th>
+                <th className="py-2 px-4 border">Payment Time</th>
+                <th className="py-2 px-4 border">Transaction ID</th>
+                <th className="py-2 px-4 border">Selected Seats</th>
+                <th className="py-2 px-4 border">Total Payment</th>
+              </tr>
+            </thead>
+            <tbody>
+              {displayedPayments.map((payment) => {
+                const [date] = payment.SubmitDate.split(" ");
                 return (
                   <motion.tr
                     key={payment.transactionId}
@@ -97,15 +96,11 @@ const MyPayment = () => {
                     transition={{ duration: 0.2 }}
                   >
                     <td className="py-2 px-4 border">{date}</td>
-
-                    {payment.paymentTime?.length > 0 ? (
-                      <td className="py-2 px-4 border">
-                        {payment.paymentTime}
-                      </td>
-                    ) : (
-                      <td className="py-2 px-4 border">N/A</td>
-                    )}
-
+                    <td className="py-2 px-4 border">
+                      {payment.paymentTime?.length > 0
+                        ? payment.paymentTime
+                        : "N/A"}
+                    </td>
                     <td className="py-2 px-4 border">
                       {payment.transactionId}
                     </td>
@@ -118,16 +113,53 @@ const MyPayment = () => {
                   </motion.tr>
                 );
               })}
-            <tr className="bg-gray-200">
-              <td colSpan="4" className="py-2 px-4 border text-right font-bold">
-                Total:
-              </td>
-              <td className="py-2 px-4 border text-orange-500 font-bold">
-                {totalPayment.toFixed(2)} BDT
-              </td>
-            </tr>
-          </tbody>
-        </motion.table>
+              <tr className="bg-gray-200">
+                <td
+                  colSpan="4"
+                  className="py-2 px-4 border text-right font-bold"
+                >
+                  Total for displayed payments:
+                </td>
+                <td className="py-2 px-4 border text-orange-500 font-bold">
+                  {displayedTotal.toFixed(2)} BDT
+                </td>
+              </tr>
+              <tr className="bg-gray-300">
+                <td
+                  colSpan="4"
+                  className="py-2 px-4 border text-right font-bold"
+                >
+                  Overall Total:
+                </td>
+                <td className="py-2 px-4 border text-orange-500 font-bold">
+                  {overallTotal.toFixed(2)} BDT
+                </td>
+              </tr>
+            </tbody>
+          </motion.table>
+
+          {visiblePayments < payments.length && (
+            <div className="text-center mt-4">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                onClick={handleShowMore}
+              >
+                Show More
+              </button>
+            </div>
+          )}
+
+          {visiblePayments > 15 && (
+            <div className="text-center mt-4">
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                onClick={handleShowLess}
+              >
+                Show Less
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
