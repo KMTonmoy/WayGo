@@ -5,6 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Toaster, toast } from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
 
 const stripePromise = loadStripe(
   "pk_test_51PLRDh1ER2eQQaKOIacKieEoEcmrxq1iXUsfZCu7itWd6KAMzuQyotjLWrjKag3KzgTsvZooEDBnfsfyVGMbznhJ00vAOF7I33"
@@ -13,13 +14,16 @@ const stripePromise = loadStripe(
 const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   const [paymentDate] = useState(new Date().toISOString().substring(0, 10));
   const [paymentTime, setPaymentTime] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
+  // const [departureDate, setDepartureDate] = useState("");
   const [coupons, setCoupons] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
   const { user } = useContext(AuthContext);
+
+  const searchParams = useSearchParams();
+  const departureDate = searchParams.get("date");
 
   useEffect(() => {
     const today = new Date();
@@ -162,22 +166,8 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
               </p>
             </div>
             <p className="text-lg font-bold">Current Date: {paymentDate}</p>
-            <p className="text-lg font-bold">Payment Time: {paymentTime}</p>
-            <div className="mt-5">
-              <label
-                htmlFor="departureDate"
-                className="block text-lg font-medium mb-2"
-              >
-                Departure Date:
-              </label>
-              <input
-                type="date"
-                id="departureDate"
-                value={departureDate}
-                onChange={(e) => setDepartureDate(e.target.value)}
-                className="input-bordered w-full p-2 border border-gray-300 rounded"
-              />
-            </div>
+            <p className="text-lg font-bold">Dipature Date: {departureDate}</p>
+
             <button
               type="button"
               className="bg-green-500 mt-5 p-3 font-bold text-white rounded-md w-full"
@@ -211,6 +201,7 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                       paymentTime={paymentTime}
                       departureDate={departureDate}
                       BusId={Bus._id}
+                      Bus={Bus}
                       selectedSeats={selectedSeats}
                     />
                   </Elements>

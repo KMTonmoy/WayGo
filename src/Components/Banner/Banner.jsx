@@ -1,6 +1,7 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllBus from "../../app/AllBus/page";
+import toast, { Toaster } from 'react-hot-toast';  // Import toast
 
 const locations = [
   "Pabna",
@@ -21,8 +22,8 @@ const Banner = () => {
   const [fromLocation, setFromLocation] = useState("");
   const [toLocation, setToLocation] = useState("");
   const [departureDate, setDepartureDate] = useState("");
-
   const [seatType, setSeatType] = useState("Economy");
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
     fetch("https://way-go-backend.vercel.app/banners")
@@ -53,18 +54,27 @@ const Banner = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setHasSearched(true);
+
+    toast.loading('Searching for buses...');  // Show loading toast
+
     fetch(
       `https://way-go-backend.vercel.app/searchBus?form=${fromLocation}&to=${toLocation}`
     )
       .then((response) => response.json())
       .then((json) => {
         setSearchResults(json);
+        toast.dismiss();  // Remove the loading toast
 
         if (json.length === 0) {
-          setSearchResults([]);
+          toast.error('No bus available');  // Show error toast if no results
         } else {
+          toast.success('Buses found!');  // Show success toast
           window.scrollTo({ top: 50, behavior: "smooth" });
         }
+      })
+      .catch(() => {
+        toast.error('Error occurred while searching');  // Show error toast on fetch failure
       });
   };
 
@@ -85,6 +95,8 @@ const Banner = () => {
 
   return (
     <div className="relative mt-10 z-0">
+      <Toaster /> {/* Add Toaster component for displaying toasts */}
+
       <div>
         <div
           className="h-[600px] lg:h-[600px] bg-cover bg-center transition-all duration-700 ease-in-out object-cover bg-clip-content rounded-lg overflow-hidden"
@@ -147,10 +159,7 @@ const Banner = () => {
                     type="date"
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                     value={departureDate}
-                    onChange={(e) => {
-                      setDepartureDate(e.target.value);
-                      console.log(e.target.value);
-                    }}
+                    onChange={(e) => setDepartureDate(e.target.value)}
                   />
                 </div>
 
@@ -179,30 +188,15 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      
+
       <div>
-        {searchResults.length === 0 &&
-          fromLocation &&
-          toLocation &&
-          departureDate && (
-            <div className="text-center text-2xl text-gray-700 py-20">
-              No bus available from {fromLocation} to {toLocation} on{" "}
-              {departureDate}.
-            </div>
-          )}
+      
 
         <AllBus
           departureDate={departureDate}
           searchResults={searchResults.length > 0 && searchResults}
         />
       </div>
-
-      {/* <div>
-        <AllBus
-          departureDate={departureDate}
-          searchResults={searchResults.length > 0 && searchResults}
-        />
-      </div> */}
     </div>
   );
 };
