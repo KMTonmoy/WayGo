@@ -1,12 +1,12 @@
-'use client'; // Ensures this component is rendered client-side
+"use client";
 
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useRouter } from "next/navigation"; // Correct import for client-side navigation in Next.js 13+
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const { signIn } = useContext(AuthContext);
-  const router = useRouter(); // Correct hook for navigation
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
       await signIn(email, password);
-      router.push("/"); // Use router.push for client-side navigation
+      router.push("/");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -29,11 +29,18 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center text-[#25527E]">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-[#25527E]">
+          Login
+        </h2>
         {error && <div className="text-red-500 text-center mb-4">{error}</div>}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-medium mb-2"
+            >
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -45,7 +52,12 @@ const LoginPage = () => {
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 font-medium mb-2">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-medium mb-2"
+            >
+              Password
+            </label>
             <input
               type="password"
               id="password"
@@ -58,7 +70,11 @@ const LoginPage = () => {
           </div>
           <button
             type="submit"
-            className={`w-full py-2 px-4 font-semibold text-white rounded-md ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-orange-600 hover:bg-orange-800 duration-700"}`}
+            className={`w-full py-2 px-4 font-semibold text-white rounded-md ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#22C55E] text-white font-semibold rounded-lg hover:bg-[#25a755]  duration-700"
+            }`}
             disabled={loading}
           >
             {loading ? "Logging in..." : "Log In"}
