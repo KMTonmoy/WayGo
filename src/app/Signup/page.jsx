@@ -6,7 +6,7 @@ import { imageUpload } from '../../api/utils/index';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-const page = () => {
+const Page = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -158,4 +158,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

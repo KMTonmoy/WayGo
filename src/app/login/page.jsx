@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const { signIn } = useContext(AuthContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -85,4 +85,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

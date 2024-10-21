@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -64,4 +64,4 @@ const page = ({ params }) => {
     );
 };
 
-export default page;
+export default Page;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const page = () => {
+const Page = () => {
   const [agents, setAgents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -166,4 +166,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

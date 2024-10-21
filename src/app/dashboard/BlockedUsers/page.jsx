@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const page = () => {
+const Page = () => {
   const [blockedUsers, setBlockedUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -132,4 +132,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

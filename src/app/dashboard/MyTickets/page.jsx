@@ -8,7 +8,7 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 
 dayjs.extend(isSameOrAfter);
 
-const page = () => {
+const Page = () => {
   const [tickets, setTickets] = useState([]);
   const { user } = useContext(AuthContext);
 
@@ -93,4 +93,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
