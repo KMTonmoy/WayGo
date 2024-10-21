@@ -1,10 +1,10 @@
-"use client";
+"use client"; // If you are using client components
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaThList, FaThLarge } from "react-icons/fa";
 import Link from "next/link";
 
-const Page = ({ searchResults = [], departureDate = null }) => {
+const Page = ({ searchResults = [], departureDate }) => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [layout, setLayout] = useState("list");
 
@@ -28,7 +28,7 @@ const Page = ({ searchResults = [], departureDate = null }) => {
   if (busData.length === 0) {
     return (
       <div className="text-center p-4">
-        <h1 className="text-2xl font-bold text-red-500">No buses available.</h1>
+        {/* <h1 className="text-2xl font-bold text-red-500">No Buses Available</h1> */}
       </div>
     );
   }
