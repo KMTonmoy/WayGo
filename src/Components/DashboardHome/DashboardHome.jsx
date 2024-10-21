@@ -136,6 +136,11 @@ const DashboardHome = () => {
             count={blockedCount}
             icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
           />
+          <DashboardCard
+            title="Total Bank Balence"
+            count={blockedCount}
+            icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
+          />
         </div>
       )}
       {role === "agent" && (
@@ -152,6 +157,11 @@ const DashboardHome = () => {
           />
           <DashboardCard
             title="Total Blocked Users"
+            count={blockedCount}
+            icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
+          />
+          <DashboardCard
+            title="Today Selled Tickets"
             count={blockedCount}
             icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
           />

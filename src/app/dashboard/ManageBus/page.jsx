@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
-const ManageBus = () => {
+const Page = () => {
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -237,4 +237,4 @@ const ManageBus = () => {
   );
 };
 
-export default ManageBus;
+export default Page;

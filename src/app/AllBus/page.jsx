@@ -1,11 +1,10 @@
-"use client";
+"use client"; // If you are using client components
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaThList, FaThLarge } from "react-icons/fa";
 import Link from "next/link";
-import PropTypes from "prop-types";
 
-const AllBus = ({ searchResults, departureDate }) => {
+const Page = ({ searchResults = [], departureDate = "" }) => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [layout, setLayout] = useState("list");
 
@@ -22,18 +21,21 @@ const AllBus = ({ searchResults, departureDate }) => {
     setLayout((prevLayout) => (prevLayout === "list" ? "grid" : "list"));
   };
 
-  const busData = Array.isArray(searchResults) ? searchResults.filter((bus) => bus.status === "Available") : [];
+  const busData = Array.isArray(searchResults)
+    ? searchResults.filter((bus) => bus.status === "Available")
+    : [];
 
   if (busData.length === 0) {
     return (
-      <div className="text-center p-4 min-h-screen">
-        <h1 className="text-2xl font-bold text-red-500">No Buses Available</h1>
+      <div className="text-center p-4">
+        {/* Show a message if no buses are available */}
+        {/* <h1 className="text-2xl font-bold text-red-500">No Buses Available</h1> */}
       </div>
     );
   }
 
   return (
-    <div className="p-4 min-h-screen my-10">
+    <div className="p-4 my-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-[#22C55E]">All Buses</h2>
         <button onClick={toggleLayout} aria-label="Toggle layout view">
@@ -64,14 +66,24 @@ const AllBus = ({ searchResults, departureDate }) => {
               exit={{ opacity: 0, y: 50 }}
               layout
             >
-              <div className={` ${layout === "list" ? "w-full md:w-1/3" : "w-full"}`}>
+              <div
+                className={`${
+                  layout === "list" ? "w-full md:w-1/3" : "w-full"
+                }`}
+              >
                 <img
                   src={bus.busImage}
                   alt={bus.busName}
                   className="w-full h-48 object-cover rounded-lg"
                 />
               </div>
-              <div className={` ${layout === "list" ? "w-full md:w-2/3" : "w-full mt-4 text-left"}`}>
+              <div
+                className={`${
+                  layout === "list"
+                    ? "w-full md:w-2/3"
+                    : "w-full mt-4 text-left"
+                }`}
+              >
                 {layout === "list" ? (
                   <div>
                     <div className="flex justify-around py-5 items-center gap-4">
@@ -107,7 +119,7 @@ const AllBus = ({ searchResults, departureDate }) => {
                         </p>
                       </div>
                       <Link href={`/AllBus/${bus._id}?date=${departureDate}`}>
-                        <button className="px-6 py-2 bg-[#22C55E] text-white rounded-lg hover:bg-[#22C55E] transition-colors">
+                        <button className="px-6 py-2 bg-[#22C55E] text-white rounded-lg hover:bg-[#0ca544] transition-colors">
                           Book a Ticket
                         </button>
                       </Link>
@@ -153,7 +165,7 @@ const AllBus = ({ searchResults, departureDate }) => {
                           Seat Price: {bus.seatPrice} BDT
                         </p>
                         <Link href={`/AllBus/${bus._id}?date=${departureDate}`}>
-                          <button className="px-6 py-2 bg-[#22C55E] text-white rounded-lg hover:bg-[#22C55E] transition-colors">
+                          <button className="px-6 py-2 bg-[#22C55E] text-white rounded-lg hover:bg-[#0ca544] transition-colors">
                             Book a Ticket
                           </button>
                         </Link>
@@ -170,7 +182,7 @@ const AllBus = ({ searchResults, departureDate }) => {
       {busData.length > 6 && (
         <div className="text-center mt-6">
           <button
-            className="px-8 py-3 bg-[#22C55E] text-white rounded-full shadow-lg hover:bg-[#22C55E] transition-all duration-300"
+            className="px-8 py-3 bg-[#22C55E] text-white rounded-full shadow-lg hover:bg-[#0ca544] transition-all duration-300"
             onClick={handleShowMore}
           >
             {visibleCount >= busData.length ? "Show Less" : "Show More"}
@@ -181,4 +193,4 @@ const AllBus = ({ searchResults, departureDate }) => {
   );
 };
 
-export default AllBus;
+export default Page;

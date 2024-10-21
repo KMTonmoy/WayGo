@@ -6,7 +6,7 @@ import { imageUpload } from '../../api/utils/index';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-const SignupPage = () => {
+const Page = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -141,7 +141,7 @@ const SignupPage = () => {
 
           <button
             type="submit"
-            className="w-full p-3 bg-[#f0652b] text-white font-semibold rounded-lg hover:bg-[#e55c28] transition-colors duration-300"
+            className="w-full p-3 bg-[#22C55E] text-white font-semibold rounded-lg hover:bg-[#25a755] transition-colors duration-300"
           >
             Sign Up
           </button>
@@ -158,4 +158,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default Page;

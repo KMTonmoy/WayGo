@@ -81,7 +81,7 @@ const Navbar = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    href="/signup"
+                    href="/Signup"
                     className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#22C55E] rounded-full hover:bg-[#0ca544]"
                   >
                     Signup
@@ -175,7 +175,7 @@ const Navbar = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    href="/signup"
+                    href="/Signup"
                     className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#0ca544]"
                   >
                     Signup

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 
-const BlogPage = () => {
+const Page = () => {
   const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -95,4 +95,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage;
+export default Page;

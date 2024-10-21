@@ -7,9 +7,11 @@ import { AuthContext } from '../../Provider/AuthProvider';
 const CheckoutForm = ({
   totalToPay,
   paymentMonth,
+  paymentTime,
   BusId,
   selectedSeats,
   departureDate,
+  Bus,
 }) => {
   console.log(BusId, selectedSeats);
 
@@ -100,11 +102,12 @@ const CheckoutForm = ({
         price: totalToPay,
         transactionId: paymentIntent.id,
         paymentMonth: paymentMonth,
+        paymentTime: paymentTime,
         SubmitDate: currentDate,
         departureDate: departureDate,
         BusId: BusId,
         selectedSeats: selectedSeats,
-        status: 'pending',
+        Bus: Bus,
       };
 
       // Save payment info to backend

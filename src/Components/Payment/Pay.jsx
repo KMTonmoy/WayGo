@@ -1,23 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react';
-import CheckoutForm from './CheckoutForm';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import { AuthContext } from '../../Provider/AuthProvider';
+"use client";
+import React, { useContext, useEffect, useState } from "react";
+import CheckoutForm from "./CheckoutForm";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { Toaster, toast } from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
 
 const stripePromise = loadStripe(
-  'pk_test_51PLRDh1ER2eQQaKOIacKieEoEcmrxq1iXUsfZCu7itWd6KAMzuQyotjLWrjKag3KzgTsvZooEDBnfsfyVGMbznhJ00vAOF7I33'
-);
-console.log(
-  'Stripe Public Key:',
   'pk_test_51PLRDh1ER2eQQaKOIacKieEoEcmrxq1iXUsfZCu7itWd6KAMzuQyotjLWrjKag3KzgTsvZooEDBnfsfyVGMbznhJ00vAOF7I33'
 );
 
 const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   const [paymentDate] = useState(new Date().toISOString().substring(0, 10));
   const [paymentTime, setPaymentTime] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
+  // const [departureDate, setDepartureDate] = useState("");
+  const [coupons, setCoupons] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
   const { user } = useContext(AuthContext);
+
+  const searchParams = useSearchParams();
+  const departureDate = searchParams.get("date");
 
   useEffect(() => {
     const today = new Date();
@@ -30,19 +36,12 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   }, []);
 
   useEffect(() => {
-    const fetchCoupons = async () => {
-      try {
-        const response = await fetch(
-          'https://way-go-backend.vercel.app/coupons'
-        );
-        if (!response.ok) throw new Error('Failed to fetch coupons');
-        const couponsData = await response.json();
-        // setCoupons(couponsData);
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
+    fetch("https://way-go-backend.vercel.app/coupons")
+      .then((response) => response.json())
+      .then((json) => setCoupons(json));
+  }, []);
 
+  useEffect(() => {
     const fetchMemberInfo = async () => {
       try {
         if (user) {
@@ -57,7 +56,6 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
       }
     };
 
-    fetchCoupons();
     fetchMemberInfo();
   }, [user, totalPrice]);
 
@@ -69,8 +67,47 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
     setIsModalOpen(false);
   };
 
+  const playErrorSound = () => {
+    const errorSound = new Audio("/error.mp3");
+    errorSound.play();
+  };
+
+  const playSuccessSound = () => {
+    const successSound = new Audio("/success.mp3");
+    successSound.play();
+  };
+
+  const applyCoupon = () => {
+    const trimmedCouponCode = couponCode.trim().toLowerCase();
+    const validCoupon = coupons.find(
+      (coupon) => coupon.promoCode.toLowerCase() === trimmedCouponCode
+    );
+
+    if (validCoupon) {
+      setDiscount(validCoupon.discountPercentage);
+      setIsCouponApplied(true);
+      playSuccessSound();
+      toast.success(
+        `${validCoupon.discountPercentage}% discount will be applied to your total.`
+      );
+    } else {
+      playErrorSound();
+      toast.error(
+        "Invalid coupon code. Please check the coupon code and try again."
+      );
+      setDiscount(0);
+      setIsCouponApplied(false);
+    }
+  };
+
+  const discountedPrice = totalPrice - (totalPrice * discount) / 100;
+  const discountAmount = (totalPrice * discount) / 100;
+
   return (
     <div>
+      <audio id="errorSound" src="/error.mp3" />
+      <audio id="successSound" src="/success.mp3" />
+      <Toaster />
       <div className="flex justify-center items-center min-h-screen">
         <div className="bg-white rounded-lg shadow-lg p-6 md:w-[800px] w-full">
           <h2 className="font-bold text-center text-3xl mb-5">
@@ -93,42 +130,44 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                 <p className="text-lg font-medium">Total Price:</p>
                 <p className="text-lg">{totalPrice} BDT</p>
               </div>
-            </div>
-            <div className="flex gap-4">
-              <input
-                className="w-full px-3 py-1 border border-gray-300 rounded-lg focus:outline-none focus:border-[#f0652b]"
-                type="text"
-                value={couponCode}
-                onChange={e => setCouponCode(e.target.value)}
-                placeholder="Enter coupon code"
-              />
-              <button className="bg-green-500 p-2 font-bold text-white rounded-md">
-                Apply
-              </button>
+              <div className="flex mb-2">
+                <input
+                  type="text"
+                  placeholder="Use Coupons here"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  className="border border-gray-300 rounded p-2 mr-2 w-full"
+                />
+                <button
+                  onClick={applyCoupon}
+                  disabled={isCouponApplied}
+                  className={`${
+                    isCouponApplied
+                      ? "bg-gray-400 coursor-not-allowed"
+                      : "bg-[#22C55E]"
+                  } text-white rounded px-4 py-2`}
+                >
+                  Apply
+                </button>
+              </div>
+              {discount > 0 && (
+                <div className="flex justify-between mb-2 text-green-600">
+                  <p className="text-lg font-medium">Discount:</p>
+                  <p className="text-lg">
+                    {discount}% (-{discountAmount.toFixed(2)} BDT)
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="mt-5">
               <p className="text-xl font-bold">
-                Total to Pay: {totalPrice} BDT
+                Total to Pay: {discountedPrice.toFixed(2)} BDT
               </p>
             </div>
-            <p className="text-lg font-bold">Current Date: {paymentDate} </p>
-            <p className="text-lg font-bold">Payment Time: {paymentTime} </p>
-            <div className="mt-5">
-              <label
-                htmlFor="departureDate"
-                className="block text-lg font-medium mb-2"
-              >
-                Departure Date:
-              </label>
-              <input
-                type="date"
-                id="departureDate"
-                value={departureDate}
-                onChange={e => setDepartureDate(e.target.value)}
-                className="input-bordered w-full p-2 border border-gray-300 rounded"
-              />
-            </div>
+            <p className="text-lg font-bold">Current Date: {paymentDate}</p>
+            <p className="text-lg font-bold">Dipature Date: {departureDate}</p>
+
             <button
               type="button"
               className="bg-green-500 mt-5 p-3 font-bold text-white rounded-md w-full"
@@ -137,33 +176,10 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
               Process Payment
             </button>
 
-            {/* Modal */}
-            {/* {isModalOpen && (
-              <dialog id="my_modal_1" className="modal" open>
-                <div className="modal-box p-5 border-2 border-orange-500 rounded-2xl h-[300px] flex flex-col items-center justify-center gap-5">
-                  <div className="absolute right-1 top-1">
-                    <button
-                      onClick={closeModal}
-                      className="bg-orange-600  rounded-full px-[10px] py-[5px]   text-white font-bold text-xl "
-                    >
-                      X
-                    </button>
-                  </div>
-                  <Elements stripe={stripePromise}>
-                    <CheckoutForm
-                      totalToPay={totalPrice}
-                      paymentMonth={paymentDate}
-                      paymentTime={paymentTime}
-                      departureDate={departureDate}
-                    />
-                  </Elements>
-                </div>
-              </dialog>
-            )} */}
             {isModalOpen && (
               <dialog
                 id="my_modal_1"
-                className="modal fixed inset-40 flex items-center justify-center"
+                className="modal fixed inset-40 rounded-2xl flex items-center justify-center"
                 open
               >
                 <div className="modal-box p-5 border-2 border-orange-500 rounded-2xl h-[400px] flex flex-col items-center justify-center gap-5 relative shadow-lg bg-white">
@@ -180,11 +196,12 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                   </h2>
                   <Elements stripe={stripePromise}>
                     <CheckoutForm
-                      totalToPay={totalPrice}
+                      totalToPay={discountedPrice}
                       paymentMonth={paymentDate}
                       paymentTime={paymentTime}
                       departureDate={departureDate}
                       BusId={Bus._id}
+                      Bus={Bus}
                       selectedSeats={selectedSeats}
                     />
                   </Elements>
