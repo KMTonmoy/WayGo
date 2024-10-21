@@ -8,7 +8,7 @@ import { imageUpload } from "../../../api/utils/index";
 const MAX_TITLE_LENGTH = 25;
 const MAX_DESCRIPTION_LENGTH = 70;
 
-const page = () => {
+const Page = () => {
   const [showModal, setShowModal] = useState(false);
   const [bannerImage, setBannerImage] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -169,4 +169,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

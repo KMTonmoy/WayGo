@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
-const page = () => {
+const Page = () => {
     const { user } = useContext(AuthContext);
 
     return (
@@ -41,4 +41,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

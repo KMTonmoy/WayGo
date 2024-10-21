@@ -9,7 +9,7 @@ import AboutShuttle from '../Components/AboutShuttle/About';
 import HotDeal from './HotDeal/page';
 
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <Banner />
@@ -28,4 +28,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

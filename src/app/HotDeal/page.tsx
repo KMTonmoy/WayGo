@@ -1,7 +1,7 @@
 import React from "react";
 import CustomSlider from "../../Components/CustomSlider/CustomSlider";
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <div>
@@ -19,4 +19,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

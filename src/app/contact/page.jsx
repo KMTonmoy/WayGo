@@ -2,7 +2,7 @@
 
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="container mx-auto py-12 px-5 lg:px-20  ">
       <h1 className="text-3xl font-bold text-center mb-10 text-green-700">
@@ -104,4 +104,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -2,7 +2,7 @@
 
 import OurServices from '../../Components/OurServices/OurServices';
 
-const page = () => {
+const Page = () => {
     return (
         <div>
             <OurServices />
@@ -10,4 +10,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
