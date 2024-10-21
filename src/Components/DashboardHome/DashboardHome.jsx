@@ -15,6 +15,7 @@ const DashboardHome = () => {
   const [error, setError] = useState(null);
   const [totalPayments, setTotalPayments] = useState(0);
   const [totalSelectedSeats, setTotalSelectedSeats] = useState(0);
+  const [adminTotal, setAdminTotal] = useState(0); // Fix: New state to hold admin total balance
 
   useEffect(() => {
     if (email) {
@@ -72,19 +73,20 @@ const DashboardHome = () => {
         // Filter payments by the current user's email
         const userPayments = data.filter((payment) => payment.email === email);
 
-        // Calculate total payments
-        const total = userPayments.reduce(
-          (sum, payment) => sum + payment.price,
-          0
-        );
+        // Calculate total payments for current user
+        const total = userPayments.reduce((sum, payment) => sum + payment.price, 0);
         setTotalPayments(total);
 
-        // Count total selected seats
+        // Count total selected seats for the user
         const selectedSeatsCount = userPayments.reduce(
           (count, payment) => count + (payment.selectedSeats?.length || 0),
           0
         );
         setTotalSelectedSeats(selectedSeatsCount);
+
+        // Calculate total payments for admin
+        const adminPayments = data.reduce((sum, payment) => sum + payment.price, 0);
+        setAdminTotal(adminPayments); // Set admin total balance
       })
       .catch((err) => {
         setError(err.message);
@@ -93,9 +95,7 @@ const DashboardHome = () => {
   }, [email]);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-full">Loading...</div>
-    );
+    return <div className="flex justify-center items-center h-full">Loading...</div>;
   }
 
   if (error) {
@@ -137,9 +137,9 @@ const DashboardHome = () => {
             icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
           />
           <DashboardCard
-            title="Total Bank Balence"
-            count={blockedCount}
-            icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
+            title="Total Bank Balance"
+            count={adminTotal} // Fix: Display admin total balance
+            icon={<span className="text-[#22C55E] text-4xl">💵</span>}
           />
         </div>
       )}
@@ -160,11 +160,6 @@ const DashboardHome = () => {
             count={blockedCount}
             icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
           />
-          <DashboardCard
-            title="Today Selled Tickets"
-            count={blockedCount}
-            icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
-          />
         </div>
       )}
       {role === "user" && (
@@ -179,12 +174,7 @@ const DashboardHome = () => {
             count={totalSelectedSeats}
             icon={<span className="text-[#22C55E] text-4xl">🎟️</span>}
           />
-          <DashboardCard
-            title="Total Blocked Users"
-            count={blockedCount}
-            icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
-          />
-
+         
           <MyPayments />
         </div>
       )}
