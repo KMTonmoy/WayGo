@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-const ManageUsers = () => {
+const page = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -163,4 +163,4 @@ const ManageUsers = () => {
     );
 };
 
-export default ManageUsers;
+export default page;

@@ -1,3 +1,5 @@
+"use client";
+
 import OurServices from '../../Components/OurServices/OurServices';
 
 const page = () => {

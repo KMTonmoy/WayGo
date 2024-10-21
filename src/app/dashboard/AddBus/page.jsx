@@ -48,7 +48,7 @@ const busNames = [
   { value: "Modina", label: "Modina" },
 ];
 
-const AddBus = () => {
+const page = () => {
   const [busName, setBusName] = useState(null);
   const [seatPrice, setSeatPrice] = useState("");
   const [totalSeats, setTotalSeats] = useState("40");
@@ -318,4 +318,4 @@ const AddBus = () => {
   );
 };
 
-export default AddBus;
+export default page;

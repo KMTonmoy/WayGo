@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 
-const SettingsPage = () => {
+const page = () => {
     const [isNotificationsEnabled, setNotificationsEnabled] = useState(true);
     const [isDarkMode, setDarkMode] = useState(false);
     const [language, setLanguage] = useState('English');
@@ -98,4 +98,4 @@ const SettingsPage = () => {
     );
 };
 
-export default SettingsPage;
+export default page;
