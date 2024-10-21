@@ -102,7 +102,7 @@ function Consult() {
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-clr-focussed hover:bg-gradient-to-r hover:from-clr-focussed hover:to-[#ec3124] hover:ring-2 hover:ring-offset-2 hover:ring-clr-focussed transition-all ease-out duration-300 font-semibold text-sm lg:text-xl text-white rounded py-2 my-2"
+                className="w-full relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-green-500 rounded-full hover:bg-[#0ca544]"
               >
                 Send us Message
               </button>

@@ -19,6 +19,7 @@ const busNames = [
   { value: "Shamoli", label: "Shamoli" },
   { value: "Hanif", label: "Hanif" },
   { value: "SB", label: "SB" },
+  { value: "SR Travels", label: "SR Travels" },
   { value: "SabaLine", label: "SabaLine" },
   { value: "Super Sony", label: "Super Sony" },
   { value: "JR Poribohon", label: "JR Poribohon" },
