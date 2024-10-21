@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 import { imageUpload } from '../../../api/utils/index';
 
-const AddCoupon = () => {
+const page = () => {
   const [title, setTitle] = useState('');
   const [img, setImg] = useState(null);
   const [discountPercentage, setDiscountPercentage] = useState('');
@@ -131,4 +131,4 @@ const AddCoupon = () => {
   );
 };
 
-export default AddCoupon;
+export default page;

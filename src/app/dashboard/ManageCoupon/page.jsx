@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const ManageCoupon = () => {
+const page = () => {
   const [coupons, setCoupons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -294,4 +294,4 @@ const imageUpload = async (file) => {
   return data.secure_url;
 };
 
-export default ManageCoupon;
+export default page;

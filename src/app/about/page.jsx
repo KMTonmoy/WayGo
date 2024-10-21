@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const AboutPage = () => {
+const page = () => {
   const missionText =
     "At WayGo, we strive to revolutionize the way you book transportation tickets. Our mission is to provide an intuitive platform that ensures secure, fast, and convenient ticketing for all your travel needs.";
 
@@ -77,4 +77,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default page;

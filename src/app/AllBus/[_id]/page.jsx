@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Pay from "../../../Components/Payment/Pay";
 import { useSearchParams } from "next/navigation";
 
-const Page = ({ params }) => {
+const page = ({ params }) => {
   const [Bus, setBus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -233,4 +233,4 @@ const Page = ({ params }) => {
   );
 };
 
-export default Page;
+export default page;

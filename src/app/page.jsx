@@ -1,3 +1,4 @@
+ 
 import React from 'react';
 import WhyChooseUs from '../Components/WhyChooseUs';
 import Testimonial from '../Components/Testimonial';
@@ -8,7 +9,7 @@ import AboutShuttle from '../Components/AboutShuttle/About';
 import HotDeal from './HotDeal/page';
 
 
-const Page = () => {
+const page = () => {
   return (
     <div>
       <Banner />
@@ -27,4 +28,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { motion } from "framer-motion";

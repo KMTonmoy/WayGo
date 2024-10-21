@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaThList, FaThLarge } from "react-icons/fa";
 import Link from "next/link";
 
-const AllBus = ({ searchResults, departureDate }) => {
+const page = ({ searchResults, departureDate }) => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [layout, setLayout] = useState("list");
 
@@ -192,4 +192,4 @@ const AllBus = ({ searchResults, departureDate }) => {
   );
 };
 
-export default AllBus;
+export default page;
