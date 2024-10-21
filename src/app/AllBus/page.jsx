@@ -189,6 +189,7 @@ const Page = ({ searchResults, departureDate }) => {
         </div>
       )}
     </div>
+    
   );
 };
 
