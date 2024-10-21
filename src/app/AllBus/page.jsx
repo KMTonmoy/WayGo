@@ -30,6 +30,7 @@ const Page = ({ searchResults = [], departureDate }) => {
       <div className="text-center p-4">
         {/* <h1 className="text-2xl font-bold text-red-500">No Buses Available</h1> */}
       </div>
+      
     );
   }
 
