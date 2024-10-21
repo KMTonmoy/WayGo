@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WayGo Bus Ticketing System
+
+![WayGo Bus Ticketing](https://i.ibb.co.com/rmGCkGQ/screencapture-waygobustravels-vercel-app-2024-10-21-23-55-03.png)
+
+This project is a bus ticketing platform called **WayGo**, providing a seamless and efficient online booking experience for travelers and commuters. The system is built with modern technologies like **Next.js** and **TypeScript** for secure, fast, and scalable ticket booking.
 
 ## Getting Started
 
-First, run the development server:
+To set up and run the WayGo development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Use the appropriate package manager to install dependencies.
+2. Start the development server.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to access the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can modify the pages by editing `app/page.tsx`, and the page will auto-update upon saving changes.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Bus Search and Booking**: Easily search for available buses and book tickets.
+- **User Authentication**: Secure login and signup system.
+- **Bus and Agent Management**: Admin functionalities to add and manage buses and agents.
+- **Coupon Management**: Add and manage discount coupons for users.
+- **Payment Gateway**: Secure payment processing for ticket purchases.
+- **Ticket Printing and Download**: Generate tickets and download them as a soft copy.
+- **Dashboard**: Interactive dashboard to manage user, bus, and payment data.
+- **Contact Us Form**: Allow users to reach out through an integrated contact form.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+For more details on the technologies used:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs) for information on the Next.js framework.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+WayGo is deployed on the [Vercel Platform](https://vercel.com/), which provides seamless deployment and scaling for Next.js applications. You can view the live site [here](https://waygobustravels.vercel.app/).
