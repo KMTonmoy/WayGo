@@ -1,6 +1,5 @@
 # WayGo Bus Ticketing System
-
-![WayGo Bus Ticketing](https://i.ibb.co.com/rmGCkGQ/screencapture-waygobustravels-vercel-app-2024-10-21-23-55-03.png)
+ 
 
 This project is a bus ticketing platform called **WayGo**, providing a seamless and efficient online booking experience for travelers and commuters. The system is built with modern technologies like **Next.js** and **TypeScript** for secure, fast, and scalable ticket booking.
 
