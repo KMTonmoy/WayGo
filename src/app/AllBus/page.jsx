@@ -51,7 +51,7 @@ const Page = ({ searchResults = [], departureDate = "" }) => {
         className={`${
           layout === "list"
             ? "space-y-6"
-            : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-center"
+            : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center"
         }`}
       >
         <AnimatePresence>
@@ -81,7 +81,7 @@ const Page = ({ searchResults = [], departureDate = "" }) => {
                 className={`${
                   layout === "list"
                     ? "w-full md:w-2/3"
-                    : "w-full mt-4 text-left"
+                    : "w-full text-left"
                 }`}
               >
                 {layout === "list" ? (
