@@ -14,7 +14,7 @@ const Testimonial = () => {
 
           <a
             href="#"
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-[--clr-primary] px-6 py-3 text-[--clr-primary] text-lg font-semibold transition-transform duration-200 hover:scale-105 hover:bg-[--clr-primary] hover:text-clr-focussed md:mt-0"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-[--clr-primary] px-6 py-3 text-green-500 text-lg font-semibold transition-transform duration-200 hover:scale-105 hover:bg-[--clr-primary] hover:text-green-600 md:mt-0"
           >
             <span>Read All Reviews</span>
             <svg

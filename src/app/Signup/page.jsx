@@ -50,8 +50,6 @@ const Page = () => {
         text: 'You have successfully signed up.',
         icon: 'success',
         confirmButtonText: 'OK',
-      }).then(() => {
-        router.push('/');
       });
     } catch (err) {
       Swal.fire({

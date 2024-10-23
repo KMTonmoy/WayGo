@@ -8,7 +8,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { useSearchParams } from "next/navigation";
 
 const stripePromise = loadStripe(
-  "pk_test_51PLRDh1ER2eQQaKOIacKieEoEcmrxq1iXUsfZCu7itWd6KAMzuQyotjLWrjKag3KzgTsvZooEDBnfsfyVGMbznhJ00vAOF7I33"
+  'pk_test_51PLRDh1ER2eQQaKOIacKieEoEcmrxq1iXUsfZCu7itWd6KAMzuQyotjLWrjKag3KzgTsvZooEDBnfsfyVGMbznhJ00vAOF7I33'
 );
 
 const Pay = ({ Bus, selectedSeats, totalPrice }) => {
@@ -28,8 +28,8 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   useEffect(() => {
     const today = new Date();
     const formattedTime = today.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
+      hour: '2-digit',
+      minute: '2-digit',
       hour12: true,
     });
     setPaymentTime(formattedTime);
@@ -48,7 +48,7 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
           const response = await fetch(
             `https://way-go-backend.vercel.app/users/${user?.email}`
           );
-          if (!response.ok) throw new Error("Failed to fetch user info");
+          if (!response.ok) throw new Error('Failed to fetch user info');
           const userData = await response.json();
         }
       } catch (error) {

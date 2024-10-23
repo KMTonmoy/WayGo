@@ -85,8 +85,8 @@ const CustomSlider = () => {
                   your next adventure!
                 </p>
 
-                <div className="mt-4 bg-[#22c55e2d] text-[#22C55E] rounded-lg px-4 py-1 text-xs font-medium">
-                  Promo Code: {item.promoCode}
+                <div className="mt-4 rounded-lg px-4 py-1 text-xs font-medium">
+                  <span className="text-gray-600">Promo Code:</span> <span className="px-2 py-1 rounded-2xl bg-[#22c55e2d] text-[#22C55E]">{item.promoCode}</span>
                 </div>
               </div>
             </motion.div>
