@@ -185,12 +185,12 @@ const Page = ({ params }) => {
                   </div>
                   <div>
                     <div className="mb-5">
-                      <div className="relative md:left-[85%]  ">
+                      <div className="relative md:left-[80%]  ">
                         <button
                           className=" flex justify-center items-center text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-white bg-orange-500  shadow-md rounded-md transition duration-200 transform hover:scale-105 hover:bg-orange-600 cursor-not-allowed"
                           disabled={true}
                         >
-                          <p className="text-3xl">
+                          <p className="text-3xl ">
                             <TbSteeringWheel />
                           </p>
                         </button>

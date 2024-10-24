@@ -29,7 +29,7 @@ const CheckoutForm = ({
   // Fetch client secret from backend
   useEffect(() => {
     if (totalToPay > 0) {
-      fetch('http://localhost:8000/create-payment-intent', {
+      fetch('https://way-go-backend.vercel.app/create-payment-intent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
