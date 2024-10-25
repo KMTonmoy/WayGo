@@ -15,39 +15,40 @@ const services = [
     icon: <FaShieldAlt size={40} />,
     title: 'Safety Guarantee',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+      'Your safety is our priority. We adhere to the highest standards to ensure a secure and comfortable journey for every passenger.',
   },
   {
     icon: <FaTags size={40} />,
     title: 'Discount & Promo',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+      'Enjoy great savings on your trips with our regular discounts and exclusive promotions tailored just for you.',
   },
   {
     icon: <FaUserTie size={40} />,
     title: 'Professional Staff',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+      'Our friendly and skilled team is here to assist you, ensuring that your travel experience is smooth from start to finish.',
   },
   {
     icon: <FaClock size={40} />,
     title: 'Schedule On Time',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+      'We value your time and strive to maintain punctuality with a well-organized schedule you can rely on.',
   },
   {
     icon: <FaLaptop size={40} />,
     title: 'Online Booking',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+      'Conveniently book your tickets online with an easy, user-friendly process to secure your seat anytime, anywhere.',
   },
   {
     icon: <FaHeadset size={40} />,
     title: '24/7 Support',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+      'Our support team is available around the clock to address any inquiries or concerns for a hassle-free journey.',
   },
 ];
+
 
 const OurServices = () => {
   return (

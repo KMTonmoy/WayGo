@@ -15,7 +15,7 @@ const AboutShuttle = () => {
                         More Than 25 Years We Provide Bus Charter Service For You
                     </h3>
                     <p className="text-gray-700 mb-6">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+                    Way-Go offers a seamless and convenient bus ticket booking experience, connecting you to a network of reliable shuttles and buses. Enjoy comfortable travel with easy booking, secure payments, and real-time schedules for a smooth journey.
                     </p>
                     <ul className="space-y-2">
                         <li className="text-lg text-gray-800">

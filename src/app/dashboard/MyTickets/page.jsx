@@ -61,7 +61,7 @@ const Page = () => {
     doc.setTextColor(0, 0, 0); // Black
     doc.text(`Transaction ID: ${ticket.transactionId}`, 10, 30);
     doc.text(`Email: ${ticket.email}`, 10, 40);
-    doc.text(`Price: $${ticket.price}`, 10, 50);
+    doc.text(`Price: ${ticket.price} BDT`, 10, 50);
     doc.text(`From: ${ticket?.Bus?.from || "N/A"}`, 10, 60);
     doc.text(`To: ${ticket?.Bus?.to || "N/A"}`, 10, 70);
     doc.text(`Payment Date: ${ticket.paymentMonth}`, 10, 80);
@@ -94,7 +94,7 @@ const Page = () => {
               </p>
               <p className="mb-1">Email: {ticket.email}</p>
               <p className="mb-1">
-                Price: <strong>${ticket.price}</strong>
+                Price: <strong>{ticket.price} BDT</strong>
               </p>
               <p className="mb-1">
                 From: <strong>{ticket?.Bus?.from || "N/A"}</strong> 🌍
