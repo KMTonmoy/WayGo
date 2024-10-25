@@ -174,7 +174,7 @@ const Page = () => {
                 </p>
                 <p className="text-gray-600">
                   Seat Price:{" "}
-                  <span className="text-orange-500">${bus.seatPrice}</span>
+                  <span className="text-orange-500">{bus.seatPrice} BDT</span>
                 </p>
                 <p className="text-gray-600">
                   Total Seats:{" "}

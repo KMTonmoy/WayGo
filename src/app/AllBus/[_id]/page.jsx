@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { TbSteeringWheel } from "react-icons/tb";
 
 const Page = ({ params }) => {
+  const {_id} = React.use(params);
   const [Bus, setBus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -44,7 +45,7 @@ const Page = ({ params }) => {
     const fetchBus = async () => {
       try {
         const response = await fetch(
-          `https://way-go-backend.vercel.app/allbus/${params._id}`
+          `https://way-go-backend.vercel.app/allbus/${_id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch Bus");
@@ -59,7 +60,7 @@ const Page = ({ params }) => {
     };
 
     fetchBus();
-  }, [params._id]);
+  }, [_id]);
 
   const formatTime = (time) => {
     const [hours, minutes] = time.split(":");
