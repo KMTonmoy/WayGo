@@ -1,15 +1,17 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 
 function Consult() {
+  const [loading, setLoading] = useState(false);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const form = e.target;
     const formData = new FormData(form);
 
-    // Send form data to Formspree
     const response = await fetch("https://formspree.io/f/xnnqqzpe", {
       method: "POST",
       headers: {
@@ -18,6 +20,8 @@ function Consult() {
       body: formData,
     });
 
+    setLoading(false);
+
     if (response.ok) {
       Swal.fire({
         icon: "success",
@@ -25,7 +29,7 @@ function Consult() {
         text: "Thank you for contacting us. We will get back to you shortly.",
         confirmButtonText: "OK",
       });
-      form.reset(); // Reset the form after submission
+      form.reset();
     } else {
       Swal.fire({
         icon: "error",
@@ -36,7 +40,7 @@ function Consult() {
   };
 
   return (
-    <div className="relative py-1 h-[500px] my-20">
+    <div className="relative py-1 h-[500px] my-20 ">
       <div className="my-10">
         <div className="lg:w-[70%] md:w-4/5 mx-auto grid grid-cols-2 gap-5 px-3 md:px-0">
           <div
@@ -55,7 +59,7 @@ function Consult() {
               Our experts and developers would love to contribute their
               expertise and insights and help you today.
             </p>
-            <button className="px-3 font-poppins hover:bg-gradient-to-r hover:from-[#2ecc71] hover:to-[#27ae60] hover:ring-2 hover:ring-offset-2 hover:ring-[#27ae60] transition-all ease-out duration-300 font-semibold text-lg lg:text-xl text-white rounded z-30 cursor-pointer">
+            <button className="px-3 font-poppins bg-white hover:bg-opacity-80 transition-all ease-out duration-300 font-semibold text-lg lg:text-xl text-[#F04935] rounded z-30 cursor-pointer">
               Contact Us
             </button>
           </div>
@@ -67,7 +71,7 @@ function Consult() {
         <div className="lg:w-[70%] md:w-4/5 mx-auto grid md:grid-cols-2 grid-cols-1 gap-5 px-3 md:px-0">
           <div className="hidden md:block">
             <img
-              src="https://gotortalent.com/static/img/contact-us-min.gif" // Replace with your contact image URL
+              src="https://gotortalent.com/static/img/contact-us-min.gif"
               alt="Contact Us"
               className="w-full h-full object-cover"
             />
@@ -85,35 +89,42 @@ function Consult() {
                 type="text"
                 name="name"
                 placeholder="Your Name"
-                className="input input-bordered border rounded-md p-4 w-full focus:border-[#2ecc71] py-1"
+                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F04935] py-1"
                 required
+                aria-label="Your Name"
               />
               <input
                 type="email"
                 name="_replyto"
                 placeholder="Your Email"
-                className="input input-bordered border rounded-md p-4 w-full focus:border-[#2ecc71] py-1"
+                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F04935] py-1"
                 required
+                aria-label="Your Email"
               />
               <input
                 type="tel"
                 name="phone"
                 placeholder="Phone Number"
-                className="input input-bordered border rounded-md p-4 w-full focus:border-[#2ecc71] py-1"
+                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F04935] py-1"
                 required
+                aria-label="Phone Number"
               />
               <textarea
                 name="message"
                 placeholder="Message"
                 rows={3}
-                className="border rounded-md p-4 w-full focus:border-[#2ecc71]"
+                className="border rounded-md p-4 w-full focus:border-[#F04935]"
                 required
+                aria-label="Message"
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-[#2ecc71] hover:bg-gradient-to-r hover:from-[#27ae60] hover:to-[#2ecc71] hover:ring-2 hover:ring-offset-2 hover:ring-[#27ae60] transition-all ease-out duration-300 font-semibold text-sm lg:text-xl text-white rounded py-2 my-2"
+                className={`w-full bg-[#F04935] hover:bg-opacity-80 transition-all ease-out duration-300 font-semibold text-sm lg:text-xl text-white rounded py-2 my-2 ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={loading}
               >
-                Send us Message
+                {loading ? "Sending..." : "Send us Message"}
               </button>
             </form>
           </div>

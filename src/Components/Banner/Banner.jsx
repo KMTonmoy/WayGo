@@ -121,7 +121,7 @@ const Banner = () => {
                     From
                   </label>
                   <select
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 outline-none focus:ring-[#F04935]"
                     value={fromLocation}
                     onChange={(e) => setFromLocation(e.target.value)}
                   >
@@ -137,7 +137,7 @@ const Banner = () => {
                 <div>
                   <label className="block text-gray-700 font-medium">To</label>
                   <select
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 outline-none focus:ring-[#F04935]"
                     value={toLocation}
                     onChange={(e) => setToLocation(e.target.value)}
                     disabled={!fromLocation}
@@ -157,7 +157,7 @@ const Banner = () => {
                   </label>
                   <input
                     type="date"
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 outline-none focus:ring-[#F04935]"
                     value={departureDate}
                     onChange={(e) => setDepartureDate(e.target.value)}
                   />
@@ -168,7 +168,7 @@ const Banner = () => {
                     Seat Type
                   </label>
                   <select
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 outline-none focus:ring-[#F04935]"
                     value={seatType}
                     onChange={(e) => setSeatType(e.target.value)}
                   >
@@ -179,7 +179,7 @@ const Banner = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-[#22C55E] text-white font-bold rounded-lg hover:bg-[#0e8339] duration-300"
+                  className="w-full py-2 px-4 bg-[#F04935] text-white font-bold rounded-lg hover:bg-[#c54b3d] duration-300"
                 >
                   Search
                 </button>

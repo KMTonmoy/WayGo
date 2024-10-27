@@ -92,11 +92,11 @@ const Page = ({ params }) => {
 
   if (error) {
     return (
-      <div className="text-center py-10 text-red-500">
+      <div className="text-center py-10 text-[#F04935]">
         {error}
         <button
           onClick={() => setLoading(true)}
-          className="mt-4 px-4 py-2 bg-orange-500 text-white rounded"
+          className="mt-4 px-4 py-2 bg-[#F04935] text-white rounded"
         >
           Retry
         </button>
@@ -112,7 +112,7 @@ const Page = ({ params }) => {
     <div className="mt-20 py-10 px-5 bg-white rounded-lg shadow-lg">
       <div>
         <motion.h1
-          className="text-4xl font-bold text-orange-600 text-center mb-5"
+          className="text-4xl font-bold text-[#F04935] text-center mb-5"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -129,27 +129,27 @@ const Page = ({ params }) => {
         />
         <div className="mt-5 text-gray-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
+            <div className="bg-[#f0483521] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">From:</p>
               <p className="font-normal">{Bus.from}</p>
             </div>
-            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
+            <div className="bg-[#f0483521] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">To:</p>
               <p className="font-normal">{Bus.to}</p>
             </div>
-            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
+            <div className="bg-[#f0483521] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Departure Time:</p>
               <p className="font-normal">{formatTime(Bus.departureTime)}</p>
             </div>
-            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
+            <div className="bg-[#f0483521] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Arrival Time:</p>
               <p className="font-normal">{formatTime(Bus.arrivalTime)}</p>
             </div>
-            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
+            <div className="bg-[#f0483521] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Total Seats:</p>
               <p className="font-normal">{Bus.totalSeats}</p>
             </div>
-            <div className="bg-[#11df5c5b] p-4 rounded-md shadow-md">
+            <div className="bg-[#f0483521] p-4 rounded-md shadow-md">
               <p className="text-lg font-medium">Seat Price:</p>
               <p className="font-normal">{Bus.seatPrice} BDT</p>
             </div>
@@ -187,7 +187,7 @@ const Page = ({ params }) => {
                     <div className="mb-5">
                       <div className="relative md:left-[80%]  ">
                         <button
-                          className=" flex justify-center items-center text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-white bg-orange-500  shadow-md rounded-md transition duration-200 transform hover:scale-105 hover:bg-orange-600 cursor-not-allowed"
+                          className=" flex justify-center items-center text-lg font-medium font-inter w-full md:w-[110px] h-[56px] text-white bg-[#F04935]  shadow-md rounded-md transition duration-200 transform hover:scale-105 hover:bg-[#9b2e22] cursor-not-allowed"
                           disabled={true}
                         >
                           <p className="text-3xl ">
@@ -231,7 +231,7 @@ const Page = ({ params }) => {
                                       isBooked
                                         ? "bg-[#9e9d9d] cursor-not-allowed"
                                         : isSelected
-                                        ? "bg-green-500"
+                                        ? "bg-[#F04935] text-white"
                                         : "bg-gray-300"
                                     } shadow-md rounded-md transition duration-200`}
                                     disabled={isBooked}
@@ -267,7 +267,7 @@ const Page = ({ params }) => {
                                         isBooked
                                           ? "bg-[#808288b9]  cursor-not-allowed"
                                           : isSelected
-                                          ? "bg-green-500"
+                                          ? "bg-[#F04935] text-white"
                                           : "bg-gray-300"
                                       } shadow-md rounded-md transition duration-200`}
                                       disabled={isBooked}
