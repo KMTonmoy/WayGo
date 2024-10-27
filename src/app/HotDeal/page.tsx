@@ -3,15 +3,17 @@ import CustomSlider from "../../Components/CustomSlider/CustomSlider";
 
 const Page = () => {
   return (
-    <div>
-      <div>
-        <div className="flex px-14 mt-8 justify-between items-center">
-          <h4 className="text-3xl font-bold bg-gradient-to-r from-[#F05342] via-[#F04935] to-[#D94C39] bg-clip-text text-transparent shadow-lg relative">
+    <div className="  py-10">
+      <div className=" mx-auto px-4">
+        {/* Header section with Hot Deals title */}
+        <div className="flex justify-center items-center px-8 lg:px-14 mt-8 mb-6">
+          <h2 className="text-4xl text-[#F04935] underline font-bold text-center">
             Hot Deals
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#F05342] to-[#F04935] transform scale-x-100 transition-transform duration-500 ease-out"></span>
-          </h4>
+          </h2>
         </div>
-        <div className="mb-0 lg:mb-10">
+
+        {/* Slider section */}
+        <div className="mb-8 lg:mb-12 bg-white shadow-lg rounded-lg p-6">
           <CustomSlider />
         </div>
       </div>

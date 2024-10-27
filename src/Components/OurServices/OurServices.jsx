@@ -52,7 +52,7 @@ const services = [
 const OurServices = () => {
   return (
     <div className="container mx-auto px-5 lg:px-10 py-16">
-      <h2 className="text-4xl lg:text-5xl font-bold text-center mb-10 text-[#22C55E]">
+      <h2 className="text-4xl lg:text-5xl font-bold text-center mb-10 text-[#F04935]">
         Our Services
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
