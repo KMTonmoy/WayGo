@@ -182,17 +182,17 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                 className="modal fixed inset-40 rounded-2xl flex items-center justify-center"
                 open
               >
-                <div className="modal-box p-5 border-2 border-orange-500 rounded-2xl h-[400px] flex flex-col items-center justify-center gap-5 relative shadow-lg bg-white">
+                <div className="modal-box p-5 border-2 border-green-500 rounded-2xl h-[300px] flex flex-col items-center justify-center gap-5 relative shadow-lg bg-white">
                   <div className="absolute right-2 top-2">
                     <button
                       onClick={closeModal}
-                      className="bg-orange-600 rounded-full px-3 py-1 text-white font-bold text-xl hover:bg-orange-500 transition-colors duration-200"
+                      className="bg-green-600 rounded-full px-3 py-1 text-white font-bold text-xl hover:bg-green-500 transition-colors duration-200"
                     >
                       X
                     </button>
                   </div>
-                  <h2 className="text-lg font-semibold text-center text-orange-600">
-                    Payment Details
+                  <h2 className="text-2xl font-semibold text-center text-green-600">
+                    Payment Information
                   </h2>
                   <Elements stripe={stripePromise}>
                     <CheckoutForm

@@ -161,11 +161,11 @@ const CheckoutForm = ({
         }}
       />
       <button
-        className="w-[100px] h-[40px] flex items-center justify-center mx-auto bg-gradient-to-r from-orange-500 to-orange-700 text-white font-semibold rounded-md shadow-md transition-transform duration-200 hover:from-orange-400 hover:to-orange-600 transform hover:scale-105 active:scale-95 my-4"
+        className="px-5 py-2 flex text-xl items-center justify-center mx-auto bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-md shadow-md transition-transform duration-200 hover:from-green-400 hover:to-green-600 transform hover:scale-105 active:scale-95 my-4"
         type="submit"
         disabled={!stripe || !clientSecret}
       >
-        Pay
+        Pay Now
       </button>
 
       {error && <p className="text-red-600">{error}</p>}
