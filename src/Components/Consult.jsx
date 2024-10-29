@@ -1,21 +1,21 @@
-"use client";
-import React, { useState } from "react";
-import Swal from "sweetalert2";
+'use client';
+import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 function Consult() {
   const [loading, setLoading] = useState(false);
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async e => {
     e.preventDefault();
     setLoading(true);
 
     const form = e.target;
     const formData = new FormData(form);
 
-    const response = await fetch("https://formspree.io/f/xnnqqzpe", {
-      method: "POST",
+    const response = await fetch('https://formspree.io/f/xnnqqzpe', {
+      method: 'POST',
       headers: {
-        Accept: "application/json",
+        Accept: 'application/json',
       },
       body: formData,
     });
@@ -24,17 +24,17 @@ function Consult() {
 
     if (response.ok) {
       Swal.fire({
-        icon: "success",
-        title: "Message Sent!",
-        text: "Thank you for contacting us. We will get back to you shortly.",
-        confirmButtonText: "OK",
+        icon: 'success',
+        title: 'Message Sent!',
+        text: 'Thank you for contacting us. We will get back to you shortly.',
+        confirmButtonText: 'OK',
       });
       form.reset();
     } else {
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong. Please try again later.",
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong. Please try again later.',
       });
     }
   };
@@ -59,7 +59,7 @@ function Consult() {
               Our experts and developers would love to contribute their
               expertise and insights and help you today.
             </p>
-            <button className="px-3 font-poppins bg-white hover:bg-opacity-80 transition-all ease-out duration-300 font-semibold text-lg lg:text-xl text-[#F04935] rounded z-30 cursor-pointer">
+            <button className="px-3 font-poppins bg-white hover:bg-opacity-80 transition-all ease-out duration-300 font-semibold text-lg lg:text-xl text-[#F43F5E] rounded z-30 cursor-pointer">
               Contact Us
             </button>
           </div>
@@ -89,7 +89,7 @@ function Consult() {
                 type="text"
                 name="name"
                 placeholder="Your Name"
-                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F04935] py-1"
+                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F43F5E] py-1"
                 required
                 aria-label="Your Name"
               />
@@ -97,7 +97,7 @@ function Consult() {
                 type="email"
                 name="_replyto"
                 placeholder="Your Email"
-                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F04935] py-1"
+                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F43F5E] py-1"
                 required
                 aria-label="Your Email"
               />
@@ -105,7 +105,7 @@ function Consult() {
                 type="tel"
                 name="phone"
                 placeholder="Phone Number"
-                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F04935] py-1"
+                className="input input-bordered border rounded-md p-4 w-full focus:border-[#F43F5E] py-1"
                 required
                 aria-label="Phone Number"
               />
@@ -113,18 +113,18 @@ function Consult() {
                 name="message"
                 placeholder="Message"
                 rows={3}
-                className="border rounded-md p-4 w-full focus:border-[#F04935]"
+                className="border rounded-md p-4 w-full focus:border-[#F43F5E]"
                 required
                 aria-label="Message"
               ></textarea>
               <button
                 type="submit"
-                className={`w-full bg-[#F04935] hover:bg-opacity-80 transition-all ease-out duration-300 font-semibold text-sm lg:text-xl text-white rounded py-2 my-2 ${
-                  loading ? "opacity-50 cursor-not-allowed" : ""
+                className={`w-full bg-[#F43F5E] hover:bg-opacity-80 transition-all ease-out duration-300 font-semibold text-sm lg:text-xl text-white rounded py-2 my-2 ${
+                  loading ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 disabled={loading}
               >
-                {loading ? "Sending..." : "Send us Message"}
+                {loading ? 'Sending...' : 'Send us Message'}
               </button>
             </form>
           </div>

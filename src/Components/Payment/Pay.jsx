@@ -1,29 +1,31 @@
-"use client";
-import React, { useContext, useEffect, useState } from "react";
-import CheckoutForm from "./CheckoutForm";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { Toaster, toast } from "react-hot-toast";
-import { useSearchParams } from "next/navigation";
+import React, { useContext, useEffect, useState } from 'react';
+import CheckoutForm from './CheckoutForm';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { AuthContext } from '../../Provider/AuthProvider';
+import { Toaster, toast } from 'react-hot-toast';
+import { useSearchParams } from 'next/navigation';
+import { FaMale, FaFemale } from 'react-icons/fa';
 
 const stripePromise = loadStripe(
   'pk_test_51PLRDh1ER2eQQaKOIacKieEoEcmrxq1iXUsfZCu7itWd6KAMzuQyotjLWrjKag3KzgTsvZooEDBnfsfyVGMbznhJ00vAOF7I33'
 );
 
 const Pay = ({ Bus, selectedSeats, totalPrice }) => {
+  const [passengerName, setPassengerName] = useState(''); // State for passenger name
+  const [passengerPhone, setPassengerPhone] = useState(''); // State for passenger phone
   const [paymentDate] = useState(new Date().toISOString().substring(0, 10));
-  const [paymentTime, setPaymentTime] = useState("");
-  // const [departureDate, setDepartureDate] = useState("");
+  const [paymentTime, setPaymentTime] = useState('');
   const [coupons, setCoupons] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [couponCode, setCouponCode] = useState("");
+  const [couponCode, setCouponCode] = useState('');
+  const [gender, setGender] = useState('');
   const [discount, setDiscount] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
   const { user } = useContext(AuthContext);
 
   const searchParams = useSearchParams();
-  const departureDate = searchParams.get("date");
+  const departureDate = searchParams.get('date');
 
   useEffect(() => {
     const today = new Date();
@@ -36,9 +38,9 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   }, []);
 
   useEffect(() => {
-    fetch("https://way-go-backend.vercel.app/coupons")
-      .then((response) => response.json())
-      .then((json) => setCoupons(json));
+    fetch('https://way-go-backend.vercel.app/coupons')
+      .then(response => response.json())
+      .then(json => setCoupons(json));
   }, []);
 
   useEffect(() => {
@@ -60,6 +62,10 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   }, [user, totalPrice]);
 
   const handlePay = () => {
+    if (!gender) {
+      toast.error('Please select a gender.');
+      return;
+    }
     setIsModalOpen(true);
   };
 
@@ -68,19 +74,19 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
   };
 
   const playErrorSound = () => {
-    const errorSound = new Audio("/error.mp3");
+    const errorSound = new Audio('/error.mp3');
     errorSound.play();
   };
 
   const playSuccessSound = () => {
-    const successSound = new Audio("/success.mp3");
+    const successSound = new Audio('/success.mp3');
     successSound.play();
   };
 
   const applyCoupon = () => {
     const trimmedCouponCode = couponCode.trim().toLowerCase();
     const validCoupon = coupons.find(
-      (coupon) => coupon.promoCode.toLowerCase() === trimmedCouponCode
+      coupon => coupon.promoCode.toLowerCase() === trimmedCouponCode
     );
 
     if (validCoupon) {
@@ -93,7 +99,7 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
     } else {
       playErrorSound();
       toast.error(
-        "Invalid coupon code. Please check the coupon code and try again."
+        'Invalid coupon code. Please check the coupon code and try again.'
       );
       setDiscount(0);
       setIsCouponApplied(false);
@@ -110,7 +116,99 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
       <Toaster />
       <div className="flex justify-center items-center min-h-screen">
         <div className="bg-white rounded-lg shadow-lg p-6 md:w-[800px] w-full">
-          <h2 className="font-bold text-center text-3xl mb-5">
+          <div>
+            <h2 className="font-bold text-center text-3xl mb-5">
+              Passenger details
+            </h2>
+            <div>
+              <div className="relative w-max flex gap-8 rounded-lg">
+                <div className="space-y-2 text-sm dark:text-zinc-400">
+                  <label
+                    className="block text-black text-xl font-semibold"
+                    htmlFor="name"
+                  >
+                    Passenger Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    className="border text-black border-rose-600 outline-none rounded p-2 mr-2 w-full"
+                    id="name"
+                    required={true}
+                    placeholder="Enter Name"
+                    name="name"
+                    type="text"
+                    value={passengerName} // Bind the input value
+                    onChange={e => setPassengerName(e.target.value)} // Update state on change
+                  />
+                </div>
+                <div className="space-y-2 text-sm dark:text-zinc-400">
+                  <label
+                    className="block text-black text-xl font-semibold"
+                    htmlFor="phone"
+                  >
+                    Mobile No.<span className="text-red-500">*</span>
+                  </label>
+                  <div className="flex items-center">
+                    <span className="border p-2 border-r-0 text-black rounded-tr-none rounded-br-none border-rose-500 outline-none rounded">
+                      +88
+                    </span>
+                    <input
+                      className="border border-rose-500 text-black outline-none rounded-tl-none rounded-bl-none border-l-0 rounded p-2 mr-2 w-full"
+                      id="phone"
+                      placeholder="***********"
+                      name="phone"
+                      required={true}
+                      type="tel"
+                      maxLength="11"
+                      pattern="[0-9]{10}"
+                      value={passengerPhone} // Bind the input value
+                      onChange={e => setPassengerPhone(e.target.value)} // Update state on change
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col mt-4">
+              <label className="text-xl font-medium text-black mb-1">
+                Gender <span className="text-red-500">*</span>
+              </label>
+              <div className="flex space-x-4">
+                <label className="flex hover:cursor-pointer bg-slate-300 rounded-xl p-2 items-center space-x-2">
+                  <input
+                    className="form-radio text-blue-600"
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                    checked={gender === 'Male'}
+                    onChange={() => setGender('Male')}
+                  />
+                  <span className="flex items-center space-x-2">
+                    <span className="text-2xl">
+                      <FaMale />
+                    </span>
+                    <span className="radio-label">Male</span>
+                  </span>
+                </label>
+
+                <label className="flex hover:cursor-pointer bg-slate-300 rounded-xl p-2 items-center space-x-2 ml-4">
+                  <input
+                    className="form-radio  text-blue-600"
+                    type="radio"
+                    name="gender"
+                    value="Female"
+                    checked={gender === 'Female'}
+                    onChange={() => setGender('Female')}
+                  />
+                  <span className="flex items-center space-x-2">
+                    <span className="text-2xl">
+                      <FaFemale />
+                    </span>
+                    <span className="radio-label">Female</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <h2 className="font-bold text-center text-3xl mt-5 mb-5">
             Payment Information
           </h2>
           <div className="space-y-5">
@@ -135,7 +233,7 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                   type="text"
                   placeholder="Use Coupons here"
                   value={couponCode}
-                  onChange={(e) => setCouponCode(e.target.value)}
+                  onChange={e => setCouponCode(e.target.value)}
                   className="border border-gray-300 rounded p-2 mr-2 w-full"
                 />
                 <button
@@ -143,34 +241,25 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                   disabled={isCouponApplied}
                   className={`${
                     isCouponApplied
-                      ? "bg-gray-400 coursor-not-allowed"
-                      : "bg-[#F04935]"
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-[#F43F5E]'
                   } text-white rounded px-4 py-2`}
                 >
                   Apply
                 </button>
               </div>
-              {discount > 0 && (
-                <div className="flex justify-between mb-2 text-[#F04935]">
-                  <p className="text-lg font-medium">Discount:</p>
-                  <p className="text-lg">
-                    {discount}% (-{discountAmount.toFixed(2)} BDT)
-                  </p>
-                </div>
+              {isCouponApplied && (
+                <p className="text-green-600 font-bold">
+                  {discountAmount} BDT discount applied!
+                </p>
               )}
             </div>
-
-            <div className="mt-5">
-              <p className="text-xl font-bold">
-                Total to Pay: {discountedPrice.toFixed(2)} BDT
-              </p>
-            </div>
-            <p className="text-lg font-bold">Current Date: {paymentDate}</p>
-            <p className="text-lg font-bold">Dipature Date: {departureDate}</p>
+            <p className="text-lg font-bold">Payment Date: {paymentDate}</p>
+            <p className="text-lg font-bold">Departure Date: {departureDate}</p>
 
             <button
               type="button"
-              className="bg-[#F04935] mt-5 p-3 font-bold text-white rounded-md w-full"
+              className="bg-[#F43F5E] mt-5 p-3 font-bold text-white rounded-md w-full"
               onClick={handlePay}
             >
               Process Payment
@@ -182,16 +271,16 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                 className="modal fixed inset-40 rounded-2xl flex items-center justify-center"
                 open
               >
-                <div className="modal-box p-5 border-2 border-[#F04935] rounded-2xl h-[400px] flex flex-col items-center justify-center gap-5 relative shadow-lg bg-white">
+                <div className="modal-box p-5 border-2 border-[#F43F5E] rounded-2xl h-[400px] flex flex-col items-center justify-center gap-5 relative shadow-lg bg-white">
                   <div className="absolute right-2 top-2">
                     <button
                       onClick={closeModal}
-                      className="bg-[#F04935] rounded-full px-3 py-1 text-white font-bold text-xl hover:bg-[#F04935] transition-colors duration-200"
+                      className="bg-[#F43F5E] rounded-full px-3 py-1 text-white font-bold text-xl hover:bg-[#F43F5E] transition-colors duration-200"
                     >
                       X
                     </button>
                   </div>
-                  <h2 className="text-lg font-semibold text-center text-[#F04935]">
+                  <h2 className="text-lg font-semibold text-center text-[#F43F5E]">
                     Payment Details
                   </h2>
                   <Elements stripe={stripePromise}>
@@ -203,6 +292,9 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                       BusId={Bus._id}
                       Bus={Bus}
                       selectedSeats={selectedSeats}
+                      gender={gender} 
+                      passengerName={passengerName} // Pass passenger name
+                      passengerPhone={passengerPhone} // Pass passenger phone
                     />
                   </Elements>
                 </div>

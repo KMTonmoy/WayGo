@@ -16,7 +16,7 @@ const Testimonial = () => {
   }, []);
 
   // Render nothing if testimonials are loading
-  if (testimonials.length === 0) return null; 
+  if (testimonials.length === 0) return null;
 
   // Get the last three testimonials
   const lastThreeTestimonials = testimonials.slice(-3);
@@ -46,7 +46,7 @@ const Testimonial = () => {
                 <div className="flex gap-1 text-yellow-400 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <svg
-                      key={i}
+                      key={i} // Updated key prop here
                       className="h-6 w-6"
                       fill="#ec5024"
                       viewBox="0 0 20 20"

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import React, { useContext, useState } from "react";
-import logo from "../../../public/logo.png";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { usePathname } from "next/navigation";
-import { AuthContext } from "../../Provider/AuthProvider";
+import Image from 'next/image';
+import React, { useContext, useState } from 'react';
+import logo from '../../../public/logo.png';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { usePathname } from 'next/navigation';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,11 +19,11 @@ const Navbar = () => {
   };
 
   const links = [
-    { title: "Home", path: "/" },
-    { title: "About Us", path: "/about" },
-    { title: "Services", path: "/services" },
-    { title: "Blog", path: "/blog" },
-    { title: "Contact Us", path: "/contact" },
+    { title: 'Home', path: '/' },
+    { title: 'About Us', path: '/about' },
+    { title: 'Services', path: '/services' },
+    { title: 'Blog', path: '/blog' },
+    { title: 'Contact Us', path: '/contact' },
   ];
 
   return (
@@ -35,13 +35,13 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:flex gap-6">
-            {links.map((link) => (
+            {links.map(link => (
               <Link
                 key={link.path}
                 className={`font-semibold transition-colors duration-300 ${
                   link.path === pathName
-                    ? "text-[#F05342] underline"
-                    : "hover:text-[#F05342]"
+                    ? 'text-[#FB7185] underline'
+                    : 'hover:text-[#F43F5E]'
                 }`}
                 href={link.path}
               >
@@ -52,9 +52,9 @@ const Navbar = () => {
               <Link
                 href="/dashboard"
                 className={`font-semibold transition-colors duration-300 ${
-                  pathName === "/dashboard"
-                    ? "text-[#F05342] underline"
-                    : "hover:text-[#F05342]"
+                  pathName === '/dashboard'
+                    ? 'text-[#FB7185] underline'
+                    : 'hover:text-[#F43F5E]'
                 }`}
               >
                 Dashboard
@@ -71,7 +71,7 @@ const Navbar = () => {
                 >
                   <Link
                     href="/login"
-                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#F05342] rounded-full hover:bg-[#F04935]"
+                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#FB7185] rounded-full hover:bg-[#F43F5E]"
                   >
                     Login
                   </Link>
@@ -82,7 +82,7 @@ const Navbar = () => {
                 >
                   <Link
                     href="/Signup"
-                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#F05342] rounded-full hover:bg-[#F04935]"
+                    className="inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#FB7185] rounded-full hover:bg-[#F43F5E]"
                   >
                     Signup
                   </Link>
@@ -92,12 +92,12 @@ const Navbar = () => {
               <div className="flex items-center gap-2">
                 <img
                   src={user.photoURL}
-                  className="rounded-full h-[50px] w-[50px] border-2 border-[#F05342]"
+                  className="rounded-full h-[50px] w-[50px] border-2 border-[#F43F5E]"
                   alt="User Profile"
                 />
                 <button
                   onClick={() => logOut()}
-                  className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#F05342] rounded-full hover:bg-[#F04935] hidden"
+                  className="md:inline-flex items-center justify-center px-5 py-2 font-medium text-white transition duration-300 ease-out bg-[#FB7185] rounded-full hover:bg-[#F43F5E] hidden"
                 >
                   Logout
                 </button>
@@ -123,13 +123,13 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="lg:hidden bg-white shadow-lg w-full p-5 z-20"
           >
-            {links.map((link) => (
+            {links.map(link => (
               <Link
                 key={link.path}
                 className={`block my-2 font-semibold transition-colors duration-300 ${
                   link.path === pathName
-                    ? "text-clr-focussed underline"
-                    : "hover:text-clr-focussed"
+                    ? 'text-clr-focussed underline'
+                    : 'hover:text-clr-focussed'
                 }`}
                 href={link.path}
                 onClick={() => setMenuOpen(false)}
@@ -141,9 +141,9 @@ const Navbar = () => {
               <Link
                 href="/dashboard"
                 className={`block my-2 font-semibold transition-colors duration-300 ${
-                  pathName === "/dashboard"
-                    ? "text-[#f0652b] underline"
-                    : "hover:text-[#f0652b]"
+                  pathName === '/dashboard'
+                    ? 'text-[#f0652b] underline'
+                    : 'hover:text-[#f0652b]'
                 }`}
               >
                 Dashboard
@@ -165,7 +165,7 @@ const Navbar = () => {
                 >
                   <Link
                     href="/login"
-                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#F04935]"
+                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#F43F5E]"
                   >
                     Login
                   </Link>
@@ -176,7 +176,7 @@ const Navbar = () => {
                 >
                   <Link
                     href="/Signup"
-                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#F04935]"
+                    className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-medium text-white transition duration-300 ease-out bg-clr-focussed rounded-full hover:bg-[#F43F5E]"
                   >
                     Signup
                   </Link>

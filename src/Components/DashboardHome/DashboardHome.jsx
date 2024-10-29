@@ -1,13 +1,13 @@
-"use client";
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
-import CountUp from "react-countup";
-import { FaUser } from "react-icons/fa";
-import MyPayments from "../MyPaments/MyPayment";
+'use client';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
+import CountUp from 'react-countup';
+import { FaUser } from 'react-icons/fa';
+import MyPayments from '../MyPaments/MyPayment';
 
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
-  const email = user?.email || "";
+  const email = user?.email || '';
   const [data, setData] = useState({});
   const [alldata, setAllData] = useState([]);
   const [payData, setPaymentData] = useState([]);
@@ -21,17 +21,17 @@ const DashboardHome = () => {
     if (email) {
       setLoading(true);
       fetch(`https://way-go-backend.vercel.app/users/${email}`)
-        .then((res) => {
+        .then(res => {
           if (!res.ok) {
-            throw new Error("Network response was not ok");
+            throw new Error('Network response was not ok');
           }
           return res.json();
         })
-        .then((data) => {
+        .then(data => {
           setData(data);
           setLoading(false);
         })
-        .catch((err) => {
+        .catch(err => {
           setError(err.message);
           setLoading(false);
         });
@@ -41,17 +41,17 @@ const DashboardHome = () => {
   useEffect(() => {
     setLoading(true);
     fetch(`https://way-go-backend.vercel.app/users`)
-      .then((res) => {
+      .then(res => {
         if (!res.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok');
         }
         return res.json();
       })
-      .then((data) => {
+      .then(data => {
         setAllData(data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(err => {
         setError(err.message);
         setLoading(false);
       });
@@ -60,21 +60,24 @@ const DashboardHome = () => {
   useEffect(() => {
     setLoading(true);
     fetch(`https://way-go-backend.vercel.app/payments`)
-      .then((res) => {
+      .then(res => {
         if (!res.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok');
         }
         return res.json();
       })
-      .then((data) => {
+      .then(data => {
         setPaymentData(data);
         setLoading(false);
 
         // Filter payments by the current user's email
-        const userPayments = data.filter((payment) => payment.email === email);
+        const userPayments = data.filter(payment => payment.email === email);
 
         // Calculate total payments for current user
-        const total = userPayments.reduce((sum, payment) => sum + payment.price, 0);
+        const total = userPayments.reduce(
+          (sum, payment) => sum + payment.price,
+          0
+        );
         setTotalPayments(total);
 
         // Count total selected seats for the user
@@ -85,17 +88,22 @@ const DashboardHome = () => {
         setTotalSelectedSeats(selectedSeatsCount);
 
         // Calculate total payments for admin
-        const adminPayments = data.reduce((sum, payment) => sum + payment.price, 0);
+        const adminPayments = data.reduce(
+          (sum, payment) => sum + payment.price,
+          0
+        );
         setAdminTotal(adminPayments); // Set admin total balance
       })
-      .catch((err) => {
+      .catch(err => {
         setError(err.message);
         setLoading(false);
       });
   }, [email]);
 
   if (loading) {
-    return <div className="flex justify-center items-center h-full">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-full">Loading...</div>
+    );
   }
 
   if (error) {
@@ -103,78 +111,78 @@ const DashboardHome = () => {
   }
 
   const role = data?.role;
-  const memberCount = alldata.filter((user) => user.role === "agent").length;
-  const blockedCount = alldata.filter((user) => user.role === "blocked").length;
-  const userCount = alldata.filter((user) => user.role === "user").length;
+  const memberCount = alldata.filter(user => user.role === 'agent').length;
+  const blockedCount = alldata.filter(user => user.role === 'blocked').length;
+  const userCount = alldata.filter(user => user.role === 'user').length;
 
   return (
     <div className="p-8">
-      <h1 className="text-4xl font-bold text-center mb-6 text-[#F04935]">
+      <h1 className="text-4xl font-bold text-center mb-6 text-[#F43F5E]">
         Welcome to Your Dashboard
       </h1>
       {role && (
         <p className="text-lg text-center mb-4 text-gray-700">
-          You are logged in as:{" "}
-          <strong className="uppercase text-[#F04935]">{role}</strong>
+          You are logged in as:{' '}
+          <strong className="uppercase text-[#F43F5E]">{role}</strong>
         </p>
       )}
 
-      {role === "admin" && (
+      {role === 'admin' && (
         <div className="flex flex-wrap justify-center gap-8 z-0">
           <DashboardCard
             title="Total Users"
             count={userCount}
-            icon={<FaUser className="text-[#F04935] text-4xl" />}
+            icon={<FaUser className="text-[#F43F5E] text-4xl" />}
           />
           <DashboardCard
             title="Total Agents"
             count={memberCount}
-            icon={<span className="text-[#F04935] text-4xl">🪪</span>}
+            icon={<span className="text-[#F43F5E] text-4xl">🪪</span>}
           />
           <DashboardCard
             title="Total Blocked Users"
             count={blockedCount}
-            icon={<span className="text-[#F04935] text-4xl">🚫</span>}
+            icon={<span className="text-[#F43F5E] text-4xl">🚫</span>}
           />
           <DashboardCard
             title="Total Bank Balance"
             count={adminTotal} // Fix: Display admin total balance
-            icon={<span className="text-[#F04935] text-4xl">💵</span>}
+            icon={<span className="text-[#F43F5E] text-4xl">💵</span>}
           />
         </div>
       )}
-      {role === "agent" && (
+      {role === 'agent' && (
         <div className="flex flex-wrap justify-center gap-8 z-0">
           <DashboardCard
             title="Total Users"
             count={userCount}
-            icon={<FaUser className="text-[#F04935] text-4xl" />}
+            icon={<FaUser className="text-[#F43F5E] text-4xl" />}
           />
           <DashboardCard
             title="Total Agents"
             count={memberCount}
-            icon={<span className="text-[#F04935] text-4xl">🪪</span>}
+            icon={<span className="text-[#F43F5E] text-4xl">🪪</span>}
           />
           <DashboardCard
             title="Total Blocked Users"
             count={blockedCount}
-            icon={<span className="text-[#F04935] text-4xl">🚫</span>}
+            icon={<span className="text-[#F43F5E] text-4xl">🚫</span>}
           />
         </div>
       )}
-      {role === "user" && (
+      {role === 'user' && (
         <div className="flex flex-wrap justify-center gap-8 z-0">
           <DashboardCard
             title="Total My Payments"
             count={totalPayments}
-            icon={<FaUser className="text-[#F04935] text-4xl" />}
+            icon={<FaUser className="text-[#F43F5E] text-4xl" />}
           />
           <DashboardCard
             title="Total Selected Seats"
             count={totalSelectedSeats}
-            icon={<span className="text-[#F04935] text-4xl">🎟️</span>}
+            icon={<span className="text-[#F43F5E] text-4xl">🎟️</span>}
           />
-         
+
           <MyPayments />
         </div>
       )}
@@ -187,7 +195,7 @@ const DashboardCard = ({ title, count, icon }) => {
     <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg py-8 px-6 w-full md:w-80 z-0 flex items-center transition-transform transform hover:scale-105 hover:shadow-xl duration-300 ease-in-out">
       <div className="mr-4 text-5xl">{icon}</div>
       <div>
-        <h2 className="text-4xl font-bold text-[#F04935]">
+        <h2 className="text-4xl font-bold text-[#F43F5E]">
           <CountUp start={0} end={count} duration={2.75} />
         </h2>
         <p className="text-gray-600 mt-2">{title}</p>

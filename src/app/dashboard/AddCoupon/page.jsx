@@ -1,26 +1,26 @@
-"use client";
-import React, { useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
-import { imageUpload } from "../../../api/utils/index";
+'use client';
+import React, { useState } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
+import { imageUpload } from '../../../api/utils/index';
 
 const Page = () => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [img, setImg] = useState(null);
-  const [discountPercentage, setDiscountPercentage] = useState("");
-  const [promoCode, setPromoCode] = useState("");
+  const [discountPercentage, setDiscountPercentage] = useState('');
+  const [promoCode, setPromoCode] = useState('');
 
-  const handleImageChange = (e) => {
+  const handleImageChange = e => {
     const file = e.target.files?.[0];
     if (file) {
       setImg(file);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     if (!img) {
-      toast.error("Please upload an image for the coupon.");
+      toast.error('Please upload an image for the coupon.');
       return;
     }
 
@@ -34,11 +34,11 @@ const Page = () => {
       };
 
       const response = await fetch(
-        "https://way-go-backend.vercel.app/coupons",
+        'https://way-go-backend.vercel.app/coupons',
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(coupon),
         }
@@ -46,17 +46,17 @@ const Page = () => {
 
       const result = await response.json();
       if (result.acknowledged) {
-        toast.success("Coupon added successfully!");
-        setTitle("");
+        toast.success('Coupon added successfully!');
+        setTitle('');
         setImg(null);
-        setDiscountPercentage("");
-        setPromoCode("");
+        setDiscountPercentage('');
+        setPromoCode('');
       } else {
-        toast.error("Failed to add coupon.");
+        toast.error('Failed to add coupon.');
       }
     } catch (error) {
-      console.error("Error adding coupon:", error);
-      toast.error("An error occurred while adding the coupon.");
+      console.error('Error adding coupon:', error);
+      toast.error('An error occurred while adding the coupon.');
     }
   };
 
@@ -76,7 +76,7 @@ const Page = () => {
             id="title"
             type="text"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={e => setTitle(e.target.value)}
             className="border border-gray-400 p-2 rounded w-full"
             maxLength={15}
             required
@@ -105,7 +105,7 @@ const Page = () => {
             id="discountPercentage"
             type="number"
             value={discountPercentage}
-            onChange={(e) => setDiscountPercentage(e.target.value)}
+            onChange={e => setDiscountPercentage(e.target.value)}
             className="border border-gray-400 p-2 rounded w-full"
             required
           />
@@ -118,14 +118,14 @@ const Page = () => {
             id="promoCode"
             type="text"
             value={promoCode}
-            onChange={(e) => setPromoCode(e.target.value)}
+            onChange={e => setPromoCode(e.target.value)}
             className="border border-gray-400 p-2 rounded w-full"
             required
           />
         </div>
         <button
           type="submit"
-          className="bg-[#F04935]   text-white font-bold py-2 px-4 rounded"
+          className="bg-[#F43F5E]   text-white font-bold py-2 px-4 rounded"
         >
           Add Coupon
         </button>
