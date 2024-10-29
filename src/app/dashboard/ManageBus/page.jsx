@@ -1,23 +1,23 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import Swal from "sweetalert2";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Swal from 'sweetalert2';
 
 const Page = () => {
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchBuses = async () => {
       try {
         const response = await fetch(
-          "https://way-go-backend.vercel.app/allbus"
+          'https://way-go-backend.vercel.app/allbus'
         );
         const data = await response.json();
         setBuses(data);
       } catch (error) {
-        console.error("Error fetching bus data:", error);
+        console.error('Error fetching bus data:', error);
       } finally {
         setLoading(false);
       }
@@ -26,15 +26,15 @@ const Page = () => {
     fetchBuses();
   }, []);
 
-  const handleDelete = async (busId) => {
+  const handleDelete = async busId => {
     const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won’t be able to revert this!",
-      icon: "warning",
+      title: 'Are you sure?',
+      text: 'You won’t be able to revert this!',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#ff5722",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#ff5722',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
@@ -42,89 +42,86 @@ const Page = () => {
         const response = await fetch(
           `https://way-go-backend.vercel.app/allbus/${busId}`,
           {
-            method: "DELETE",
+            method: 'DELETE',
           }
         );
         if (response.ok) {
-          setBuses(buses.filter((bus) => bus._id !== busId));
+          setBuses(buses.filter(bus => bus._id !== busId));
           Swal.fire({
-            title: "Deleted!",
-            text: "Bus deleted successfully.",
-            icon: "success",
-            confirmButtonColor: "#ff5722",
+            title: 'Deleted!',
+            text: 'Bus deleted successfully.',
+            icon: 'success',
+            confirmButtonColor: '#ff5722',
           });
         } else {
           Swal.fire({
-            title: "Error!",
-            text: "Failed to delete bus.",
-            icon: "error",
-            confirmButtonColor: "#ff5722",
+            title: 'Error!',
+            text: 'Failed to delete bus.',
+            icon: 'error',
+            confirmButtonColor: '#ff5722',
           });
         }
       } catch (error) {
-        console.error("Error deleting bus:", error);
+        console.error('Error deleting bus:', error);
       }
     }
   };
 
   const handleStatusChange = async (busId, newStatus) => {
-
-
     console.log(busId, newStatus);
-
 
     try {
       const response = await fetch(
         `https://way-go-backend.vercel.app/buses/${busId}`,
         {
-          method: "PATCH",
+          method: 'PATCH',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ status: newStatus }),
         }
       );
       if (response.ok) {
         // Update local state
-        setBuses((prevBuses) =>
-          prevBuses.map((bus) =>
+        setBuses(prevBuses =>
+          prevBuses.map(bus =>
             bus._id === busId ? { ...bus, status: newStatus } : bus
           )
         );
         Swal.fire({
-          title: "Success!",
+          title: 'Success!',
           text: `Bus status updated to ${newStatus}.`,
-          icon: "success",
-          confirmButtonColor: "#ff5722",
+          icon: 'success',
+          confirmButtonColor: '#ff5722',
         });
       } else {
         Swal.fire({
-          title: "Error!",
-          text: "Failed to update bus status.",
-          icon: "error",
-          confirmButtonColor: "#ff5722",
+          title: 'Error!',
+          text: 'Failed to update bus status.',
+          icon: 'error',
+          confirmButtonColor: '#ff5722',
         });
       }
     } catch (error) {
-      console.error("Error updating bus status:", error);
+      console.error('Error updating bus status:', error);
     }
   };
 
-  const formatTime = (time) => {
-    const [hours, minutes] = time.split(":");
-    const period = hours >= 12 ? "PM" : "AM";
+  const formatTime = time => {
+    const [hours, minutes] = time.split(':');
+    const period = hours >= 12 ? 'PM' : 'AM';
     const formattedHours = hours % 12 || 12;
     return `${formattedHours}:${minutes} ${period}`;
   };
 
   // Filter buses based on search query
-  const filteredBuses = buses.filter((bus) =>
+  const filteredBuses = buses.filter(bus =>
     bus.busName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="container mx-auto px-4 py-10">
-      <h1 className="text-4xl font-bold text-center text-[#F04935] mb-6">
+      <h1 className="text-4xl font-bold text-center text-[#F43F5E] mb-6">
         Manage Buses
       </h1>
       <div className="mb-4">
@@ -132,8 +129,8 @@ const Page = () => {
           type="text"
           placeholder="Search by bus name..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#F04935]"
+          onChange={e => setSearchQuery(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#F43F5E]"
         />
       </div>
       {loading ? (
@@ -146,7 +143,7 @@ const Page = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-10">
-          {filteredBuses.map((bus) => (
+          {filteredBuses.map(bus => (
             <motion.div
               key={bus._id}
               className="bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 flex flex-col sm:flex-row relative gap-10"
@@ -163,45 +160,45 @@ const Page = () => {
                 )}
               </div>
               <div className="flex-grow">
-                <h2 className="text-2xl font-semibold text-[#F04935] mb-2">
+                <h2 className="text-2xl font-semibold text-[#F43F5E] mb-2">
                   {bus.busName}
                 </h2>
                 <p className="text-gray-600">
-                  From: <span className="text-[#F04935]">{bus.from}</span>
+                  From: <span className="text-[#F43F5E]">{bus.from}</span>
                 </p>
                 <p className="text-gray-600">
-                  To: <span className="text-[#F04935]">{bus.to}</span>
+                  To: <span className="text-[#F43F5E]">{bus.to}</span>
                 </p>
                 <p className="text-gray-600">
-                  Seat Price:{" "}
-                  <span className="text-[#F04935]">${bus.seatPrice}</span>
+                  Seat Price:{' '}
+                  <span className="text-[#F43F5E]">${bus.seatPrice}</span>
                 </p>
                 <p className="text-gray-600">
-                  Total Seats:{" "}
-                  <span className="text-[#F04935]">{bus.totalSeats}</span>
+                  Total Seats:{' '}
+                  <span className="text-[#F43F5E]">{bus.totalSeats}</span>
                 </p>
                 <p className="text-gray-600">
-                  Departure:{" "}
-                  <span className="text-[#F04935]">
+                  Departure:{' '}
+                  <span className="text-[#F43F5E]">
                     {formatTime(bus.departureTime)}
                   </span>
                 </p>
                 <p className="text-gray-600">
-                  Arrival:{" "}
-                  <span className="text-[#F04935]">
+                  Arrival:{' '}
+                  <span className="text-[#F43F5E]">
                     {formatTime(bus.arrivalTime)}
                   </span>
                 </p>
                 <p className="text-gray-600">
-                  AC:{" "}
-                  <span className="text-[#F04935]">
-                    {bus.ac ? "Yes" : "No"}
+                  AC:{' '}
+                  <span className="text-[#F43F5E]">
+                    {bus.ac ? 'Yes' : 'No'}
                   </span>
                 </p>
                 <p className="text-gray-600">
-                  WiFi:{" "}
-                  <span className="text-[#F04935]">
-                    {bus.wifi ? "Yes" : "No"}
+                  WiFi:{' '}
+                  <span className="text-[#F43F5E]">
+                    {bus.wifi ? 'Yes' : 'No'}
                   </span>
                 </p>
                 <div className="mt-4">
@@ -210,10 +207,8 @@ const Page = () => {
                   </label>
                   <select
                     id={`status-${bus._id}`}
-                    value={bus.status || "Available"}
-                    onChange={(e) =>
-                      handleStatusChange(bus._id, e.target.value)
-                    }
+                    value={bus.status || 'Available'}
+                    onChange={e => handleStatusChange(bus._id, e.target.value)}
                     className="border border-gray-300 rounded p-2"
                   >
                     <option value="Available">Available</option>

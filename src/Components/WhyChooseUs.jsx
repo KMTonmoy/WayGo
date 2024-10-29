@@ -1,5 +1,4 @@
 'use client';
-import { FaArrowRight } from 'react-icons/fa6';
 import { RiBusLine } from 'react-icons/ri';
 import { PiHandshake } from 'react-icons/pi';
 import { SiTicktick } from 'react-icons/si';
@@ -14,6 +13,7 @@ function WhyChooseUs() {
   const count = '25';
 
   useEffect(() => {
+    const currentElement = elementRef.current;
     const observer = new IntersectionObserver(
       entries => {
         const [entry] = entries;
@@ -24,13 +24,13 @@ function WhyChooseUs() {
       { threshold: 0.5 }
     );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    if (currentElement) {
+      observer.observe(currentElement);
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
   }, [hasStarted]);
@@ -62,8 +62,8 @@ function WhyChooseUs() {
             <Image
               alt="bus photo"
               src="/HomePage/chooseBus.jpg"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: 'cover' }}
               className="relative"
             />
           </div>

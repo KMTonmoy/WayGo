@@ -2,7 +2,7 @@ const WhyChooseWayGo = () => {
   return (
     <section className="py-10">
       <div className="md:px-20 mx-auto ">
-        <h2 className="text-3xl text-[#F04935] underline font-bold text-center  mb-6">
+        <h2 className="text-3xl text-[#F43F5E] underline font-bold text-center  mb-6">
           Why Choose WayGo
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const Page = ({ params }) => {
+    const { _id } = React.use(params);
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -10,7 +11,7 @@ const Page = ({ params }) => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await fetch(`https://way-go-backend.vercel.app/blogs/${params._id}`);
+                const response = await fetch(`https://way-go-backend.vercel.app/blogs/${_id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch blog');
                 }
@@ -24,7 +25,7 @@ const Page = ({ params }) => {
         };
 
         fetchBlog();
-    }, [params._id]);
+    }, [_id]);
 
     if (loading) {
         return (
