@@ -1,6 +1,28 @@
+"use client";
+
+import React, { useEffect, useState } from 'react';
+
 const Testimonial = () => {
+  const [testimonials, setTestimonials] = useState([]);
+
+  // Fetch testimonials from JSON file
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      const response = await fetch('/testimonial.json');
+      const data = await response.json();
+      setTestimonials(data);
+    };
+    fetchTestimonials();
+  }, []);
+
+  // Render nothing if testimonials are loading
+  if (testimonials.length === 0) return null; 
+
+  // Get the last three testimonials
+  const lastThreeTestimonials = testimonials.slice(-3);
+
   return (
-    <section className="bg-gradient-to-r   py-16">
+    <section className="bg-gradient-to-r py-16">
       <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         <div className="md:flex md:items-end md:justify-between mb-12">
           <div className="max-w-xl">
@@ -11,49 +33,15 @@ const Testimonial = () => {
               See why thousands of customers love our services. We pride ourselves on providing excellent service and value. Read our top reviews!
             </p>
           </div>
-
-          <a
-            href="#"
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-[--clr-primary] px-6 py-3 text-green-500 text-lg font-semibold transition-transform duration-200 hover:scale-105 hover:bg-[--clr-primary] hover:text-green-600 md:mt-0"
-          >
-            <span>Read All Reviews</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-          </a>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Review Card */}
-          {[
-            {
-              name: "John Doe",
-              title: "Outstanding Service!",
-              review: "I had an amazing experience with this company. Their customer support is top-notch and I highly recommend them to anyone looking for reliable services.",
-            },
-            {
-              name: "Jane Smith",
-              title: "Superb Quality!",
-              review: "Their attention to detail and professionalism is unmatched. They ensured all my needs were met, and I could not be happier with the outcome.",
-            },
-            {
-              name: "Michael Johnson",
-              title: "Highly Recommend!",
-              review: "Great customer service and fast delivery. I had some issues initially, but they were quick to resolve them. Fantastic experience!",
-            },
-          ].map(({ name, title, review }, index) => (
-            <blockquote key={index} className="relative flex flex-col justify-between bg-white p-8 rounded-xl shadow-lg transition-transform hover:shadow-2xl hover:scale-105">
+        {/* Testimonial Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {lastThreeTestimonials.map((testimonial) => (
+            <blockquote
+              key={testimonial.id} // Assuming each testimonial has a unique id
+              className="relative flex flex-col justify-between bg-white p-8 rounded-xl shadow-lg transition-transform hover:shadow-2xl hover:scale-105"
+            >
               <div>
                 <div className="flex gap-1 text-yellow-400 mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -70,14 +58,14 @@ const Testimonial = () => {
                 </div>
 
                 <p className="text-2xl font-bold text-[--clr-primary] sm:text-3xl mb-2">
-                  {title}
+                  {testimonial.title}
                 </p>
                 <p className="leading-relaxed text-gray-600">
-                  {review}
+                  {testimonial.review}
                 </p>
               </div>
               <footer className="mt-4 text-sm font-medium text-gray-600 sm:mt-6">
-                &mdash; {name}
+                &mdash; {testimonial.name}
               </footer>
             </blockquote>
           ))}

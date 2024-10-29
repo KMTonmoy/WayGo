@@ -37,12 +37,12 @@ const Page = ({ searchResults = [], departureDate = "" }) => {
   return (
     <div className="p-4 my-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-[#22C55E]">All Buses</h2>
+        <h2 className="text-2xl font-bold text-[#F04935]">All Buses</h2>
         <button onClick={toggleLayout} aria-label="Toggle layout view">
           {layout === "list" ? (
-            <FaThLarge className="text-2xl text-[#22C55E] hover:text-[#0ca544] transition-colors" />
+            <FaThLarge className="text-2xl text-[#F04935] hover:text-[#F04935] transition-colors" />
           ) : (
-            <FaThList className="text-2xl text-[#22C55E] hover:text-[#0ca544] transition-colors" />
+            <FaThList className="text-2xl text-[#F04935] hover:text-[#F04935] transition-colors" />
           )}
         </button>
       </div>
@@ -88,7 +88,7 @@ const Page = ({ searchResults = [], departureDate = "" }) => {
                   <div>
                     <div className="flex justify-around py-5 items-center gap-4">
                       <div>
-                        <h3 className="text-2xl font-semibold text-[#22C55E] mb-2">
+                        <h3 className="text-2xl font-semibold text-[#F04935] mb-2">
                           {bus.busName}
                         </h3>
                         <p>
@@ -114,12 +114,12 @@ const Page = ({ searchResults = [], departureDate = "" }) => {
                         <p>
                           <strong>Total Seats:</strong> {bus.totalSeats}
                         </p>
-                        <p className="text-xl font-bold text-[#22C55E]">
+                        <p className="text-xl font-bold text-[#F04935]">
                           Seat Price: {bus.seatPrice} BDT
                         </p>
                       </div>
                       <Link href={`/AllBus/${bus._id}?date=${departureDate}`}>
-                        <button className="px-6 py-2 bg-[#22C55E] text-white rounded-lg hover:bg-[#0ca544] transition-colors">
+                        <button className="px-6 py-2 bg-[#F04935] text-white rounded-lg hover:bg-[#F04935] transition-colors">
                           Book a Ticket
                         </button>
                       </Link>
@@ -127,7 +127,7 @@ const Page = ({ searchResults = [], departureDate = "" }) => {
                   </div>
                 ) : (
                   <div>
-                    <h3 className="py-2 text-center text-2xl font-semibold text-[#22C55E] mb-2">
+                    <h3 className="py-2 text-center text-2xl font-semibold text-[#F04935] mb-2">
                       {bus.busName}
                     </h3>
                     <div>
@@ -161,11 +161,11 @@ const Page = ({ searchResults = [], departureDate = "" }) => {
                         </div>
                       </div>
                       <div className="flex flex-col items-center">
-                        <p className="text-xl mb-5 font-bold text-[#22C55E]">
+                        <p className="text-xl mb-5 font-bold text-[#F04935]">
                           Seat Price: {bus.seatPrice} BDT
                         </p>
                         <Link href={`/AllBus/${bus._id}?date=${departureDate}`}>
-                          <button className="px-6 py-2 bg-[#22C55E] text-white rounded-lg hover:bg-[#0ca544] transition-colors">
+                          <button className="px-6 py-2 bg-[#F04935] text-white rounded-lg hover:bg-[#F04935] transition-colors">
                             Book a Ticket
                           </button>
                         </Link>
@@ -182,7 +182,7 @@ const Page = ({ searchResults = [], departureDate = "" }) => {
       {busData.length > 6 && (
         <div className="text-center mt-6">
           <button
-            className="px-8 py-3 bg-[#22C55E] text-white rounded-full shadow-lg hover:bg-[#0ca544] transition-all duration-300"
+            className="px-8 py-3 bg-[#F04935] text-white rounded-full shadow-lg hover:bg-[#F04935] transition-all duration-300"
             onClick={handleShowMore}
           >
             {visibleCount >= busData.length ? "Show Less" : "Show More"}

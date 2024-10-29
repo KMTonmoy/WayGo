@@ -82,10 +82,10 @@ const Page = () => {
     <div className="w-full flex flex-col">
       <div className="w-full py-5 px-10">
         <div
-          className="w-full border-2 rounded-xl border-orange-600 h-[500px] cursor-pointer"
+          className="w-full border-2 rounded-xl border-[#F04935] h-[500px] cursor-pointer"
           onClick={handleModalOpen}
         >
-          <div className="bg-[#ff6e1b5d] rounded-xl h-full flex justify-center items-center text-center">
+          <div className="bg-[#f0483538] rounded-xl h-full flex justify-center items-center text-center">
             <div>
               {preview ? (
                 <img
@@ -96,7 +96,7 @@ const Page = () => {
               ) : (
                 <div className="flex flex-col items-center">
                   <p className="text-lg font-semibold">Add Banner</p>
-                  <p className="text-6xl font-bold text-orange-600 mt-3">+</p>
+                  <p className="text-6xl font-bold text-[#F04935] mt-3">+</p>
                 </div>
               )}
             </div>
@@ -152,7 +152,7 @@ const Page = () => {
                 </button>
                 <button
                   onClick={handleSubmit}
-                  className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg"
+                  className="bg-[#F04935] hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg"
                 >
                   Submit
                 </button>

@@ -67,7 +67,7 @@ function WhyChooseUs() {
               className="relative"
             />
           </div>
-          <div className="bg-gradient-to-r from-green-500 to-green-700 text-white absolute md:bottom-8 left-5 lg:w-[66%] md:w-[76%] rounded-xl lg:p-12 md:p-8 hidden md:block">
+          <div className="bg-gradient-to-r from-[#F05342] to-[#FFB74D] text-white absolute md:bottom-8 left-5 lg:w-[66%] md:w-[76%] rounded-xl lg:p-12 md:p-8 hidden md:block">
             <h2 className="lg:text-3xl md:text-2xl mb-4">
               We Provide Best Bus For You
             </h2>
@@ -81,7 +81,7 @@ function WhyChooseUs() {
         {/* Description Part */}
         <div className="bg-black text-white lg:p-24 md:p-14 p-10 space-y-4">
           <div>
-            <h3 className="text-green-500 text-lg">Why Choose Us</h3>
+            <h3 className="text-[#F05342] text-lg">Why Choose Us</h3>
           </div>
           <div>
             <h2>Providing Reliable Bus Charter Services Since 1999</h2>
@@ -95,11 +95,11 @@ function WhyChooseUs() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 pt-6">
             <div className="flex gap-3 lg:gap-6 pb-4">
-              <RiBusLine className="text-green-500 text-3xl lg:text-5xl" />
+              <RiBusLine className="text-[#F05342] text-3xl lg:text-5xl" />
               <div className="">
                 <h4 className="text-4xl pb-3">
                   {displayCount}{' '}
-                  <span className="text-green-500 text-2xl font-bold">+</span>
+                  <span className="text-[#F05342] text-2xl font-bold">+</span>
                 </h4>
                 <h5 className="text-base font-normal text-gray-400">
                   Buses Ready
@@ -107,11 +107,11 @@ function WhyChooseUs() {
               </div>
             </div>
             <div className="flex gap-3 lg:gap-6 pb-4">
-              <PiHandshake className="text-green-500 text-3xl lg:text-5xl" />
+              <PiHandshake className="text-[#F05342] text-3xl lg:text-5xl" />
               <div className="">
                 <h4 className="text-4xl pb-3">
                   2,640{' '}
-                  <span className="text-green-500 text-2xl font-bold">+</span>
+                  <span className="text-[#F05342] text-2xl font-bold">+</span>
                 </h4>
                 <h5 className="text-base font-normal text-gray-400">
                   Satisfied Customer
@@ -119,11 +119,11 @@ function WhyChooseUs() {
               </div>
             </div>
             <div className="flex gap-3 lg:gap-6 pb-4">
-              <SiTicktick className="text-green-500 text-3xl lg:text-5xl" />
+              <SiTicktick className="text-[#F05342] text-3xl lg:text-5xl" />
               <div className="">
                 <h4 className="text-4xl pb-3">
                   2,836{' '}
-                  <span className="text-green-500 text-2xl font-bold">+</span>
+                  <span className="text-[#F05342] text-2xl font-bold">+</span>
                 </h4>
                 <h5 className="text-base font-normal text-gray-400">
                   Booking Done
@@ -131,11 +131,11 @@ function WhyChooseUs() {
               </div>
             </div>
             <div className="flex gap-3 lg:gap-6 pb-4">
-              <FaPeopleGroup className="text-green-500 text-3xl lg:text-5xl" />
+              <FaPeopleGroup className="text-[#F05342] text-3xl lg:text-5xl" />
               <div className="">
                 <h4 className="text-4xl pb-3">
                   75{' '}
-                  <span className="text-green-500 text-2xl font-bold">+</span>
+                  <span className="text-[#F05342] text-2xl font-bold">+</span>
                 </h4>
                 <h5 className="text-base font-normal text-gray-400">
                   Professional Team

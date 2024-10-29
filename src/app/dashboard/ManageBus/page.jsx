@@ -124,7 +124,7 @@ const Page = () => {
 
   return (
     <div className="container mx-auto px-4 py-10">
-      <h1 className="text-4xl font-bold text-center text-orange-600 mb-6">
+      <h1 className="text-4xl font-bold text-center text-[#F04935] mb-6">
         Manage Buses
       </h1>
       <div className="mb-4">
@@ -133,7 +133,7 @@ const Page = () => {
           placeholder="Search by bus name..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#F04935]"
         />
       </div>
       {loading ? (
@@ -163,44 +163,44 @@ const Page = () => {
                 )}
               </div>
               <div className="flex-grow">
-                <h2 className="text-2xl font-semibold text-orange-600 mb-2">
+                <h2 className="text-2xl font-semibold text-[#F04935] mb-2">
                   {bus.busName}
                 </h2>
                 <p className="text-gray-600">
-                  From: <span className="text-orange-500">{bus.from}</span>
+                  From: <span className="text-[#F04935]">{bus.from}</span>
                 </p>
                 <p className="text-gray-600">
-                  To: <span className="text-orange-500">{bus.to}</span>
+                  To: <span className="text-[#F04935]">{bus.to}</span>
                 </p>
                 <p className="text-gray-600">
                   Seat Price:{" "}
-                  <span className="text-orange-500">{bus.seatPrice} BDT</span>
+                  <span className="text-[#F04935]">${bus.seatPrice}</span>
                 </p>
                 <p className="text-gray-600">
                   Total Seats:{" "}
-                  <span className="text-orange-500">{bus.totalSeats}</span>
+                  <span className="text-[#F04935]">{bus.totalSeats}</span>
                 </p>
                 <p className="text-gray-600">
                   Departure:{" "}
-                  <span className="text-orange-500">
+                  <span className="text-[#F04935]">
                     {formatTime(bus.departureTime)}
                   </span>
                 </p>
                 <p className="text-gray-600">
                   Arrival:{" "}
-                  <span className="text-orange-500">
+                  <span className="text-[#F04935]">
                     {formatTime(bus.arrivalTime)}
                   </span>
                 </p>
                 <p className="text-gray-600">
                   AC:{" "}
-                  <span className="text-orange-500">
+                  <span className="text-[#F04935]">
                     {bus.ac ? "Yes" : "No"}
                   </span>
                 </p>
                 <p className="text-gray-600">
                   WiFi:{" "}
-                  <span className="text-orange-500">
+                  <span className="text-[#F04935]">
                     {bus.wifi ? "Yes" : "No"}
                   </span>
                 </p>

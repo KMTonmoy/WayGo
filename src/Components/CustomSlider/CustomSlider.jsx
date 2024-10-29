@@ -64,13 +64,13 @@ const CustomSlider = () => {
             >
               <div className="flex flex-col py-5 items-center">
                 <img
-                  className="w-32 h-32 rounded-full border-4 border-[#22C55E] mb-4 shadow-lg transform transition hover:scale-105"
+                  className="w-32 h-32 rounded-full border-4 border-[#F05342] mb-4 shadow-lg transform transition hover:scale-105"
                   src={item.img}
                   alt={item.title}
                 />
                 <h6 className="text-2xl font-bold text-gray-800 mt-2">
                   Unlock an Amazing
-                  <span className="text-[#22C55E] mx-2 font-bold">
+                  <span className="text-[#F05342] mx-2 font-bold">
                     {item.discountPercentage}%
                   </span>
                   Discount Just for You!
@@ -78,7 +78,7 @@ const CustomSlider = () => {
                 <p className="text-gray-600 mt-2 text-center">
                   Purchase any ticket online and enjoy an exclusive flat
                   discount of{" "}
-                  <span className="text-[#22C55E]">
+                  <span className="text-[#F05342]">
                     {item.discountPercentage}
                   </span>
                   %! Don’t miss out on this fantastic opportunity to save on
@@ -86,7 +86,7 @@ const CustomSlider = () => {
                 </p>
 
                 <div className="mt-4 rounded-lg px-4 py-1 text-xs font-medium">
-                  <span className="text-gray-600">Promo Code:</span> <span className="px-2 py-1 rounded-2xl bg-[#22c55e2d] text-[#22C55E]">{item.promoCode}</span>
+                  <span className="text-gray-600">Promo Code:</span> <span className="px-2 py-1 rounded-2xl bg-[#F053422d] text-[#F05342]">{item.promoCode}</span>
                 </div>
               </div>
             </motion.div>
@@ -114,7 +114,7 @@ const CustomSlider = () => {
           <div
             key={idx}
             className={`h-2 w-2 rounded-full transition-all duration-300 ${
-              currentSlider === idx ? "bg-[#22C55E] w-8" : "bg-gray-300 w-2"
+              currentSlider === idx ? "bg-[#F05342] w-8" : "bg-gray-300 w-2"
             }`}
           ></div>
         ))}

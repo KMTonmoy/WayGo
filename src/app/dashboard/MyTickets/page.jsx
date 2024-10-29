@@ -77,7 +77,7 @@ const Page = () => {
         userTickets.map((ticket) => (
           <motion.div
             key={ticket._id}
-            className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 relative flex flex-col justify-between"
+            className="bg-[#f04835] text-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 relative flex flex-col justify-between"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -135,6 +135,18 @@ const Page = () => {
           No tickets found for {user?.email}.
         </p>
       )}
+      
+      <style jsx>{`
+        @media print {
+          body {
+            background: #f0f0f0; /* Change to your desired print background color */
+          }
+          .bg-[#f04835] {
+            background: #f0f0f0 !important; /* Same as body background */
+          }
+          /* Additional print styles can be added here */
+        }
+      `}</style>
     </div>
   );
 };

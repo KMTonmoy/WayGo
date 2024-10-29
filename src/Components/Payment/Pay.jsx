@@ -144,14 +144,14 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                   className={`${
                     isCouponApplied
                       ? "bg-gray-400 coursor-not-allowed"
-                      : "bg-[#22C55E]"
+                      : "bg-[#F04935]"
                   } text-white rounded px-4 py-2`}
                 >
                   Apply
                 </button>
               </div>
               {discount > 0 && (
-                <div className="flex justify-between mb-2 text-green-600">
+                <div className="flex justify-between mb-2 text-[#F04935]">
                   <p className="text-lg font-medium">Discount:</p>
                   <p className="text-lg">
                     {discount}% (-{discountAmount.toFixed(2)} BDT)
@@ -170,7 +170,7 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
 
             <button
               type="button"
-              className="bg-green-500 mt-5 p-3 font-bold text-white rounded-md w-full"
+              className="bg-[#F04935] mt-5 p-3 font-bold text-white rounded-md w-full"
               onClick={handlePay}
             >
               Process Payment
@@ -182,17 +182,17 @@ const Pay = ({ Bus, selectedSeats, totalPrice }) => {
                 className="modal fixed inset-40 rounded-2xl flex items-center justify-center"
                 open
               >
-                <div className="modal-box p-5 border-2 border-green-500 rounded-2xl h-[300px] flex flex-col items-center justify-center gap-5 relative shadow-lg bg-white">
+                <div className="modal-box p-5 border-2 border-[#F04935] rounded-2xl h-[400px] flex flex-col items-center justify-center gap-5 relative shadow-lg bg-white">
                   <div className="absolute right-2 top-2">
                     <button
                       onClick={closeModal}
-                      className="bg-green-600 rounded-full px-3 py-1 text-white font-bold text-xl hover:bg-green-500 transition-colors duration-200"
+                      className="bg-[#F04935] rounded-full px-3 py-1 text-white font-bold text-xl hover:bg-[#F04935] transition-colors duration-200"
                     >
                       X
                     </button>
                   </div>
-                  <h2 className="text-2xl font-semibold text-center text-green-600">
-                    Payment Information
+                  <h2 className="text-lg font-semibold text-center text-[#F04935]">
+                    Payment Details
                   </h2>
                   <Elements stripe={stripePromise}>
                     <CheckoutForm

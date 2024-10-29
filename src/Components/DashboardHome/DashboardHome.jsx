@@ -109,13 +109,13 @@ const DashboardHome = () => {
 
   return (
     <div className="p-8">
-      <h1 className="text-4xl font-bold text-center mb-6 text-[#22C55E]">
+      <h1 className="text-4xl font-bold text-center mb-6 text-[#F04935]">
         Welcome to Your Dashboard
       </h1>
       {role && (
         <p className="text-lg text-center mb-4 text-gray-700">
           You are logged in as:{" "}
-          <strong className="uppercase text-[#22C55E]">{role}</strong>
+          <strong className="uppercase text-[#F04935]">{role}</strong>
         </p>
       )}
 
@@ -124,22 +124,22 @@ const DashboardHome = () => {
           <DashboardCard
             title="Total Users"
             count={userCount}
-            icon={<FaUser className="text-[#22C55E] text-4xl" />}
+            icon={<FaUser className="text-[#F04935] text-4xl" />}
           />
           <DashboardCard
             title="Total Agents"
             count={memberCount}
-            icon={<span className="text-[#22C55E] text-4xl">🪪</span>}
+            icon={<span className="text-[#F04935] text-4xl">🪪</span>}
           />
           <DashboardCard
             title="Total Blocked Users"
             count={blockedCount}
-            icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
+            icon={<span className="text-[#F04935] text-4xl">🚫</span>}
           />
           <DashboardCard
             title="Total Bank Balance"
             count={adminTotal} // Fix: Display admin total balance
-            icon={<span className="text-[#22C55E] text-4xl">💵</span>}
+            icon={<span className="text-[#F04935] text-4xl">💵</span>}
           />
         </div>
       )}
@@ -148,17 +148,17 @@ const DashboardHome = () => {
           <DashboardCard
             title="Total Users"
             count={userCount}
-            icon={<FaUser className="text-[#22C55E] text-4xl" />}
+            icon={<FaUser className="text-[#F04935] text-4xl" />}
           />
           <DashboardCard
             title="Total Agents"
             count={memberCount}
-            icon={<span className="text-[#22C55E] text-4xl">🪪</span>}
+            icon={<span className="text-[#F04935] text-4xl">🪪</span>}
           />
           <DashboardCard
             title="Total Blocked Users"
             count={blockedCount}
-            icon={<span className="text-[#22C55E] text-4xl">🚫</span>}
+            icon={<span className="text-[#F04935] text-4xl">🚫</span>}
           />
         </div>
       )}
@@ -167,12 +167,12 @@ const DashboardHome = () => {
           <DashboardCard
             title="Total My Payments"
             count={totalPayments}
-            icon={<FaUser className="text-[#22C55E] text-4xl" />}
+            icon={<FaUser className="text-[#F04935] text-4xl" />}
           />
           <DashboardCard
             title="Total Selected Seats"
             count={totalSelectedSeats}
-            icon={<span className="text-[#22C55E] text-4xl">🎟️</span>}
+            icon={<span className="text-[#F04935] text-4xl">🎟️</span>}
           />
          
           <MyPayments />
@@ -187,7 +187,7 @@ const DashboardCard = ({ title, count, icon }) => {
     <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg py-8 px-6 w-full md:w-80 z-0 flex items-center transition-transform transform hover:scale-105 hover:shadow-xl duration-300 ease-in-out">
       <div className="mr-4 text-5xl">{icon}</div>
       <div>
-        <h2 className="text-4xl font-bold text-[#22C55E]">
+        <h2 className="text-4xl font-bold text-[#F04935]">
           <CountUp start={0} end={count} duration={2.75} />
         </h2>
         <p className="text-gray-600 mt-2">{title}</p>
