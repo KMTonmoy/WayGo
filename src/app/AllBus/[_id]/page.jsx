@@ -31,6 +31,7 @@ const Page = ({ params }) => {
           const bookedSeatsFromPayments = userPayments.flatMap(
             payment => payment.selectedSeats
           );
+          
           setBookedSeats(bookedSeatsFromPayments);
         }
       } catch (error) {
