@@ -11,6 +11,7 @@ const locations = [
   'Coxbazar',
   'Rangamati',
   'Khagrasori',
+  
 ];
 
 const Banner = () => {
